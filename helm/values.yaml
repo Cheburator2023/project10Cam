@@ -1,0 +1,123 @@
+# ds1-ldap1 values for camunda.
+
+replicaCount: 1
+pullSecret: secret-name
+
+image:
+  repository: nexus-ci.corp.dev.vtb/sumd-docker-lib/camunda
+  tag: v3
+  pullPolicy: IfNotPresent
+
+
+resources:
+  requests:
+    cpu: "450m"
+    memory: "800Mi"
+  limits:
+    cpu: "900m"
+    memory: "1600Mi"
+
+secretName: ingress-tls
+
+ingress:
+  enabled: true
+  annotations: {
+    haproxy.router.openshift.io/timeout: "300s"
+  }
+  hosts:
+    - host: camunda-ds1-lpad01-sumd-system.apps.ds1-lpad01.corp.dev.vtb
+      paths:
+        - pathType: ImplementationSpecific
+          backend:
+            service:
+              name: camunda
+              port:
+                number: 8080
+  tls:
+    - secretName: ingress-tls
+      hosts:
+        - camunda-ds1-lpad01-sumd-system.apps.ds1-lpad01.corp.dev.vtb
+
+logging:
+  enabled: false
+  fluentd:
+    docker:
+      name: fluentd-agent
+      repository: nexus-ci.corp.dev.vtb/sumd-docker-lib/fluentd
+      tag: latest
+      pullPolicy: IfNotPresent
+    env:
+      FLUENT_UID: 0
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "50Mi"
+      limits:
+        cpu: "100m"
+        memory: "100Mi"
+    elasticsearch:
+      host: dmdrpc-apc006ln.corp.dev.vtb
+      port: 9200
+      index: 1661_camunda
+      logstash_format: true
+      ssl_verify: false
+      #buffer:
+      #  flushMode: interval
+    livenessprobe:
+      enabled: false
+      initialdelayseconds: 600
+      periodseconds: 60
+  logrotate:
+    enabled: false
+    docker:
+      name: logrotate
+      repository: nexus-ci.corp.dev.vtb/sumd-docker-lib/misc
+      tag: latest
+      pullPolicy: IfNotPresent
+    env:
+      LOGROTATE_SIZE: 40M
+      LOGROTATE_COMPRESSION: compress
+      LOGROTATE_CRON: 0 0 * * *
+      LOGROTATE_DIRECTORY: /camunda/standalone/log
+      LOGROTATE_ROTATE: 1
+      LOGROTATE_DELETION_MTIME: +0
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "100Mi"
+      limits:
+        cpu: "100m"
+        memory: "200Mi"
+
+###Выбор worker ноды без GPU
+affinity:
+  enabled: false
+#  nodeAffinity:
+#    requiredDuringSchedulingIgnoredDuringExecution:
+#      nodeSelectorTerms:
+#        - matchExpressions:
+#            - key: nvidia.com/gpu.product
+#              operator: DoesNotExist
+
+secrets:
+  immutable:
+    enabled: true
+
+### Выбор политики для автоскалирования количества подов - разкомментить требуемое
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  # targetCPUUtilizationPercentage: 80
+  # targetCPUAverageValue: 100m
+  # targetMemoryUtilizationPercentage: 80
+  # targetMemoryAverageValue: 200Mi
+
+### ENV
+CAMUNDA_ADMIN:
+CAMUNDA_PWD:
+db:
+  DB_DRIVER: org.postgresql.Driver
+  DB_URL: "jdbc:postgresql://d5drpc-pgc001lk.corp.dev.vtb:5432/camunda"
+  DB_USERNAME:
+  DB_PASSWORD:

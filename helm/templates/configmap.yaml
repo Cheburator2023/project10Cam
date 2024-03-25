@@ -1,0 +1,33 @@
+{{- if .Values.logging.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "camunda.fullname" . }}-fluent-agent-config
+  labels:
+      {{- include "camunda.labels" . | nindent 4 }}
+data:
+  fluent.conf: |-
+    <source>
+      @type tail
+      path "/camunda/standalone/log/*.log"
+      pos_file "/camunda/standalone/log/file.log.pos"
+      tag "camunda"
+      <parse>
+        @type multiline
+        format_firstline /\d{4}-\d{1,2}-\d{1,2}/
+        format1 /^(?<time>\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2},\d{0,3}) (?<level>[^\s]+)\s{0,3}\[(?<thread>.*)\] (?<message>.*)/
+      </parse>
+    </source>
+    <match camunda>
+      @type opensearch
+      hosts {{ .Values.logging.fluentd.elasticsearch.host }}
+      user "#{ENV['FLUENTD_USER']}"
+      password "#{ENV['FLUENTD_PWD']}"
+      scheme https
+      ssl_verify {{ .Values.logging.fluentd.elasticsearch.ssl_verify }}
+      logstash_format {{ .Values.logging.fluentd.elasticsearch.logstash_format }}
+      logstash_prefix {{ .Values.logging.fluentd.elasticsearch.index }}
+      include_timestamp true
+      reconnect_on_error true
+    </match>
+{{- end }}

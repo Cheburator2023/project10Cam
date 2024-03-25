@@ -1,0 +1,178 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "camunda.fullname" . }}
+  labels: {{- include "camunda.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "camunda.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "camunda.fullname" . }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.pullSecret }}
+      {{- if .Values.affinity.enabled }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: nvidia.com/gpu.product
+                    operator: DoesNotExist
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          {{- if .Values.image.digest }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}@{{ .Values.image.digest }}"
+          {{- else }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: CAMUNDA_ADMIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "camunda.fullname" . }}-secret
+                  key: "CAMUNDA_ADMIN"
+            - name: CAMUNDA_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "camunda.fullname" . }}-secret
+                  key: "CAMUNDA_PWD"
+            - name: DB_DRIVER
+              value: "{{ .Values.db.DB_DRIVER }}"
+            - name: DB_URL
+              value: "{{ .Values.db.DB_URL }}"
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "camunda.fullname" . }}-secret
+                  key: "DB_USERNAME"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "camunda.fullname" . }}-secret
+                  key: "DB_PASSWORD"
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 9404
+              protocol: TCP
+            - containerPort: 9990
+              protocol: TCP          
+          livenessProbe:
+            initialDelaySeconds: 250
+            timeoutSeconds: 10
+            periodSeconds: 15
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              path: /camunda
+              port: 8080
+          readinessProbe:
+            initialDelaySeconds: 250
+            timeoutSeconds: 10
+            periodSeconds: 15
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              path: /camunda
+              port: 8080
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.logging.enabled }}
+          volumeMounts:
+            - name: applog
+              mountPath: /camunda/standalone/log/
+          {{- end }}
+      {{- if .Values.logging.logrotate.enabled }}
+        - name: {{ .Values.logging.logrotate.docker.name }}
+          image: "{{ .Values.logging.logrotate.docker.repository }}/{{ .Values.logging.logrotate.docker.name }}:{{ .Values.logging.logrotate.docker.tag }}"
+          imagePullPolicy: {{ .Values.logging.logrotate.docker.pullPolicy }}
+          env:
+            {{- range $key, $val := .Values.logging.logrotate.env }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.logging.logrotate.resources | nindent 12 }}
+          volumeMounts:
+            - name: applog
+              mountPath: /camunda/standalone/log/
+      {{- end }}
+      {{- if .Values.logging.enabled }}
+        - name: {{ .Values.logging.fluentd.docker.name }}
+          image: "{{ .Values.logging.fluentd.docker.repository }}/{{ .Values.logging.fluentd.docker.name }}:{{ .Values.logging.fluentd.docker.tag }}"
+          imagePullPolicy: {{ .Values.logging.fluentd.docker.pullPolicy }}
+          env:
+            - name: FLUENTD_USER
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENTD_USER
+                  name: {{ template "camunda.fullname" . }}-secret
+            - name: FLUENTD_PWD
+              valueFrom:
+                secretKeyRef:
+                  key: FLUENTD_PWD
+                  name: {{ template "camunda.fullname" . }}-secret
+            {{- range $key, $val := .Values.logging.fluentd.env }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.logging.fluentd.resources | nindent 12 }}
+          readinessProbe:
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+            exec:
+              command:
+                - echo
+                - good
+          volumeMounts:
+            - name: {{ include "camunda.fullname" . }}-fluent-agent-config
+              mountPath: /fluentd/etc/fluent.conf
+              subPath: fluent.conf
+            - name: applog
+              mountPath: /camunda/standalone/log/
+          {{- if .Values.logging.fluentd.livenessprobe.enabled }}
+          livenessProbe:
+            initialDelaySeconds: {{ .Values.logging.fluentd.livenessprobe.initialdelayseconds }}
+            periodSeconds: {{ .Values.logging.fluentd.livenessprobe.periodseconds }}
+            exec:
+              command:
+                - '/bin/sh'
+                - '-c'
+                - >
+                  LIVENESS_THRESHOLD_SECONDS=${LIVENESS_THRESHOLD_SECONDS:-300};
+                  STUCK_THRESHOLD_SECONDS=${STUCK_THRESHOLD_SECONDS:-900};
+                  if [ ! -e /var/log/fluentd-buffers ];
+                  then
+                    exit 1;
+                  fi;
+                  touch -d "${STUCK_THRESHOLD_SECONDS} seconds ago" /tmp/marker-stuck;
+                  if [ -z "$(find /var/log/fluentd-buffers -type d -newer /tmp/marker-stuck -print -quit)" ];
+                  then
+                    rm -rf /var/log/fluentd-buffers;
+                    exit 1;
+                  fi;
+                  touch -d "${LIVENESS_THRESHOLD_SECONDS} seconds ago" /tmp/marker-liveness;
+                  if [ -z "$(find /var/log/fluentd-buffers -type d -newer /tmp/marker-liveness -print -quit)" ];
+                  then
+                    exit 1;
+                  fi;
+          {{- end }}
+      volumes:
+        - name: applog
+          emptyDir: {}
+        - name: {{ include "camunda.fullname" . }}-fluent-agent-config
+          configMap:
+            name: {{ include "camunda.fullname" . }}-fluent-agent-config
+      {{- end }}

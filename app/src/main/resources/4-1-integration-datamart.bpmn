@@ -1,0 +1,2076 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1r66esz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.8.1">
+  <bpmn:collaboration id="Collaboration_09aeell">
+    <bpmn:documentation>&#1053;&#1077;&#1086;&#1073;&#1093;&#1086;&#1076;&#1080;&#1084;&#1101;&#1082;&#1089;&#1087;&#1077;&#1088;&#1090;&#1072; &#1087;&#1086; &#1076;&#1072;&#1085;&#1085;&#1099;&#1084;</bpmn:documentation>
+    <bpmn:participant id="Participant_1og8pkh" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;" processRef="integration_datamart" />
+  </bpmn:collaboration>
+  <bpmn:process id="integration_datamart" isExecutable="true" camunda:versionTag="version9_2023_04">
+    <bpmn:laneSet id="LaneSet_0us458j">
+      <bpmn:lane id="Lane_1x2yy8k" name="&#1042;&#1072;&#1083;&#1080;&#1076;&#1072;&#1090;&#1086;&#1088;">
+        <bpmn:flowNodeRef>need_routine_update</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>planned_validation_datamart_validator</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>br_validation_datamart_developing</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>attracting_dit_de</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1veyylq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>test_planned_validation_datamart_validator</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1t9dbhb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1m9jgwd</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>need_routine_update_de</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1p8msud</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1w0c5l0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1p038hx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_00wtjgv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1y22v63</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_04b964o</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1x5pot2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0hgygf2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_10ylrgx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0th38hj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0pgzvzz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1oio7rn</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1r1rc2b</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>datamart_validation_etl_dit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0wvhxk1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0okg802</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0t3emn1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1lydp8z</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0olzx90</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>additional_analytical_monitoring</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0t4imng</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>attracting_dit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1q5g6ju</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>requirements_additional_analytical_monitoring_validator</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0m5i18c</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1oevu6i" name="&#1069;&#1082;&#1089;&#1087;&#1077;&#1088;&#1090; &#1087;&#1086; &#1076;&#1072;&#1085;&#1085;&#1099;&#1084;">
+        <bpmn:flowNodeRef>Activity_14z5we1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>detailing_task_unloading</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_05q1qfe" />
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0dpoitz" name="DE">
+        <bpmn:flowNodeRef>planned_validation_datamart_de</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1oxg2pl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>integration_autoupdating_datamart_script_add_de</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_08oqs30</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>source_drp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_01e67dy</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ppnou8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0w5h6h7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>datamart_developing_auto_renewable</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1lcps5a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>test_planned_validation_datamart_de</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_09w6biu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0mjckj6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1kgvyni</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0n3cv8k</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0khuxns</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_017wjv6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>data_expert_datamart_validator</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>bt_datamart_developing_new</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:userTask id="need_routine_update" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;?" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="routine_update_flg">${routine_update_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="routine_update_flg" label="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="377" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0sz8rug</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rubfuh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="planned_validation_datamart_validator" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="criterion_validation_datamart">${criterion_validation_datamart}</camunda:outputParameter>
+          <camunda:outputParameter name="br_validation_datamart">${br_validation_datamart}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="criterion_validation_datamart" label="&#1050;&#1088;&#1080;&#1090;&#1077;&#1088;&#1080;&#1080; &#1087;&#1088;&#1080;&#1077;&#1084;&#1082;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="338" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="br_validation_datamart" label="&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="188" />
+              <camunda:property id="artefact_desc" value="&#1064;&#1072;&#1073;&#1083;&#1086;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072; &lt;a href=&quot;/template/&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 21_&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;.docx&quot; target=&quot;_blank&quot;&gt;&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 21_&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;.docx&lt;/a&gt;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="2" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090; &quot;&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;&quot;." />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0baj7s1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0sz8rug</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="planned_validation_datamart_de" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="planned_validation_script">${planned_validation_script}</camunda:outputParameter>
+          <camunda:outputParameter name="planned_validation_report">${planned_validation_report}</camunda:outputParameter>
+          <camunda:outputParameter name="datamart_description_planned_validation_de">${datamart_description_planned_validation_de}</camunda:outputParameter>
+          <camunda:outputParameter name="aggregate_calculation_algorithm_planned_validation">${aggregate_calculation_algorithm_planned_validation}</camunda:outputParameter>
+          <camunda:outputParameter name="link_planned_validation_de">${link_planned_validation_de}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="planned_validation_script" label="&#1057;&#1082;&#1088;&#1080;&#1087;&#1090; &#1092;&#1086;&#1088;&#1084;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="337" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="planned_validation_report" label="&#1054;&#1090;&#1095;&#1077;&#1090; &#1086; &#1088;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="336" />
+              <camunda:property id="artefact_desc" value="&#1064;&#1072;&#1073;&#1083;&#1086;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="datamart_description_planned_validation_de" label="&#1054;&#1087;&#1080;&#1089;&#1072;&#1085;&#1080;&#1077; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="335" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="aggregate_calculation_algorithm_planned_validation" label="&#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1084;&#1099; &#1088;&#1072;&#1089;&#1095;&#1077;&#1090;&#1086;&#1074; &#1072;&#1075;&#1088;&#1077;&#1075;&#1072;&#1090;&#1086;&#1074;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="334" />
+              <camunda:property id="artefact_desc" value="&#1064;&#1072;&#1073;&#1083;&#1086;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072; &lt;a href=&quot;/template/&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 8_&#1064;&#1072;&#1073;&#1083;&#1086;&#1085;_&#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1084;&#1099; &#1088;&#1072;&#1089;&#1095;&#1077;&#1090;&#1086;&#1074; &#1072;&#1075;&#1088;&#1077;&#1075;&#1072;&#1090;&#1086;&#1074;.docx&quot; target=&quot;_blank&quot;&gt;&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 8_&#1064;&#1072;&#1073;&#1083;&#1086;&#1085;_&#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1084;&#1099; &#1088;&#1072;&#1089;&#1095;&#1077;&#1090;&#1086;&#1074; &#1072;&#1075;&#1088;&#1077;&#1075;&#1072;&#1090;&#1086;&#1074;.docx&lt;/a&gt;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="link_planned_validation_de" label="&#1057;&#1089;&#1099;&#1083;&#1082;&#1072; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="379" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1089;&#1089;&#1099;&#1083;&#1082;&#1091;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="7" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0hjg4gt</bpmn:incoming>
+      <bpmn:incoming>Flow_1f0cs7x</bpmn:incoming>
+      <bpmn:incoming>Flow_06jl1k8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0udh056</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1oxg2pl" default="Flow_0lchowc">
+      <bpmn:incoming>Flow_18a7799</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lchowc</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1bmrtfb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="integration_autoupdating_datamart_script_add_de" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1103;" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="integration_autoupdating_datamart_script_add">${integration_autoupdating_datamart_script_add}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="integration_autoupdating_datamart_script_add" label="&#1057;&#1082;&#1088;&#1080;&#1087;&#1090; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="345" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1103;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bmrtfb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tyehgj</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_08oqs30" default="Flow_0tddqm8">
+      <bpmn:incoming>Flow_0moe2kz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tddqm8</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17p3uk1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="source_drp" name="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1079;&#1072;&#1075;&#1088;&#1091;&#1078;&#1077;&#1085; &#1074; DRP?" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="source_drp_flg">${source_drp_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="source_drp_flg" label="&#1048;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1079;&#1072;&#1075;&#1088;&#1091;&#1078;&#1077;&#1085; &#1074; DRP?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="374" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0o6ypy3</bpmn:incoming>
+      <bpmn:outgoing>Flow_10x1w8w</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:parallelGateway id="Gateway_01e67dy">
+      <bpmn:incoming>Flow_1xbp8bl</bpmn:incoming>
+      <bpmn:outgoing>Flow_16zs8sw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0o6ypy3</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_1ppnou8" name="&#1048;&#1085;&#1080;&#1094;&#1080;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1073;&#1080;&#1079;&#1085;&#1077;&#1089; &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;" camunda:type="external" camunda:topic="bpmnStart">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_02tnthw</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:parallelGateway id="Gateway_0w5h6h7">
+      <bpmn:incoming>Flow_1tkj10u</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xbp8bl</bpmn:outgoing>
+      <bpmn:outgoing>Flow_02tnthw</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1tkj10u</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="br_validation_datamart_developing" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1041;&#1058; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1041;&#1058; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="br_validation_datamart">${br_validation_datamart}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_datamart_attributes">${validation_datamart_attributes}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_datamart_name">${validation_datamart_name}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_datamart_id">${validation_datamart_id}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="br_validation_datamart" label="&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="188" />
+              <camunda:property id="artefact_desc" value="&#1064;&#1072;&#1073;&#1083;&#1086;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072; &lt;a href=&quot;/template/&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 21_&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;.docx&quot; target=&quot;_blank&quot;&gt;&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 21_&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;.docx&lt;/a&gt;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="2" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090; &quot;&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1091; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;&quot;." />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="validation_datamart_attributes" label="&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1090;&#1086;&#1074; &#1076;&#1083;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="190" />
+              <camunda:property id="artefact_desc" value="&#1064;&#1072;&#1073;&#1083;&#1086;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072; &lt;a href=&quot;/template/&#1064;&#1072;&#1073;&#1083;&#1086;&#1085;_&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1090;&#1086;&#1074; &#1076;&#1083;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;.docx&quot; target=&quot;_blank&quot;&gt;&#1064;&#1072;&#1073;&#1083;&#1086;&#1085;_&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1072;&#1090;&#1088;&#1080;&#1073;&#1091;&#1090;&#1086;&#1074; &#1076;&#1083;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;.docx&lt;/a&gt;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="2" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="validation_datamart_name" label="&#1053;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1077;&#1088;&#1074;&#1080;&#1095;&#1085;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="242" />
+              <camunda:property id="artefact_desc" value="&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1077;&#1088;&#1074;&#1080;&#1095;&#1085;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="validation_datamart_id" label="ID &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1077;&#1088;&#1074;&#1080;&#1095;&#1085;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="241" />
+              <camunda:property id="artefact_desc" value="&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; ID &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1077;&#1088;&#1074;&#1080;&#1095;&#1085;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_07nkvvl</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l2h7ra</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="attracting_dit_de" name="&#1055;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1044;&#1048;&#1058; &#1080;&#1083;&#1080; DE?" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="attracting_dit_de_flg">${attracting_dit_de_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="attracting_dit_de_flg" label="&#1055;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1044;&#1048;&#1058; &#1080;&#1083;&#1080; DE?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="378" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="3" />
+              <camunda:property id="artefact_business_group_id" value="3" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0l2h7ra</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ofx51x</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1veyylq" default="Flow_0hjg4gt">
+      <bpmn:incoming>Flow_1ofx51x</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hjg4gt</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1v9kabk</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="datamart_developing_auto_renewable" name="&#1042;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084;&#1072;?" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="datamart_developing_auto_renewable_flg">${datamart_developing_auto_renewable_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="datamart_developing_auto_renewable_flg" label="&#1042;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084;&#1072;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="375" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0udh056</bpmn:incoming>
+      <bpmn:outgoing>Flow_18a7799</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1lcps5a">
+      <bpmn:incoming>Flow_1iv3v78</bpmn:incoming>
+      <bpmn:outgoing>Flow_1d697to</bpmn:outgoing>
+      <bpmn:outgoing>Flow_06jl1k8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="test_planned_validation_datamart_validator" name="&#1055;&#1088;&#1080;&#1077;&#1084;&#1082;&#1072;/&#1090;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="test_planned_validation_datamart_validator_flg">${test_planned_validation_datamart_validator_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="test_planned_validation_datamart_validator_flg" label="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1086;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="343" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1d697to</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e0xmax</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1t9dbhb" default="Flow_0le4ueq">
+      <bpmn:incoming>Flow_1jb4xa0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0le4ueq</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0vbp7zb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_1m9jgwd" name="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
+      <bpmn:incoming>Flow_0le4ueq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="need_routine_update_de" name="&#1055;&#1086;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1082;&#1072; &#1085;&#1072; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="need_routine_update_flg">${need_routine_update_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="need_routine_update_flg" label="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="342" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1k3lile</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jb4xa0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1p8msud">
+      <bpmn:incoming>Flow_1e0xmax</bpmn:incoming>
+      <bpmn:outgoing>Flow_1k3lile</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1f0cs7x</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="test_planned_validation_datamart_de" name="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="test_planned_validation_datamart_de_flg">${test_planned_validation_datamart_de_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="test_planned_validation_datamart_de_flg" label="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1086;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="344" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lchowc</bpmn:incoming>
+      <bpmn:incoming>Flow_1tyehgj</bpmn:incoming>
+      <bpmn:outgoing>Flow_1iv3v78</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1w0c5l0" name="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
+      <bpmn:incoming>Flow_1w5o8j2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_1p038hx" name="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
+      <bpmn:incoming>Flow_1n33qm2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_00wtjgv">
+      <bpmn:incoming>Flow_0rubfuh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ywp6z3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1gmfhp8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_1y22v63" name="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
+      <bpmn:incoming>Flow_1ywp6z3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_04b964o" default="Flow_0baj7s1">
+      <bpmn:incoming>Flow_12r9yk8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0baj7s1</bpmn:outgoing>
+      <bpmn:outgoing>Flow_07nkvvl</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Activity_1x5pot2" name="&#1055;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1077; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090;&#1072; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1103;">
+      <bpmn:documentation />
+      <bpmn:incoming>Flow_0xxr6p7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1obrczh</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_0hgygf2">
+      <bpmn:incoming>Flow_1obrczh</bpmn:incoming>
+      <bpmn:incoming>Flow_0r4wl76</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rdpb88</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_10ylrgx">
+      <bpmn:incoming>Flow_1gvhvrg</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fsml66</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0xxr6p7</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_0th38hj">
+      <bpmn:incoming>Flow_16zs8sw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gvhvrg</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0t1tjci</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Activity_0pgzvzz" name="&#1054;&#1073;&#1086;&#1075;&#1086;&#1097;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;">
+      <bpmn:documentation />
+      <bpmn:incoming>Flow_1fsml66</bpmn:incoming>
+      <bpmn:outgoing>Flow_0r4wl76</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_17p3uk1" name="&#1053;&#1077;&#1086;&#1073;&#1093;&#1086;&#1076;&#1080;&#1084; &#1101;&#1082;&#1089;&#1087;&#1077;&#1088;&#1090;&#1072; &#1087;&#1086; &#1076;&#1072;&#1085;&#1085;&#1099;&#1084;" sourceRef="Gateway_08oqs30" targetRef="detailing_task_unloading">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${data_expert_flg == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0tddqm8" sourceRef="Gateway_08oqs30" targetRef="Activity_0mjckj6" />
+    <bpmn:sequenceFlow id="Flow_0moe2kz" sourceRef="data_expert_datamart_validator" targetRef="Gateway_08oqs30" />
+    <bpmn:sequenceFlow id="Flow_12r9yk8" sourceRef="attracting_dit" targetRef="Gateway_04b964o" />
+    <bpmn:sequenceFlow id="Flow_1bmrtfb" name="&#1042;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084;&#1072;" sourceRef="Gateway_1oxg2pl" targetRef="integration_autoupdating_datamart_script_add_de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${datamart_developing_auto_renewable_flg == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1ofx51x" sourceRef="attracting_dit_de" targetRef="Gateway_1veyylq" />
+    <bpmn:sequenceFlow id="Flow_0l2h7ra" sourceRef="br_validation_datamart_developing" targetRef="attracting_dit_de" />
+    <bpmn:sequenceFlow id="Flow_01wr4ni" sourceRef="requirements_additional_analytical_monitoring_validator" targetRef="Activity_1q5g6ju" />
+    <bpmn:sequenceFlow id="Flow_1jb4xa0" sourceRef="need_routine_update_de" targetRef="Gateway_1t9dbhb" />
+    <bpmn:sequenceFlow id="Flow_0rubfuh" sourceRef="need_routine_update" targetRef="Gateway_00wtjgv" />
+    <bpmn:sequenceFlow id="Flow_1v9kabk" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1044;&#1048;&#1058;" sourceRef="Gateway_1veyylq" targetRef="Activity_1oio7rn">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${attracting_dit_de_flg == "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1044;&#1048;&#1058;"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1ywp6z3" name="&#1054;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077; &#1085;&#1077; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;" sourceRef="Gateway_00wtjgv" targetRef="Event_1y22v63">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${routine_update_flg == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0hjg4gt" sourceRef="Gateway_1veyylq" targetRef="planned_validation_datamart_de" />
+    <bpmn:sequenceFlow id="Flow_18a7799" sourceRef="datamart_developing_auto_renewable" targetRef="Gateway_1oxg2pl" />
+    <bpmn:sequenceFlow id="Flow_1tyehgj" sourceRef="integration_autoupdating_datamart_script_add_de" targetRef="test_planned_validation_datamart_de" />
+    <bpmn:sequenceFlow id="Flow_0lchowc" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1072;, &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072; &#1085;&#1077; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084;&#1072;" sourceRef="Gateway_1oxg2pl" targetRef="test_planned_validation_datamart_de" />
+    <bpmn:sequenceFlow id="Flow_1iv3v78" sourceRef="test_planned_validation_datamart_de" targetRef="Gateway_1lcps5a" />
+    <bpmn:sequenceFlow id="Flow_0le4ueq" name="&#1054;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077; &#1085;&#1077; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;" sourceRef="Gateway_1t9dbhb" targetRef="Event_1m9jgwd" />
+    <bpmn:sequenceFlow id="Flow_1k3lile" name="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1086;" sourceRef="Gateway_1p8msud" targetRef="need_routine_update_de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${test_planned_validation_datamart_validator_flg == true }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0vbp7zb" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1086;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1082;&#1072; &#1085;&#1072; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;" sourceRef="Gateway_1t9dbhb" targetRef="datamart_validation_etl_dit">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_routine_update_flg == true }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0udh056" sourceRef="planned_validation_datamart_de" targetRef="datamart_developing_auto_renewable" />
+    <bpmn:sequenceFlow id="Flow_02tnthw" sourceRef="Gateway_0w5h6h7" targetRef="Activity_1ppnou8" />
+    <bpmn:sequenceFlow id="Flow_1tkj10u" sourceRef="StartEvent_1" targetRef="Gateway_0w5h6h7" />
+    <bpmn:sequenceFlow id="Flow_0t1tjci" name="&#1055;&#1086; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; &#1087;&#1088;&#1086;&#1074;&#1086;&#1076;&#1080;&#1083;&#1072;&#1089;&#1100; &#1087;&#1077;&#1088;&#1074;&#1080;&#1095;&#1085;&#1072;&#1103; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1103;" sourceRef="Gateway_0th38hj" targetRef="Gateway_0t3emn1">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_first_validation_flg==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_19jgwm3" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072; &#1085;&#1077; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;" sourceRef="Gateway_0wvhxk1" targetRef="Activity_0olzx90">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${additional_analytical_monitoring_flg == "&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072; &#1085;&#1077; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0madl6l" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" sourceRef="Gateway_0wvhxk1" targetRef="Activity_0m5i18c">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${additional_analytical_monitoring_flg == "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1shi6wb" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1089;&#1073;&#1086;&#1088;&#1082;&#1072; &#1076;&#1083;&#1103; &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1086; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;" sourceRef="Gateway_0wvhxk1" targetRef="attracting_dit">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${additional_analytical_monitoring_flg == "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1089;&#1073;&#1086;&#1088;&#1082;&#1072; &#1076;&#1083;&#1103; &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1087;&#1086; &#1087;&#1083;&#1072;&#1085;&#1086;&#1074;&#1086;&#1081; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1080;"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0baj7s1" name="&#1085;&#1077;&#160; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;" sourceRef="Gateway_04b964o" targetRef="planned_validation_datamart_validator" />
+    <bpmn:sequenceFlow id="Flow_07nkvvl" name="&#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;" sourceRef="Gateway_04b964o" targetRef="br_validation_datamart_developing">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${attracting_dit_flg == true }</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1f0cs7x" name="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1085;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1086;" sourceRef="Gateway_1p8msud" targetRef="planned_validation_datamart_de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${test_planned_validation_datamart_validator_flg == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_06jl1k8" name="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1085;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1086;" sourceRef="Gateway_1lcps5a" targetRef="planned_validation_datamart_de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${test_planned_validation_datamart_de_flg == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0sz8rug" sourceRef="planned_validation_datamart_validator" targetRef="need_routine_update" />
+    <bpmn:sequenceFlow id="Flow_1xbp8bl" sourceRef="Gateway_0w5h6h7" targetRef="Gateway_01e67dy" />
+    <bpmn:sequenceFlow id="Flow_16zs8sw" sourceRef="Gateway_01e67dy" targetRef="Gateway_0th38hj" />
+    <bpmn:sequenceFlow id="Flow_0o6ypy3" sourceRef="Gateway_01e67dy" targetRef="source_drp" />
+    <bpmn:sequenceFlow id="Flow_0yk8p79" sourceRef="Activity_0m5i18c" targetRef="requirements_additional_analytical_monitoring_validator" />
+    <bpmn:sequenceFlow id="Flow_15jc98b" sourceRef="Activity_1kgvyni" targetRef="Activity_0n3cv8k" />
+    <bpmn:sequenceFlow id="Flow_1d697to" name="&#1058;&#1077;&#1089;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1086;" sourceRef="Gateway_1lcps5a" targetRef="test_planned_validation_datamart_validator">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${test_planned_validation_datamart_de_flg == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1e0xmax" sourceRef="test_planned_validation_datamart_validator" targetRef="Gateway_1p8msud" />
+    <bpmn:sequenceFlow id="Flow_1gmfhp8" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077;" sourceRef="Gateway_00wtjgv" targetRef="Activity_1r1rc2b">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${routine_update_flg == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0xxr6p7" name="&#1042;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084;&#1072;" sourceRef="Gateway_10ylrgx" targetRef="Activity_1x5pot2">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${autoupdate_datamart_flg == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1obrczh" sourceRef="Activity_1x5pot2" targetRef="Gateway_0hgygf2" />
+    <bpmn:sequenceFlow id="Flow_1rdpb88" sourceRef="Gateway_0hgygf2" targetRef="Gateway_0t3emn1" />
+    <bpmn:sequenceFlow id="Flow_0r4wl76" sourceRef="Activity_0pgzvzz" targetRef="Gateway_0hgygf2" />
+    <bpmn:sequenceFlow id="Flow_1gvhvrg" name="&#1055;&#1086; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; &#1085;&#1077; &#1087;&#1088;&#1086;&#1074;&#1086;&#1076;&#1080;&#1083;&#1072;&#1089;&#1100; &#1087;&#1077;&#1088;&#1074;&#1080;&#1095;&#1085;&#1072;&#1103; &#1074;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1103;" sourceRef="Gateway_0th38hj" targetRef="Gateway_10ylrgx">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_first_validation_flg==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1fsml66" name="&#1042;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072; &#1085;&#1077; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084;&#1072;" sourceRef="Gateway_10ylrgx" targetRef="Activity_0pgzvzz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${autoupdate_datamart_flg == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_19zsqcs" sourceRef="Gateway_0t3emn1" targetRef="Gateway_0okg802" />
+    <bpmn:exclusiveGateway id="Gateway_09w6biu">
+      <bpmn:incoming>Flow_10x1w8w</bpmn:incoming>
+      <bpmn:outgoing>Flow_0critqe</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1edg5vg</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_10x1w8w" sourceRef="source_drp" targetRef="Gateway_09w6biu" />
+    <bpmn:sequenceFlow id="Flow_0critqe" name="&#1085;&#1077;&#1090;" sourceRef="Gateway_09w6biu" targetRef="data_expert_datamart_validator">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${source_drp_flg == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1edg5vg" name="&#1076;&#1072;" sourceRef="Gateway_09w6biu" targetRef="bt_datamart_developing_new">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${source_drp_flg == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_0mjckj6" name="C&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1079;&#1072;&#1103;&#1074;&#1082;&#1080; Jira &#1085;&#1072; &#1075;&#1088;&#1091;&#1087;&#1087;&#1091; &#1044;&#1048;&#1058;" calledElement="jira" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
+      <bpmn:extensionElements>
+        <camunda:in source="model" target="model" />
+        <camunda:in source="task_id" target="task_id" />
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">execution.setVariable("task_id", execution.getCurrentActivityId());</camunda:script>
+        </camunda:executionListener>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{
+entity_attributes_list:execution.getVariable("entity_attributes_list"),
+ts_first_upload_file:execution.getVariable("ts_first_upload_file")
+})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="role">de, de_lead</camunda:inputParameter>
+          <camunda:inputParameter name="external_links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="stage">"&#1055;&#1086;&#1080;&#1089;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;"</camunda:inputParameter>
+          <camunda:inputParameter name="estimated_time">14</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="links_list" target="links_list" />
+        <camunda:in source="role" target="role" />
+        <camunda:in source="external_links_list" target="external_links_list" />
+        <camunda:in source="stage" target="stage" />
+        <camunda:in source="estimated_time" target="estimated_time" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0tddqm8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0x2zifz</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_14z5we1" name="C&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1079;&#1072;&#1103;&#1074;&#1082;&#1080; Jira &#1085;&#1072; &#1075;&#1088;&#1091;&#1087;&#1087;&#1091; &#1044;&#1048;&#1058;" calledElement="jira" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
+      <bpmn:extensionElements>
+        <camunda:in source="model" target="model" />
+        <camunda:in source="task_id" target="task_id" />
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">execution.setVariable("task_id", execution.getCurrentActivityId());</camunda:script>
+        </camunda:executionListener>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{
+entity_attributes_list:execution.getVariable("entity_attributes_list"),
+ts_first_upload_file:execution.getVariable("ts_first_upload_file")
+})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="role">data_expert, data_expert_lead</camunda:inputParameter>
+          <camunda:inputParameter name="external_links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="stage">"&#1055;&#1086;&#1080;&#1089;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;"</camunda:inputParameter>
+          <camunda:inputParameter name="estimated_time">14</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="links_list" target="links_list" />
+        <camunda:in source="role" target="role" />
+        <camunda:in source="external_links_list" target="external_links_list" />
+        <camunda:in source="stage" target="stage" />
+        <camunda:in source="estimated_time" target="estimated_time" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1e1gzvw</bpmn:incoming>
+      <bpmn:outgoing>Flow_06wo8mh</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1oio7rn" name="C&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1079;&#1072;&#1103;&#1074;&#1082;&#1080; Jira &#1085;&#1072; &#1075;&#1088;&#1091;&#1087;&#1087;&#1091; &#1044;&#1048;&#1058;" calledElement="jira" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
+      <bpmn:extensionElements>
+        <camunda:in source="model" target="model" />
+        <camunda:in source="task_id" target="task_id" />
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">execution.setVariable("task_id", execution.getCurrentActivityId());</camunda:script>
+        </camunda:executionListener>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{
+entity_attributes_list:execution.getVariable("entity_attributes_list"),
+ts_first_upload_file:execution.getVariable("ts_first_upload_file")
+})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="role">validator, validator_lead</camunda:inputParameter>
+          <camunda:inputParameter name="external_links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="stage">"&#1055;&#1086;&#1080;&#1089;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;"</camunda:inputParameter>
+          <camunda:inputParameter name="estimated_time">14</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="links_list" target="links_list" />
+        <camunda:in source="role" target="role" />
+        <camunda:in source="external_links_list" target="external_links_list" />
+        <camunda:in source="stage" target="stage" />
+        <camunda:in source="estimated_time" target="estimated_time" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1v9kabk</bpmn:incoming>
+      <bpmn:outgoing>Flow_1w5o8j2</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1w5o8j2" sourceRef="Activity_1oio7rn" targetRef="Event_1w0c5l0" />
+    <bpmn:callActivity id="Activity_1r1rc2b" name="C&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1079;&#1072;&#1103;&#1074;&#1082;&#1080; Jira &#1085;&#1072; &#1075;&#1088;&#1091;&#1087;&#1087;&#1091; &#1044;&#1048;&#1058;" calledElement="jira" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
+      <bpmn:extensionElements>
+        <camunda:in source="model" target="model" />
+        <camunda:in source="task_id" target="task_id" />
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">execution.setVariable("task_id", execution.getCurrentActivityId());</camunda:script>
+        </camunda:executionListener>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{
+entity_attributes_list:execution.getVariable("entity_attributes_list"),
+ts_first_upload_file:execution.getVariable("ts_first_upload_file")
+})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="role">validator, validator_lead</camunda:inputParameter>
+          <camunda:inputParameter name="external_links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="stage">"&#1055;&#1086;&#1080;&#1089;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;"</camunda:inputParameter>
+          <camunda:inputParameter name="estimated_time">14</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="links_list" target="links_list" />
+        <camunda:in source="role" target="role" />
+        <camunda:in source="external_links_list" target="external_links_list" />
+        <camunda:in source="stage" target="stage" />
+        <camunda:in source="estimated_time" target="estimated_time" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1gmfhp8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n33qm2</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1n33qm2" sourceRef="Activity_1r1rc2b" targetRef="Event_1p038hx" />
+    <bpmn:sequenceFlow id="Flow_0gtzemc" sourceRef="datamart_validation_etl_dit" targetRef="Activity_1kgvyni" />
+    <bpmn:task id="Activity_1kgvyni" name="&#1057;&#1073;&#1086;&#1088;&#1082;&#1072; ETL &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;. &#1055;&#1086;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1085;&#1072; &#1088;&#1077;&#1075;&#1083;&#1072;&#1084;&#1077;&#1085;&#1090;&#1085;&#1086;&#1077; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077; &#1080; &#1087;&#1077;&#1088;&#1077;&#1076;&#1072;&#1095;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1085;&#1072; &#1089;&#1086;&#1087;&#1088;&#1086;&#1074;&#1086;&#1078;&#1076;&#1077;&#1085;&#1080;&#1077;">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="spk_etl_prom">${(execution.hasVariable("spk_etl_prom")?execution.getVariable("spk_etl_prom") :"null")}</camunda:outputParameter>
+          <camunda:outputParameter name="spk_etl_monitoring">${(execution.hasVariable("spk_etl_monitoring")?execution.getVariable("spk_etl_monitoring") :"null")}</camunda:outputParameter>
+          <camunda:outputParameter name="spk_etl_validation">${(execution.hasVariable("spk_etl_validation")?execution.getVariable("spk_etl_validation") :"null")}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0gtzemc</bpmn:incoming>
+      <bpmn:outgoing>Flow_15jc98b</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:callActivity id="datamart_validation_etl_dit" name="&#1057;&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1079;&#1072;&#1076;&#1072;&#1095;&#1080; &#1074; Jira &#1085;&#1072; &#1044;&#1048;&#1058;" calledElement="jira" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
+      <bpmn:extensionElements>
+        <camunda:in source="model" target="model" />
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">execution.setVariable("task_id", execution.getCurrentActivityId());</camunda:script>
+        </camunda:executionListener>
+        <camunda:in source="task_id" target="task_id" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{
+requirements_for_model_monitoring: execution.getVariable("requirements_for_model_monitoring"),
+datamart_description: execution.getVariable("datamart_description"),
+br_validation_datamart: execution.getVariable("br_validation_datamart"),
+validation_datamart_attributes: execution.getVariable("validation_datamart_attributes")
+})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="role">validator, validator_lead</camunda:inputParameter>
+          <camunda:inputParameter name="external_links_list">
+            <camunda:script scriptFormat="JavaScript">JSON.stringify(
+{})</camunda:script>
+          </camunda:inputParameter>
+          <camunda:inputParameter name="stage">"&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;"</camunda:inputParameter>
+          <camunda:inputParameter name="estimated_time">14</camunda:inputParameter>
+          <camunda:outputParameter name="etl_code_validation_datamart">${(execution.hasVariable("etl_code_validation_datamart")?execution.getVariable("etl_code_validation_datamart") :"null")}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="links_list" target="links_list" />
+        <camunda:in source="role" target="role" />
+        <camunda:in source="external_links_list" target="external_links_list" />
+        <camunda:in source="stage" target="stage" />
+        <camunda:in source="estimated_time" target="estimated_time" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vbp7zb</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gtzemc</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:serviceTask id="Activity_0n3cv8k" name="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1077;&#1085;&#1080;&#1077; &#1073;&#1080;&#1079;&#1085;&#1077;&#1089; &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_15jc98b</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nnh9mm</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0khuxns" name="&#1059;&#1074;&#1077;&#1076;&#1086;&#1084;&#1083;&#1077;&#1085;&#1080;&#1077; ModelOps" camunda:type="external" camunda:topic="mail">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="role_name">modelops</camunda:inputParameter>
+          <camunda:inputParameter name="model">${model}</camunda:inputParameter>
+          <camunda:inputParameter name="step_name">"&#1057;&#1073;&#1086;&#1088;&#1082;&#1072; ETL &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;. "</camunda:inputParameter>
+          <camunda:inputParameter name="stage_name">"&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;"</camunda:inputParameter>
+          <camunda:inputParameter name="template_name">processChange</camunda:inputParameter>
+          <camunda:inputParameter name="next_step_name">"&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1089;&#1087;&#1077;&#1094;&#1080;&#1092;&#1080;&#1082;&#1072;&#1094;&#1080;&#1081; &#1085;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;"</camunda:inputParameter>
+          <camunda:inputParameter name="next_stage_name">"&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103;"</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1nnh9mm</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ei1niu</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1nnh9mm" sourceRef="Activity_0n3cv8k" targetRef="Activity_0khuxns" />
+    <bpmn:sequenceFlow id="Flow_1ei1niu" sourceRef="Activity_0khuxns" targetRef="Event_017wjv6" />
+    <bpmn:endEvent id="Event_017wjv6" name="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
+      <bpmn:incoming>Flow_1ei1niu</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="data_expert_datamart_validator" name="&#1053;&#1077;&#1086;&#1073;&#1093;&#1086;&#1076;&#1080;&#1084;&#1086; &#1087;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1101;&#1082;&#1089;&#1087;&#1077;&#1088;&#1090;&#1072; &#1087;&#1086; &#1076;&#1072;&#1085;&#1085;&#1099;&#1084;?" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="data_expert_flg" label="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1101;&#1082;&#1089;&#1087;&#1077;&#1088;&#1090; &#1087;&#1086; &#1076;&#1072;&#1085;&#1085;&#1099;&#1084;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="382" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="1" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="requirements_uploading_drp" label="&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1079;&#1072;&#1075;&#1088;&#1091;&#1079;&#1082;&#1091; &#1074; DRP" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="669" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="2" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="requirements_uploading_drp">${requirements_uploading_drp}</camunda:outputParameter>
+          <camunda:outputParameter name="data_expert_flg">${data_expert_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0critqe</bpmn:incoming>
+      <bpmn:outgoing>Flow_0moe2kz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0wvhxk1">
+      <bpmn:incoming>Flow_0jcv5lj</bpmn:incoming>
+      <bpmn:outgoing>Flow_19jgwm3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0madl6l</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1shi6wb</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:parallelGateway id="Gateway_0okg802">
+      <bpmn:incoming>Flow_19zsqcs</bpmn:incoming>
+      <bpmn:incoming>Flow_1ejice8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b1l1r0</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="Gateway_0t3emn1">
+      <bpmn:incoming>Flow_1rdpb88</bpmn:incoming>
+      <bpmn:incoming>Flow_0t1tjci</bpmn:incoming>
+      <bpmn:outgoing>Flow_19zsqcs</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1tfd6j3" sourceRef="Activity_0olzx90" targetRef="Event_1lydp8z" />
+    <bpmn:endEvent id="Event_1lydp8z" name="&#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; &#1089;&#1088;&#1077;&#1076;&#1099; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
+      <bpmn:incoming>Flow_1tfd6j3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_0olzx90" name="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1077;&#1085;&#1080;&#1077; &#1073;&#1080;&#1079;&#1085;&#1077;&#1089; &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19jgwm3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tfd6j3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="detailing_task_unloading" name="&#1044;&#1077;&#1090;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1087;&#1086;&#1089;&#1090;&#1072;&#1074;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1079;&#1072;&#1076;&#1072;&#1095;&#1080; &#1076;&#1083;&#1103; &#1074;&#1099;&#1075;&#1088;&#1091;&#1079;&#1082;&#1080;" camunda:candidateGroups="data_expert, data_expert_lead">
+      <bpmn:documentation>&#1044;&#1077;&#1090;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1087;&#1086;&#1089;&#1090;&#1072;&#1074;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1079;&#1072;&#1076;&#1072;&#1095;&#1080;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="data_model">${data_model}</camunda:outputParameter>
+          <camunda:outputParameter name="description_data_source">${description_data_source}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="data_model" label="&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="331" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="description_data_source" label="&#1054;&#1087;&#1080;&#1089;&#1072;&#1085;&#1080;&#1077; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082;&#1072; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093; (&#1086;&#1087;&#1094;)" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="332" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="3" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17p3uk1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e1gzvw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1e1gzvw" sourceRef="detailing_task_unloading" targetRef="Activity_14z5we1" />
+    <bpmn:userTask id="bt_datamart_developing_new" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;/&#1074;&#1093;&#1086;&#1076;&#1085;&#1086;&#1075;&#1086; &#1074;&#1077;&#1082;&#1090;&#1086;&#1088;&#1072;/&#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;/&#1074;&#1093;&#1086;&#1076;&#1085;&#1086;&#1075;&#1086; &#1074;&#1077;&#1082;&#1090;&#1086;&#1088;&#1072;/&#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="pimi_psi_datamart">${pimi_psi_datamart}</camunda:outputParameter>
+          <camunda:outputParameter name="prom_datamart_name">${prom_datamart_name}</camunda:outputParameter>
+          <camunda:outputParameter name="pimi_psi_datamart">${pimi_psi_datamart}</camunda:outputParameter>
+          <camunda:outputParameter name="monitoring_datamart_report">${monitoring_datamart_report}</camunda:outputParameter>
+          <camunda:outputParameter name="prom_datamart_report">${prom_datamart_report}</camunda:outputParameter>
+          <camunda:outputParameter name="description_data_model_integration_datamart">${description_data_model_integration_datamart}</camunda:outputParameter>
+          <camunda:outputParameter name="prom_datamart_script">${prom_datamart_script}</camunda:outputParameter>
+          <camunda:outputParameter name="monitoring_datamart_script">${monitoring_datamart_script}</camunda:outputParameter>
+          <camunda:outputParameter name="aggregate_calculation_algorithm_de">${aggregate_calculation_algorithm_de}</camunda:outputParameter>
+          <camunda:outputParameter name="monitoring_datamart_id">${monitoring_datamart_id}</camunda:outputParameter>
+          <camunda:outputParameter name="monitoring_datamart_name">${monitoring_datamart_name}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="pimi_psi_datamart" label="&#1055;&#1080;&#1052;&#1048; &#1076;&#1083;&#1103; &#1055;&#1057;&#1048; (&#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1072;)" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="601" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="3" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090; &quot;&#1055;&#1080;&#1052;&#1048; &#1076;&#1083;&#1103; &#1055;&#1057;&#1048;&quot;." />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="monitoring_datamart_report" label="&#1054;&#1090;&#1095;&#1077;&#1090; &#1086; &#1088;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="329" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="prom_datamart_report" label="&#1054;&#1090;&#1095;&#1077;&#1090; &#1086; &#1088;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="328" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="description_data_model_integration_datamart" label="&#1054;&#1087;&#1080;&#1089;&#1072;&#1085;&#1080;&#1077; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093; &#1076;&#1083;&#1103; &#1088;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="327" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="prom_datamart_script" label="&#1057;&#1082;&#1088;&#1080;&#1087;&#1090; &#1092;&#1086;&#1088;&#1084;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="326" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="monitoring_datamart_script" label="&#1057;&#1082;&#1088;&#1080;&#1087;&#1090; &#1092;&#1086;&#1088;&#1084;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1087;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="325" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="0" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="aggregate_calculation_algorithm_de" label="&#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1084;&#1099; &#1088;&#1072;&#1089;&#1095;&#1077;&#1090;&#1086;&#1074; &#1072;&#1075;&#1088;&#1077;&#1075;&#1072;&#1090;&#1086;&#1074;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="339" />
+              <camunda:property id="artefact_desc" value="&#1064;&#1072;&#1073;&#1083;&#1086;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072; &lt;a href=&quot;/template/&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 8_&#1064;&#1072;&#1073;&#1083;&#1086;&#1085;_&#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1084;&#1099; &#1088;&#1072;&#1089;&#1095;&#1077;&#1090;&#1086;&#1074; &#1072;&#1075;&#1088;&#1077;&#1075;&#1072;&#1090;&#1086;&#1074;.docx&quot; target=&quot;_blank&quot;&gt;&#1055;&#1088;&#1080;&#1083;&#1086;&#1078;&#1077;&#1085;&#1080;&#1077; 8_&#1064;&#1072;&#1073;&#1083;&#1086;&#1085;_&#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1084;&#1099; &#1088;&#1072;&#1089;&#1095;&#1077;&#1090;&#1086;&#1074; &#1072;&#1075;&#1088;&#1077;&#1075;&#1072;&#1090;&#1086;&#1074;.docx&lt;/a&gt;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="monitoring_datamart_id" label="ID &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="243" />
+              <camunda:property id="artefact_desc" value="&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; ID &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="monitoring_datamart_name" label="&#1053;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="244" />
+              <camunda:property id="artefact_desc" value="&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="prom_datamart_id" label="ID &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="239" />
+              <camunda:property id="artefact_desc" value="&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; ID &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="prom_datamart_name" label="&#1053;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="240" />
+              <camunda:property id="artefact_desc" value="&#1042;&#1074;&#1077;&#1076;&#1080;&#1090;&#1077; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="7" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1edg5vg</bpmn:incoming>
+      <bpmn:incoming>Flow_0x2zifz</bpmn:incoming>
+      <bpmn:incoming>Flow_06wo8mh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ejice8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0x2zifz" sourceRef="Activity_0mjckj6" targetRef="bt_datamart_developing_new" />
+    <bpmn:sequenceFlow id="Flow_06wo8mh" sourceRef="Activity_14z5we1" targetRef="bt_datamart_developing_new" />
+    <bpmn:sequenceFlow id="Flow_0jcv5lj" sourceRef="additional_analytical_monitoring" targetRef="Gateway_0wvhxk1" />
+    <bpmn:sequenceFlow id="Flow_1ejice8" sourceRef="bt_datamart_developing_new" targetRef="Gateway_0okg802" />
+    <bpmn:sequenceFlow id="Flow_1b1l1r0" sourceRef="Gateway_0okg802" targetRef="additional_analytical_monitoring" />
+    <bpmn:userTask id="additional_analytical_monitoring" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1081; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;?" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="additional_analytical_monitoring_flg">${additional_analytical_monitoring_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="additional_analytical_monitoring_flg" label="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1099;&#1081; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="340" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="3" />
+              <camunda:property id="artefact_business_group_id" value="9" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b1l1r0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jcv5lj</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0t4imng" name="&#1055;&#1077;&#1088;&#1077;&#1093;&#1086;&#1076; &#1085;&#1072; &#1101;&#1090;&#1072;&#1087; &#1052;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;">
+      <bpmn:incoming>Flow_1tj41t9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1tj41t9" sourceRef="Activity_1q5g6ju" targetRef="Event_0t4imng" />
+    <bpmn:userTask id="attracting_dit" name="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1044;&#1048;&#1058;/DE?" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="attracting_dit_flg">${attracting_dit_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="attracting_dit_flg" label="&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1087;&#1088;&#1080;&#1074;&#1083;&#1077;&#1095;&#1077;&#1085;&#1080;&#1077; &#1044;&#1048;&#1058; &#1080;&#1083;&#1080; DE?" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="376" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1084;&#1080;&#1090;&#1077; &#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1077;" />
+              <camunda:property id="artefact_context" value="" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="6" />
+              <camunda:property id="artefact_business_group_id" value="3" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" value="" />
+              <camunda:property id="artefact_parent_value" value="" />
+              <camunda:property id="artefact_default_value" value="" />
+              <camunda:property id="is_default_value_flg" value="" />
+              <camunda:property id="artefact_hint" value="" />
+              <camunda:property id="is_edit_flg" value="" />
+              <camunda:property id="artefact_regular_expression" value="" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1shi6wb</bpmn:incoming>
+      <bpmn:outgoing>Flow_12r9yk8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_1q5g6ju" name="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1077;&#1085;&#1080;&#1077; &#1073;&#1080;&#1079;&#1085;&#1077;&#1089; &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01wr4ni</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tj41t9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="requirements_additional_analytical_monitoring_validator" name="&#1060;&#1086;&#1088;&#1084;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1090;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1081; &#1082; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1084;&#1091; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1091;" camunda:candidateGroups="validator, validator_lead">
+      <bpmn:documentation>&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="requirements_additional_analytical_monitoring">${requirements_additional_analytical_monitoring}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="requirements_additional_analytical_monitoring" label="&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1082; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1091; &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; (&#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;)" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="341" />
+              <camunda:property id="artefact_desc" value="&#1055;&#1088;&#1080;&#1082;&#1088;&#1077;&#1087;&#1080;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083;" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="2" />
+              <camunda:property id="artefact_business_group_id" value="2" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0yk8p79</bpmn:incoming>
+      <bpmn:outgoing>Flow_01wr4ni</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0m5i18c" name="&#1059;&#1074;&#1077;&#1076;&#1086;&#1084;&#1083;&#1077;&#1085;&#1080;&#1077; DE" camunda:type="external" camunda:topic="mail">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="role_name">de</camunda:inputParameter>
+          <camunda:inputParameter name="model">${model}</camunda:inputParameter>
+          <camunda:inputParameter name="template_name">processDecision</camunda:inputParameter>
+          <camunda:inputParameter name="step_name">"&#1055;&#1088;&#1080;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1077; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090;&#1072; &#1072;&#1074;&#1090;&#1086;&#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1103;"</camunda:inputParameter>
+          <camunda:inputParameter name="stage_name">"&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1087;&#1088;&#1086;&#1084;&#1099;&#1096;&#1083;&#1077;&#1085;&#1085;&#1086;&#1081; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099;"</camunda:inputParameter>
+          <camunda:inputParameter name="next_step_name">"&#1054;&#1082;&#1086;&#1085;&#1095;&#1072;&#1085;&#1080;&#1077; &#1088;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;"</camunda:inputParameter>
+          <camunda:inputParameter name="next_stage_name">"&#1052;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;"</camunda:inputParameter>
+          <camunda:inputParameter name="decision_name">"&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;"</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0madl6l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yk8p79</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_0m9ysdd">
+      <bpmn:text>&#1058;&#1088;&#1077;&#1073;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1082; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1091; &#1082;&#1072;&#1095;&#1077;&#1089;&#1090;&#1074;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; (&#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_19j8dbu" sourceRef="Event_0t4imng" targetRef="TextAnnotation_0m9ysdd" />
+  </bpmn:process>
+  <bpmn:signal id="Signal_1t460xm" name="Signal_02rqtn5" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_09aeell">
+      <bpmndi:BPMNShape id="Participant_1og8pkh_di" bpmnElement="Participant_1og8pkh" isHorizontal="true">
+        <dc:Bounds x="178" y="80" width="3442" height="1468" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0dpoitz_di" bpmnElement="Lane_0dpoitz" isHorizontal="true">
+        <dc:Bounds x="208" y="969" width="3412" height="579" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1oevu6i_di" bpmnElement="Lane_1oevu6i" isHorizontal="true">
+        <dc:Bounds x="208" y="711" width="3412" height="258" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1x2yy8k_di" bpmnElement="Lane_1x2yy8k" isHorizontal="true">
+        <dc:Bounds x="208" y="80" width="3412" height="631" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0m9ysdd_di" bpmnElement="TextAnnotation_0m9ysdd">
+        <dc:Bounds x="1810" y="120" width="100" height="95" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1b1l1r0_di" bpmnElement="Flow_1b1l1r0">
+        <di:waypoint x="1075" y="456" />
+        <di:waypoint x="1120" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ejice8_di" bpmnElement="Flow_1ejice8">
+        <di:waypoint x="1122" y="1080" />
+        <di:waypoint x="1190" y="1080" />
+        <di:waypoint x="1190" y="590" />
+        <di:waypoint x="1050" y="590" />
+        <di:waypoint x="1050" y="481" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jcv5lj_di" bpmnElement="Flow_0jcv5lj">
+        <di:waypoint x="1220" y="456" />
+        <di:waypoint x="1255" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06wo8mh_di" bpmnElement="Flow_06wo8mh">
+        <di:waypoint x="1062" y="880" />
+        <di:waypoint x="1062" y="1040" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0x2zifz_di" bpmnElement="Flow_0x2zifz">
+        <di:waypoint x="1062" y="1233" />
+        <di:waypoint x="1062" y="1120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e1gzvw_di" bpmnElement="Flow_1e1gzvw">
+        <di:waypoint x="972" y="840" />
+        <di:waypoint x="1007" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tfd6j3_di" bpmnElement="Flow_1tfd6j3">
+        <di:waypoint x="1472" y="610" />
+        <di:waypoint x="1512" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ei1niu_di" bpmnElement="Flow_1ei1niu">
+        <di:waypoint x="3450" y="1412" />
+        <di:waypoint x="3522" y="1412" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nnh9mm_di" bpmnElement="Flow_1nnh9mm">
+        <di:waypoint x="3400" y="1330" />
+        <di:waypoint x="3400" y="1372" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gtzemc_di" bpmnElement="Flow_0gtzemc">
+        <di:waypoint x="3260" y="681" />
+        <di:waypoint x="3260" y="1250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n33qm2_di" bpmnElement="Flow_1n33qm2">
+        <di:waypoint x="2315" y="557" />
+        <di:waypoint x="2362" y="557" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w5o8j2_di" bpmnElement="Flow_1w5o8j2">
+        <di:waypoint x="2295" y="411" />
+        <di:waypoint x="2342" y="411" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1edg5vg_di" bpmnElement="Flow_1edg5vg">
+        <di:waypoint x="630" y="1245" />
+        <di:waypoint x="630" y="1080" />
+        <di:waypoint x="1002" y="1080" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="639" y="1160" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0critqe_di" bpmnElement="Flow_0critqe">
+        <di:waypoint x="655" y="1270" />
+        <di:waypoint x="740" y="1269" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="689" y="1252" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10x1w8w_di" bpmnElement="Flow_10x1w8w">
+        <di:waypoint x="570" y="1270" />
+        <di:waypoint x="605" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19zsqcs_di" bpmnElement="Flow_19zsqcs">
+        <di:waypoint x="995" y="456" />
+        <di:waypoint x="1025" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fsml66_di" bpmnElement="Flow_1fsml66">
+        <di:waypoint x="598" y="481" />
+        <di:waypoint x="598" y="526" />
+        <di:waypoint x="700" y="526" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="607" y="536" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gvhvrg_di" bpmnElement="Flow_1gvhvrg">
+        <di:waypoint x="495" y="456" />
+        <di:waypoint x="573" y="456" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="495" y="383" width="72" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0r4wl76_di" bpmnElement="Flow_0r4wl76">
+        <di:waypoint x="800" y="526" />
+        <di:waypoint x="900" y="526" />
+        <di:waypoint x="900" y="481" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rdpb88_di" bpmnElement="Flow_1rdpb88">
+        <di:waypoint x="925" y="456" />
+        <di:waypoint x="945" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1obrczh_di" bpmnElement="Flow_1obrczh">
+        <di:waypoint x="800" y="396" />
+        <di:waypoint x="900" y="396" />
+        <di:waypoint x="900" y="431" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xxr6p7_di" bpmnElement="Flow_0xxr6p7">
+        <di:waypoint x="598" y="431" />
+        <di:waypoint x="598" y="396" />
+        <di:waypoint x="700" y="396" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="597" y="356" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gmfhp8_di" bpmnElement="Flow_1gmfhp8">
+        <di:waypoint x="2107" y="557" />
+        <di:waypoint x="2205" y="557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2103" y="506" width="73" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e0xmax_di" bpmnElement="Flow_1e0xmax">
+        <di:waypoint x="2801" y="479" />
+        <di:waypoint x="2915" y="479" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1d697to_di" bpmnElement="Flow_1d697to">
+        <di:waypoint x="2751" y="1231" />
+        <di:waypoint x="2751" y="519" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2665" y="690" width="72" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15jc98b_di" bpmnElement="Flow_15jc98b">
+        <di:waypoint x="3310" y="1290" />
+        <di:waypoint x="3350" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yk8p79_di" bpmnElement="Flow_0yk8p79">
+        <di:waypoint x="1440" y="270" />
+        <di:waypoint x="1480" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o6ypy3_di" bpmnElement="Flow_0o6ypy3">
+        <di:waypoint x="437" y="1270" />
+        <di:waypoint x="470" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16zs8sw_di" bpmnElement="Flow_16zs8sw">
+        <di:waypoint x="412" y="1245" />
+        <di:waypoint x="412" y="456" />
+        <di:waypoint x="445" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xbp8bl_di" bpmnElement="Flow_1xbp8bl">
+        <di:waypoint x="352" y="1270" />
+        <di:waypoint x="387" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sz8rug_di" bpmnElement="Flow_0sz8rug">
+        <di:waypoint x="1752" y="557" />
+        <di:waypoint x="1842" y="557" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06jl1k8_di" bpmnElement="Flow_06jl1k8">
+        <di:waypoint x="2751" y="1281" />
+        <di:waypoint x="2751" y="1430" />
+        <di:waypoint x="1997" y="1430" />
+        <di:waypoint x="1997" y="1296" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2326" y="1446" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f0cs7x_di" bpmnElement="Flow_1f0cs7x">
+        <di:waypoint x="2940" y="454" />
+        <di:waypoint x="2940" y="336" />
+        <di:waypoint x="2470" y="336" />
+        <di:waypoint x="2470" y="1046" />
+        <di:waypoint x="2020" y="1046" />
+        <di:waypoint x="2020" y="1216" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2529" y="292" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07nkvvl_di" bpmnElement="Flow_07nkvvl">
+        <di:waypoint x="1550" y="430" />
+        <di:waypoint x="1550" y="411" />
+        <di:waypoint x="1642" y="411" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1564" y="384" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0baj7s1_di" bpmnElement="Flow_0baj7s1">
+        <di:waypoint x="1550" y="481" />
+        <di:waypoint x="1550" y="557" />
+        <di:waypoint x="1652" y="557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1566" y="517" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1shi6wb_di" bpmnElement="Flow_1shi6wb">
+        <di:waypoint x="1305" y="456" />
+        <di:waypoint x="1400" y="456" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1309" y="360" width="59" height="80" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0madl6l_di" bpmnElement="Flow_0madl6l">
+        <di:waypoint x="1280" y="431" />
+        <di:waypoint x="1280" y="270" />
+        <di:waypoint x="1340" y="270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1176" y="287" width="88" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19jgwm3_di" bpmnElement="Flow_19jgwm3">
+        <di:waypoint x="1280" y="481" />
+        <di:waypoint x="1280" y="610" />
+        <di:waypoint x="1372" y="610" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1288" y="533" width="81" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t1tjci_di" bpmnElement="Flow_0t1tjci">
+        <di:waypoint x="470" y="431" />
+        <di:waypoint x="470" y="300" />
+        <di:waypoint x="970" y="300" />
+        <di:waypoint x="970" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="624" y="233" width="67" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tkj10u_di" bpmnElement="Flow_1tkj10u">
+        <di:waypoint x="270" y="1269" />
+        <di:waypoint x="286" y="1269" />
+        <di:waypoint x="286" y="1270" />
+        <di:waypoint x="302" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02tnthw_di" bpmnElement="Flow_02tnthw">
+        <di:waypoint x="327" y="1295" />
+        <di:waypoint x="327" y="1372" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0udh056_di" bpmnElement="Flow_0udh056">
+        <di:waypoint x="2047" y="1256" />
+        <di:waypoint x="2120" y="1256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vbp7zb_di" bpmnElement="Flow_0vbp7zb">
+        <di:waypoint x="3260" y="504" />
+        <di:waypoint x="3260" y="601" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3167" y="523" width="74" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k3lile_di" bpmnElement="Flow_1k3lile">
+        <di:waypoint x="2965" y="479" />
+        <di:waypoint x="3070" y="479" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2982" y="436" width="72" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0le4ueq_di" bpmnElement="Flow_0le4ueq">
+        <di:waypoint x="3285" y="479" />
+        <di:waypoint x="3382" y="479" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3294" y="416" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iv3v78_di" bpmnElement="Flow_1iv3v78">
+        <di:waypoint x="2680" y="1256" />
+        <di:waypoint x="2726" y="1256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lchowc_di" bpmnElement="Flow_0lchowc">
+        <di:waypoint x="2308" y="1281" />
+        <di:waypoint x="2308" y="1376" />
+        <di:waypoint x="2630" y="1376" />
+        <di:waypoint x="2630" y="1296" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2426" y="1319" width="86" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tyehgj_di" bpmnElement="Flow_1tyehgj">
+        <di:waypoint x="2504" y="1256" />
+        <di:waypoint x="2580" y="1256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18a7799_di" bpmnElement="Flow_18a7799">
+        <di:waypoint x="2220" y="1256" />
+        <di:waypoint x="2283" y="1256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hjg4gt_di" bpmnElement="Flow_0hjg4gt">
+        <di:waypoint x="1997" y="436" />
+        <di:waypoint x="1997" y="1216" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ywp6z3_di" bpmnElement="Flow_1ywp6z3">
+        <di:waypoint x="2082" y="582" />
+        <di:waypoint x="2082" y="641" />
+        <di:waypoint x="2362" y="641" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2115" y="601" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1v9kabk_di" bpmnElement="Flow_1v9kabk">
+        <di:waypoint x="2022" y="411" />
+        <di:waypoint x="2185" y="411" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2069" y="371" width="67" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rubfuh_di" bpmnElement="Flow_0rubfuh">
+        <di:waypoint x="1942" y="557" />
+        <di:waypoint x="2057" y="557" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jb4xa0_di" bpmnElement="Flow_1jb4xa0">
+        <di:waypoint x="3170" y="479" />
+        <di:waypoint x="3235" y="479" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01wr4ni_di" bpmnElement="Flow_01wr4ni">
+        <di:waypoint x="1580" y="270" />
+        <di:waypoint x="1610" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l2h7ra_di" bpmnElement="Flow_0l2h7ra">
+        <di:waypoint x="1742" y="411" />
+        <di:waypoint x="1800" y="411" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ofx51x_di" bpmnElement="Flow_1ofx51x">
+        <di:waypoint x="1900" y="411" />
+        <di:waypoint x="1972" y="411" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bmrtfb_di" bpmnElement="Flow_1bmrtfb">
+        <di:waypoint x="2333" y="1256" />
+        <di:waypoint x="2404" y="1256" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2314" y="1186" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12r9yk8_di" bpmnElement="Flow_12r9yk8">
+        <di:waypoint x="1500" y="456" />
+        <di:waypoint x="1525" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0moe2kz_di" bpmnElement="Flow_0moe2kz">
+        <di:waypoint x="840" y="1273" />
+        <di:waypoint x="897" y="1273" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tddqm8_di" bpmnElement="Flow_0tddqm8">
+        <di:waypoint x="947" y="1273" />
+        <di:waypoint x="1007" y="1273" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17p3uk1_di" bpmnElement="Flow_17p3uk1">
+        <di:waypoint x="922" y="1248" />
+        <di:waypoint x="922" y="880" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="856" y="1006" width="61" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tj41t9_di" bpmnElement="Flow_1tj41t9">
+        <di:waypoint x="1710" y="270" />
+        <di:waypoint x="1752" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1fwb1zn_di" bpmnElement="need_routine_update">
+        <dc:Bounds x="1842" y="517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_076l7ls_di" bpmnElement="planned_validation_datamart_validator" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1652" y="517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yjwqla_di" bpmnElement="planned_validation_datamart_de">
+        <dc:Bounds x="1947" y="1216" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1oxg2pl_di" bpmnElement="Gateway_1oxg2pl" isMarkerVisible="true">
+        <dc:Bounds x="2283" y="1231" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1tz82dt_di" bpmnElement="integration_autoupdating_datamart_script_add_de">
+        <dc:Bounds x="2404" y="1216" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_08oqs30_di" bpmnElement="Gateway_08oqs30" isMarkerVisible="true">
+        <dc:Bounds x="897" y="1248" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18eyavs_di" bpmnElement="source_drp">
+        <dc:Bounds x="470" y="1230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1mh20gw_di" bpmnElement="Gateway_01e67dy">
+        <dc:Bounds x="387" y="1245" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09hbztd_di" bpmnElement="Activity_1ppnou8">
+        <dc:Bounds x="277" y="1372" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0ttm9fz_di" bpmnElement="Gateway_0w5h6h7">
+        <dc:Bounds x="302" y="1245" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="234" y="1251" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1muumz2_di" bpmnElement="br_validation_datamart_developing">
+        <dc:Bounds x="1642" y="371" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ywvxcw_di" bpmnElement="attracting_dit_de">
+        <dc:Bounds x="1800" y="371" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1veyylq_di" bpmnElement="Gateway_1veyylq" isMarkerVisible="true">
+        <dc:Bounds x="1972" y="386" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09wrnw8_di" bpmnElement="datamart_developing_auto_renewable">
+        <dc:Bounds x="2120" y="1216" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1lcps5a_di" bpmnElement="Gateway_1lcps5a" isMarkerVisible="true">
+        <dc:Bounds x="2726" y="1231" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oa3510_di" bpmnElement="test_planned_validation_datamart_validator">
+        <dc:Bounds x="2701" y="439" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1t9dbhb_di" bpmnElement="Gateway_1t9dbhb" isMarkerVisible="true">
+        <dc:Bounds x="3235" y="454" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1m9jgwd_di" bpmnElement="Event_1m9jgwd" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="3382" y="461" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3356" y="504" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12csfkh_di" bpmnElement="need_routine_update_de">
+        <dc:Bounds x="3070" y="439" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1p8msud_di" bpmnElement="Gateway_1p8msud" isMarkerVisible="true">
+        <dc:Bounds x="2915" y="454" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_015ey64_di" bpmnElement="test_planned_validation_datamart_de">
+        <dc:Bounds x="2580" y="1216" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1w0c5l0_di" bpmnElement="Event_1w0c5l0" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="2342" y="393" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2316" y="436" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1p038hx_di" bpmnElement="Event_1p038hx" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="2362" y="539" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2336" y="582" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_00wtjgv_di" bpmnElement="Gateway_00wtjgv" isMarkerVisible="true">
+        <dc:Bounds x="2057" y="532" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1y22v63_di" bpmnElement="Event_1y22v63" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="2362" y="623" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2336" y="666" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_04b964o_di" bpmnElement="Gateway_04b964o" isMarkerVisible="true">
+        <dc:Bounds x="1525" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1x5pot2_di" bpmnElement="Activity_1x5pot2">
+        <dc:Bounds x="700" y="356" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0hgygf2_di" bpmnElement="Gateway_0hgygf2" isMarkerVisible="true">
+        <dc:Bounds x="875" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10ylrgx_di" bpmnElement="Gateway_10ylrgx" isMarkerVisible="true">
+        <dc:Bounds x="573" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0w0kf61_di" bpmnElement="Gateway_0th38hj" isMarkerVisible="true">
+        <dc:Bounds x="445" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_055qgbg_di" bpmnElement="Activity_0pgzvzz">
+        <dc:Bounds x="700" y="486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_09w6biu_di" bpmnElement="Gateway_09w6biu" isMarkerVisible="true">
+        <dc:Bounds x="605" y="1245" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mjckj6_di" bpmnElement="Activity_0mjckj6" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1007" y="1233" width="110" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14z5we1_di" bpmnElement="Activity_14z5we1" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1007" y="800" width="110" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oio7rn_di" bpmnElement="Activity_1oio7rn" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="2185" y="371" width="110" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1r1rc2b_di" bpmnElement="Activity_1r1rc2b" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="2205" y="517" width="110" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kgvyni_di" bpmnElement="Activity_1kgvyni">
+        <dc:Bounds x="3210" y="1250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dpq33h_di" bpmnElement="datamart_validation_etl_dit">
+        <dc:Bounds x="3210" y="601" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0n3cv8k_di" bpmnElement="Activity_0n3cv8k" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="3350" y="1250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0khuxns_di" bpmnElement="Activity_0khuxns" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="3350" y="1372" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_017wjv6_di" bpmnElement="Event_017wjv6" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="3522" y="1394" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3485" y="1437" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12nr658_di" bpmnElement="data_expert_datamart_validator" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="740" y="1229" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0wvhxk1_di" bpmnElement="Gateway_0wvhxk1" isMarkerVisible="true">
+        <dc:Bounds x="1255" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0hdlxui_di" bpmnElement="Gateway_0okg802">
+        <dc:Bounds x="1025" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1h4710k_di" bpmnElement="Gateway_0t3emn1" isMarkerVisible="true">
+        <dc:Bounds x="945" y="431" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1lydp8z_di" bpmnElement="Event_1lydp8z" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1512" y="592" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1495" y="640" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0olzx90_di" bpmnElement="Activity_0olzx90" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1372" y="570" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kybz6j_di" bpmnElement="detailing_task_unloading" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="872" y="800" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05wosdp_di" bpmnElement="bt_datamart_developing_new" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1002" y="1040" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dwj32m_di" bpmnElement="additional_analytical_monitoring">
+        <dc:Bounds x="1120" y="416" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0t4imng_di" bpmnElement="Event_0t4imng">
+        <dc:Bounds x="1752" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1728" y="295" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zs7y4w_di" bpmnElement="attracting_dit" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1400" y="416" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1q5g6ju_di" bpmnElement="Activity_1q5g6ju" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1610" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04fb059_di" bpmnElement="requirements_additional_analytical_monitoring_validator" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1480" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m5i18c_di" bpmnElement="Activity_0m5i18c" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="1340" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_19j8dbu_di" bpmnElement="Association_19j8dbu">
+        <di:waypoint x="1779" y="255" />
+        <di:waypoint x="1810" y="208" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

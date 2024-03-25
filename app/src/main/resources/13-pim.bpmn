@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0yvsisx" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.8.1">
+  <bpmn:collaboration id="Collaboration_00oqwlg">
+    <bpmn:participant id="Participant_0wb90hm" name="&#1057;&#1059;&#1052;-&#1055;&#1048;&#1052;" processRef="pim" />
+  </bpmn:collaboration>
+  <bpmn:process id="pim" isExecutable="true" camunda:versionTag="version9_2023_04">
+    <bpmn:parallelGateway id="Gateway_07iojtx">
+      <bpmn:incoming>Flow_0n81a1q</bpmn:incoming>
+      <bpmn:outgoing>Flow_0x5wwh7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_03iy5ej</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_0vsje9g" name="publish" camunda:asyncBefore="true" camunda:type="external" camunda:topic="publish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${model}</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_image_nexus_link">${model_image_nexus_link}</camunda:inputParameter>
+          <camunda:inputParameter name="container_cfg_file">${container_cfg_file}</camunda:inputParameter>
+          <camunda:inputParameter name="doc_rest_service">${doc_rest_service}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0x5wwh7</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_03pil6l">
+      <bpmn:incoming>Flow_02fc4pn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_02kh2om" name="&#1047;&#1072;&#1087;&#1080;&#1089;&#1100; &#1072;&#1088;&#1090;&#1077;&#1092;&#1072;&#1082;&#1090;&#1086;&#1074; &#1074; &#1073;&#1072;&#1079;&#1091;" camunda:type="external" camunda:topic="artefacts">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${model}</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">var imagePimNexusAddr= execution.getVariable("imagePimNexusAddr");
+var containerCfgPimNexusAddr= execution.getVariable("containerCfgPimNexusAddr");
+var attr_list = JSON.stringify({
+imagePimNexusAddr: imagePimNexusAddr,
+containerCfgPimNexusAddr: containerCfgPimNexusAddr
+})
+execution.setVariable("attr_list", attr_list);</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1tak4r4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1t3q498</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:intermediateCatchEvent id="Event_04j9gag">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="status">${status}</camunda:outputParameter>
+          <camunda:outputParameter name="statusMessage">${statusMessage}</camunda:outputParameter>
+          <camunda:outputParameter name="imagePimNexusAddr">${imagePimNexusAddr}</camunda:outputParameter>
+          <camunda:outputParameter name="containerCfgPimNexusAddr">${containerCfgPimNexusAddr}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03iy5ej</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cex9dc</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1wq8uig" messageRef="Message_04e1j09" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:exclusiveGateway id="Gateway_093kh5o" default="Flow_1xcmmti">
+      <bpmn:incoming>Flow_1cex9dc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tak4r4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1xcmmti</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateThrowEvent id="Event_18rrv7v">
+      <bpmn:incoming>Flow_1azpjse</bpmn:incoming>
+      <bpmn:incoming>Flow_1xcmmti</bpmn:incoming>
+      <bpmn:outgoing>Flow_0n81a1q</bpmn:outgoing>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1azpjse</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1cex9dc" sourceRef="Event_04j9gag" targetRef="Gateway_093kh5o" />
+    <bpmn:sequenceFlow id="Flow_1azpjse" sourceRef="StartEvent_1" targetRef="Event_18rrv7v" />
+    <bpmn:sequenceFlow id="Flow_0x5wwh7" sourceRef="Gateway_07iojtx" targetRef="Activity_0vsje9g" />
+    <bpmn:sequenceFlow id="Flow_03iy5ej" sourceRef="Gateway_07iojtx" targetRef="Event_04j9gag" />
+    <bpmn:sequenceFlow id="Flow_1t3q498" sourceRef="Activity_02kh2om" targetRef="Activity_0ydg9q3" />
+    <bpmn:sequenceFlow id="Flow_1tak4r4" sourceRef="Gateway_093kh5o" targetRef="Activity_02kh2om">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${statusMessage=="Success"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0n81a1q" sourceRef="Event_18rrv7v" targetRef="Gateway_07iojtx" />
+    <bpmn:sequenceFlow id="Flow_1xcmmti" sourceRef="Gateway_093kh5o" targetRef="Event_18rrv7v" />
+    <bpmn:serviceTask id="Activity_0ydg9q3" name="&#1042;&#1099;&#1079;&#1086;&#1074; &#1084;&#1077;&#1090;&#1086;&#1076;&#1072; Kafka" camunda:type="external" camunda:topic="kafka_createNewModel">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${model}</camunda:inputParameter>
+          <camunda:inputParameter name="using_mode">${using_mode}</camunda:inputParameter>
+          <camunda:inputParameter name="imagePimNexusAddr">${imagePimNexusAddr}</camunda:inputParameter>
+          <camunda:inputParameter name="containerCfgPimNexusAddr">${containerCfgPimNexusAddr}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1t3q498</bpmn:incoming>
+      <bpmn:outgoing>Flow_02fc4pn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_02fc4pn" sourceRef="Activity_0ydg9q3" targetRef="Event_03pil6l" />
+  </bpmn:process>
+  <bpmn:message id="Message_04e1j09" name="teamcity_publish" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_00oqwlg">
+      <bpmndi:BPMNShape id="Participant_0wb90hm_di" bpmnElement="Participant_0wb90hm" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="860" height="410" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_02fc4pn_di" bpmnElement="Flow_02fc4pn">
+        <di:waypoint x="930" y="360" />
+        <di:waypoint x="962" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xcmmti_di" bpmnElement="Flow_1xcmmti">
+        <di:waypoint x="610" y="335" />
+        <di:waypoint x="610" y="160" />
+        <di:waypoint x="300" y="160" />
+        <di:waypoint x="300" y="232" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0n81a1q_di" bpmnElement="Flow_0n81a1q">
+        <di:waypoint x="318" y="250" />
+        <di:waypoint x="335" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tak4r4_di" bpmnElement="Flow_1tak4r4">
+        <di:waypoint x="635" y="360" />
+        <di:waypoint x="670" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1t3q498_di" bpmnElement="Flow_1t3q498">
+        <di:waypoint x="770" y="360" />
+        <di:waypoint x="830" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03iy5ej_di" bpmnElement="Flow_03iy5ej">
+        <di:waypoint x="360" y="275" />
+        <di:waypoint x="360" y="360" />
+        <di:waypoint x="482" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0x5wwh7_di" bpmnElement="Flow_0x5wwh7">
+        <di:waypoint x="385" y="250" />
+        <di:waypoint x="450" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1azpjse_di" bpmnElement="Flow_1azpjse">
+        <di:waypoint x="248" y="250" />
+        <di:waypoint x="282" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cex9dc_di" bpmnElement="Flow_1cex9dc">
+        <di:waypoint x="518" y="360" />
+        <di:waypoint x="585" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Gateway_1hducmi_di" bpmnElement="Gateway_07iojtx">
+        <dc:Bounds x="335" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vlvfyl_di" bpmnElement="Activity_0vsje9g">
+        <dc:Bounds x="450" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03pil6l_di" bpmnElement="Event_03pil6l">
+        <dc:Bounds x="962" y="342" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vogwyb_di" bpmnElement="Activity_02kh2om">
+        <dc:Bounds x="670" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0l9xkav_di" bpmnElement="Event_04j9gag">
+        <dc:Bounds x="482" y="342" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_093kh5o_di" bpmnElement="Gateway_093kh5o" isMarkerVisible="true">
+        <dc:Bounds x="585" y="335" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_18rrv7v_di" bpmnElement="Event_18rrv7v">
+        <dc:Bounds x="282" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="212" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rt7i0y_di" bpmnElement="Activity_0ydg9q3">
+        <dc:Bounds x="830" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
