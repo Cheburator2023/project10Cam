@@ -1,675 +1,898 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_154h9lv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
-  <bpmn:process id="main" isExecutable="true" camunda:versionTag="version9_2023_04">
-    <bpmn:callActivity id="Task_0e8379u" name="&#1048;&#1085;&#1080;&#1094;&#1080;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103;" calledElement="initialization" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-      <bpmn:extensionElements>
-        <camunda:out source="ds_lead" target="ds_lead" />
-        <camunda:out source="de_lead" target="de_lead" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;entity_attributes_list&quot;)?execution.getVariable(&quot;entity_attributes_list&quot;) :&quot;null&quot;)}" target="entity_attributes_list" />
-        <camunda:out source="modelops_lead" target="modelops_lead" />
-        <camunda:out source="dit_lead" target="dit_lead" />
-        <camunda:out source="mimp_lead" target="mimp_lead" />
-        <camunda:out source="validator_lead" target="validator_lead" />
-        <camunda:out source="auto_correct_model" target="auto_correct_model" />
-        <camunda:out source="need_involve_de_flg" target="need_involve_de_flg" />
-        <camunda:in source="model" target="model" />
-        <camunda:in source="owner" target="owner" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;pilot_results_approving_flg&quot;) ? execution.getVariable(&quot;pilot_results_approving_flg&quot;) : &quot;null&quot;)}" target="pilot_results_approving_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;data_development_availability&quot;)?execution.getVariable(&quot;data_development_availability&quot;) :&quot;null&quot;)}" target="data_development_availability" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;ds_lead&quot;)?execution.getVariable(&quot;ds_lead&quot;) :&quot;null&quot;)}" target="ds_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;de_lead&quot;)?execution.getVariable(&quot;de_lead&quot;) :&quot;null&quot;)}" target="de_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;modelops_lead&quot;)?execution.getVariable(&quot;modelops_lead&quot;) :&quot;null&quot;)}" target="modelops_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;dit_lead&quot;)?execution.getVariable(&quot;dit_lead&quot;) :&quot;null&quot;)}" target="dit_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;mimp_lead&quot;)?execution.getVariable(&quot;mimp_lead&quot;) :&quot;null&quot;)}" target="mimp_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;validator_lead&quot;)?execution.getVariable(&quot;validator_lead&quot;) :&quot;null&quot;)}" target="validator_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;auto_correct_model&quot;)?execution.getVariable(&quot;auto_correct_model&quot;) :&quot;null&quot;)}" target="auto_correct_model" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;need_involve_de_flg&quot;)?execution.getVariable(&quot;need_involve_de_flg&quot;) :&quot;null&quot;)}" target="need_involve_de_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;datamart_script_success_flg&quot;)?execution.getVariable(&quot;datamart_script_success_flg&quot;) :&quot;null&quot;)}" target="datamart_script_success_flg" />
-        <camunda:out source="using_mode" target="using_mode" />
-        <camunda:out source="order_for_developing_or_buiseness_case" target="order_for_developing_or_buiseness_case" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;automl_flg&quot;) ? execution.getVariable(&quot;automl_flg&quot;) : &quot;false&quot;)}" target="automl_flg" />
-        <camunda:out source="significance_validity" target="significance_validity" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;data_development_availability2&quot;) ? execution.getVariable(&quot;data_development_availability2&quot;) : &quot;null&quot;)}" target="data_development_availability2" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;need_recreate_data_flg2&quot;)?execution.getVariable(&quot;need_recreate_data_flg2&quot;) :&quot;null&quot;)}" target="need_recreate_data_flg2" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0n58nna</bpmn:incoming>
-      <bpmn:incoming>Flow_0u04wln</bpmn:incoming>
-      <bpmn:incoming>Flow_0wezm87</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1hbx1ad</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:sequenceFlow id="SequenceFlow_1hbx1ad" sourceRef="Task_0e8379u" targetRef="Data" />
-    <bpmn:callActivity id="Data" name="&#1044;&#1072;&#1085;&#1085;&#1099;&#1077;" calledElement="data" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-      <bpmn:extensionElements>
-        <camunda:in source="de_lead" target="de_lead" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;entity_attributes_list&quot;)?execution.getVariable(&quot;entity_attributes_list&quot;) :&quot;null&quot;)}" target="entity_attributes_list" />
-        <camunda:in source="ds_lead" target="ds_lead" />
-        <camunda:in source="modelops_lead" target="modelops_lead" />
-        <camunda:in source="model" target="model" />
-        <camunda:in source="need_involve_de_flg" target="need_involve_de_flg" />
-        <camunda:out source="aggregate_calculation_algorithm" target="aggregate_calculation_algorithm" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;autoupdate_datamart_flg&quot;) ? execution.getVariable(&quot;autoupdate_datamart_flg&quot;) : &quot;null&quot;)}" target="autoupdate_datamart_flg" />
-        <camunda:out source="datamart_description" target="datamart_description" />
-        <camunda:out source="datamart_build_script" target="datamart_build_script" />
-        <camunda:out source="datamart_link" target="datamart_link" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;data_development_availability2&quot;)?execution.getVariable(&quot;data_development_availability2&quot;) :&quot;null&quot;)}" target="data_development_availability2" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;pilot_results_approving_flg&quot;) ? execution.getVariable(&quot;pilot_results_approving_flg&quot;) : &quot;null&quot;)}" target="pilot_results_approving_flg" />
-        <camunda:out source="autoupdating_datamart_script" target="autoupdating_datamart_script" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;datamart_script_success_flg&quot;) ? execution.getVariable(&quot;datamart_script_success_flg&quot;) : &quot;null&quot;)}" target="datamart_script_success_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;need_recreate_data_flg2&quot;) ? execution.getVariable(&quot;need_recreate_data_flg2&quot;) : &quot;null&quot;)}" target="need_recreate_data_flg2" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1hbx1ad</bpmn:incoming>
-      <bpmn:incoming>Flow_0p3zo8g</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1eiimyp</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:sequenceFlow id="SequenceFlow_1eiimyp" sourceRef="Data" targetRef="Gateway_1c32dz8" />
-    <bpmn:callActivity id="Model" name="&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;" calledElement="model" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-      <bpmn:extensionElements>
-        <camunda:in source="ds_lead" target="ds_lead" />
-        <camunda:in source="aggregate_calculation_algorithm" target="aggregate_calculation_algorithm" />
-        <camunda:in source="modelops_lead" target="modelops_lead" />
-        <camunda:in source="validator_lead" target="validator_lead" />
-        <camunda:in source="dit_lead" target="dit_lead" />
-        <camunda:in source="model" target="model" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;vector_attributes&quot;) ? execution.getVariable(&quot;vector_attributes&quot;) : &quot;null&quot;)}" target="vector_attributes" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;requirements_for_model_monitoring&quot;) ? execution.getVariable(&quot;requirements_for_model_monitoring&quot;) : &quot;null&quot;)}" target="requirements_for_model_monitoring" />
-        <camunda:out source="decision_of_model_efficiency_flg" target="decision_of_model_efficiency_flg" />
-        <camunda:out source="model_deployment_approving_flg" target="model_deployment_approving_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;need_recreate_data_flg2&quot;) ? execution.getVariable(&quot;need_recreate_data_flg2&quot;) : &quot;null&quot;)}" target="need_recreate_data_flg2" />
-        <camunda:in source="datamart_description" target="datamart_description" />
-        <camunda:in source="datamart_build_script" target="datamart_build_script" />
-        <camunda:in source="datamart_link" target="datamart_link" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;autoupdating_datamart_script&quot;)?execution.getVariable(&quot;autoupdating_datamart_script&quot;) :&quot;null&quot;)}" target="autoupdating_datamart_script" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;autoupdate_datamart_flg&quot;) ? execution.getVariable(&quot;autoupdate_datamart_flg&quot;) : &quot;null&quot;)}" target="autoupdate_datamart_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;input_output_vector_validation_scheme&quot;) ? execution.getVariable(&quot;input_output_vector_validation_scheme&quot;) : &quot;null&quot;)}" target="input_output_vector_validation_scheme" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;check_list&quot;) ? execution.getVariable(&quot;check_list&quot;) : &quot;null&quot;)}" target="check_list" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;short_datamart_build_script&quot;) ? execution.getVariable(&quot;short_datamart_build_script&quot;) : &quot;null&quot;)}" target="short_datamart_build_script" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;long_datamart_build_script&quot;) ? execution.getVariable(&quot;long_datamart_build_script&quot;) : &quot;null&quot;)}" target="long_datamart_build_script" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;total_scoring_calculation_scripts&quot;) ? execution.getVariable(&quot;total_scoring_calculation_scripts&quot;) : &quot;null&quot;)}" target="total_scoring_calculation_scripts" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;scoring_calculation_scripts&quot;) ? execution.getVariable(&quot;scoring_calculation_scripts&quot;) : &quot;null&quot;)}" target="scoring_calculation_scripts" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;analize_text_about_developing&quot;) ? execution.getVariable(&quot;analize_text_about_developing&quot;) : &quot;null&quot;)}" target="analize_text_about_developing" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;model_binary_file&quot;) ? execution.getVariable(&quot;model_binary_file&quot;) : &quot;null&quot;)}" target="model_binary_file" />
-        <camunda:out source="pim_integration_flg" target="pim_integration_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;auto_monitoring_testing_flg&quot;)?execution.getVariable(&quot;auto_monitoring_testing_flg&quot;) :&quot;true&quot;)}" target="auto_monitoring_testing_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;need_input_vector_flg&quot;)?execution.getVariable(&quot;need_input_vector_flg&quot;) :&quot;null&quot;)}" target="need_input_vector_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;first_test_preprod_flg&quot;)?execution.getVariable(&quot;first_test_preprod_flg&quot;) :&quot;null&quot;)}" target="first_test_preprod_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;model_lang&quot;) ? execution.getVariable(&quot;model_lang&quot;) : &quot;null&quot;)}" target="model_lang" />
-        <camunda:in source="order_for_developing_or_buiseness_case" target="order_for_developing_or_buiseness_case" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;spk_etl_monitoring_process&quot;) ? execution.getVariable(&quot;spk_etl_monitoring_process&quot;) : &quot;null&quot;)}" target="spk_etl_monitoring_process" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;need_first_validation_flg&quot;) ? execution.getVariable(&quot;need_first_validation_flg&quot;) : &quot;false&quot;)}" target="need_first_validation_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;need_first_validation_flg&quot;) ? execution.getVariable(&quot;need_first_validation_flg&quot;) : &quot;false&quot;)}" target="need_first_validation_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;validation_model_datamart&quot;) ? execution.getVariable(&quot;validation_model_datamart&quot;) : &quot;null&quot;)}" target="validation_model_datamart" />
-        <camunda:in source="significance_validity" target="significance_validity" />
-        <camunda:out source="development_results_approving_flg" target="development_results_approving_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;mr_ratio_k_proces_models&quot;) ? execution.getVariable(&quot;mr_ratio_k_proces_models&quot;) : &quot;null&quot;)}" target="mr_ratio_k_proces_models" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;validation_class_flg&quot;) ? execution.getVariable(&quot;validation_class_flg&quot;) : &quot;null&quot;)}" target="validation_class_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;decision_of_model_completion_flg&quot;) ? execution.getVariable(&quot;decision_of_model_completion_flg&quot;) : &quot;null&quot;)}" target="decision_of_model_completion_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;monitoring_deviations&quot;) ? execution.getVariable(&quot;monitoring_deviations&quot;) : &quot;null&quot;)}" target="monitoring_deviations" />
-        <camunda:out source="additional_analytical_monitoring_flg" target="additional_analytical_monitoring_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;psi_results&quot;) ? execution.getVariable(&quot;psi_results&quot;) : &quot;null&quot;)}" target="psi_results" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;decisions_model_architecture_flg&quot;) ? execution.getVariable(&quot;decisions_model_architecture_flg&quot;) : &quot;null&quot;)}" target="decisions_model_architecture_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;decisions_model_flg&quot;) ? execution.getVariable(&quot;decisions_model_flg&quot;) : &quot;null&quot;)}" target="decisions_model_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;decision_of_model_integration_flg&quot;) ? execution.getVariable(&quot;decision_of_model_integration_flg&quot;) : &quot;null&quot;)}" target="decision_of_model_integration_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;pim_integration_flg&quot;) ? execution.getVariable(&quot;pim_integration_flg&quot;) : &quot;null&quot;)}" target="pim_integration_flg" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1cud76a</bpmn:incoming>
-      <bpmn:incoming>Flow_0j9mdvp</bpmn:incoming>
-      <bpmn:incoming>Flow_0gb65r7</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_09wqxjt</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_1q4cky2" default="SequenceFlow_0a54z3a">
-      <bpmn:incoming>SequenceFlow_09wqxjt</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0a54z3a</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1snp4r9</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0p3zo8g</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0rzw5i0</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0u04wln</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0smaapu</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_09wqxjt" sourceRef="Model" targetRef="ExclusiveGateway_1q4cky2" />
-    <bpmn:sequenceFlow id="SequenceFlow_0a54z3a" sourceRef="ExclusiveGateway_1q4cky2" targetRef="Integration" />
-    <bpmn:callActivity id="Integration" name="&#1042;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1080;&#1077;" calledElement="integration" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-      <bpmn:extensionElements>
-        <camunda:in source="modelops_lead" target="modelops_lead" />
-        <camunda:in source="ds_lead" target="ds_lead" />
-        <camunda:in source="de_lead" target="de_lead" />
-        <camunda:in source="owner" target="owner" />
-        <camunda:in source="dit_lead" target="dit_lead" />
-        <camunda:in source="mimp_lead" target="mimp_lead" />
-        <camunda:in source="requirements_for_model_monitoring" target="requirements_for_model_monitoring" />
-        <camunda:in source="model" target="model" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;user_test_success_flg&quot;) ? execution.getVariable(&quot;user_test_success_flg&quot;) : &quot;null&quot;)}" target="user_test_success_flg" />
-        <camunda:out source="integration_test_success_flg" target="integration_test_success_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;is_model_interpreted_flg&quot;) ? execution.getVariable(&quot;is_model_interpreted_flg&quot;) : &quot;null&quot;)}" target="is_model_interpreted_flg" />
-        <camunda:in source="datamart_description" target="datamart_description" />
-        <camunda:in source="input_output_vector_validation_scheme" target="input_output_vector_validation_scheme" />
-        <camunda:in source="check_list" target="check_list" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;first_test_preprod_flg&quot;) ? execution.getVariable(&quot;first_test_preprod_flg&quot;) : &quot;null&quot;)}" target="first_test_preprod_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;deviation_significance_flg&quot;) ? execution.getVariable(&quot;deviation_significance_flg&quot;) : &quot;null&quot;)}" target="deviation_significance_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;need_input_vector_flg&quot;) ? execution.getVariable(&quot;need_input_vector_flg&quot;) : &quot;null&quot;)}" target="need_input_vector_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;model_lang&quot;) ? execution.getVariable(&quot;model_lang&quot;) : &quot;null&quot;)}" target="model_lang" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;using_mode&quot;) ? execution.getVariable(&quot;using_mode&quot;) : &quot;null&quot;)}" target="using_mode" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;spk_rest_service&quot;) ? execution.getVariable(&quot;spk_rest_service&quot;) : &quot;null&quot;)}" target="spk_rest_service" />
-        <camunda:in source="problems_reveal_flg" target="problems_reveal_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;automl_flg&quot;) ? execution.getVariable(&quot;automl_flg&quot;) : &quot;null&quot;)}" target="automl_flg" />
-        <camunda:in source="need_first_validation_flg" target="need_first_validation_flg" />
-        <camunda:in source="autoupdate_datamart_flg" target="autoupdate_datamart_flg" />
-        <camunda:in source="pim_integration_flg" target="pim_integration_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;decisions_model_architecture_flg&quot;) ? execution.getVariable(&quot;decisions_model_architecture_flg&quot;) : &quot;null&quot;)}" target="decisions_model_architecture_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;modification_datamart_use_model&quot;) ? execution.getVariable(&quot;modification_datamart_use_model&quot;) : &quot;null&quot;)}" target="modification_datamart_use_model" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;modification_architecture_flg&quot;) ? execution.getVariable(&quot;modification_architecture_flg&quot;) : &quot;null&quot;)}" target="modification_architecture_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;modification_model_flg&quot;) ? execution.getVariable(&quot;modification_model_flg&quot;) : &quot;null&quot;)}" target="modification_model_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;decisions_model_flg&quot;) ? execution.getVariable(&quot;decisions_model_flg&quot;) : &quot;null&quot;)}" target="decisions_model_flg" />
-        <camunda:out source="modification_datamart_use_model_flg" target="modification_datamart_use_model_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;needed_updat_flg&quot;) ? execution.getVariable(&quot;needed_updat_flg&quot;) : &quot;null&quot;)}" target="needed_updat_flg" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;psi_results&quot;) ? execution.getVariable(&quot;psi_results&quot;) : &quot;null&quot;)}" target="psi_results" />
-        <camunda:out sourceExpression="${(execution.hasVariable(&quot;additional_analytical_monitoring_flg&quot;) ? execution.getVariable(&quot;additional_analytical_monitoring_flg&quot;) : &quot;null&quot;)}" target="additional_analytical_monitoring_flg" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;model_image_nexus_link&quot;) ? execution.getVariable(&quot;model_image_nexus_link&quot;) : &quot;null&quot;)}" target="model_image_nexus_link" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;container_cfg_file&quot;) ? execution.getVariable(&quot;container_cfg_file&quot;) : &quot;null&quot;)}" target="container_cfg_file" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0a54z3a</bpmn:incoming>
-      <bpmn:incoming>Flow_1jbqlmw</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1kklugr</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:sequenceFlow id="SequenceFlow_1kklugr" sourceRef="Integration" targetRef="Gateway_1iv88m1" />
-    <bpmn:callActivity id="Finish" name="&#1042;&#1099;&#1074;&#1086;&#1076; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; &#1080;&#1079; &#1101;&#1082;&#1089;&#1087;&#1083;&#1091;&#1090;&#1072;&#1094;&#1080;&#1080;" calledElement="removal" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-      <bpmn:extensionElements>
-        <camunda:in source="dit_lead" target="dit_lead" />
-        <camunda:in source="ds_lead" target="ds_lead" />
-        <camunda:in source="model" target="model" />
-        <camunda:in sourceExpression="${(execution.hasVariable(&quot;monitoring_report&quot;) ? execution.getVariable(&quot;monitoring_report&quot;) : &quot;null&quot;)}" target="monitoring_report" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0pk23b9</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_14dhxsy</bpmn:outgoing>
-    </bpmn:callActivity>
-    <bpmn:sequenceFlow id="SequenceFlow_14dhxsy" sourceRef="Finish" targetRef="Activity_1h7ue0t" />
-    <bpmn:startEvent id="StartEvent_0no4ian">
-      <bpmn:outgoing>Flow_0ysm96m</bpmn:outgoing>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ueobgk" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.32.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="main" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0x3qjq0</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0ysm96m" sourceRef="StartEvent_0no4ian" targetRef="Event_0wb15kx" />
-    <bpmn:sequenceFlow id="Flow_1snp4r9" sourceRef="ExclusiveGateway_1q4cky2" targetRef="Event_1ie2s61">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${development_results_approving_flg == "&#1042;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1080;&#1077; &#1085;&#1077; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;, &#1084;&#1086;&#1076;&#1077;&#1083;&#1100; &#1087;&#1088;&#1080;&#1085;&#1103;&#1090;&#1072; &#1041;&#1055;"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:exclusiveGateway id="Gateway_1c32dz8" default="Flow_1cud76a">
-      <bpmn:incoming>SequenceFlow_1eiimyp</bpmn:incoming>
-      <bpmn:outgoing>Flow_1cud76a</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0n58nna</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1cud76a" sourceRef="Gateway_1c32dz8" targetRef="Model" />
-    <bpmn:sequenceFlow id="Flow_0n58nna" sourceRef="Gateway_1c32dz8" targetRef="Task_0e8379u">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${data_development_availability2=="&#1053;&#1077;&#1090;" || datamart_script_success_flg=="&#1053;&#1077;&#1090;, &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1082;&#1086;&#1088;&#1088;&#1077;&#1082;&#1090;&#1080;&#1088;&#1086;&#1074;&#1082;&#1072; &#1087;&#1086;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1082;&#1080; &#1079;&#1072;&#1076;&#1072;&#1095;&#1080;"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:exclusiveGateway id="Gateway_1iv88m1" default="Flow_0mqcpd9">
-      <bpmn:incoming>SequenceFlow_1kklugr</bpmn:incoming>
-      <bpmn:outgoing>Flow_0j9mdvp</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0mqcpd9</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0ujbq3h</bpmn:outgoing>
-      <bpmn:outgoing>Flow_13sqptu</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1kssd9f</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0j9mdvp" sourceRef="Gateway_1iv88m1" targetRef="Model">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(((execution.hasVariable("decisions_model_architecture_flg") ? execution.getVariable("decisions_model_architecture_flg") : "null") =='&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1076;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;')||((execution.hasVariable("decisions_model_flg") ? execution.getVariable("decisions_model_flg") : "null") =='&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1076;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;')||((execution.hasVariable("modification_datamart_use_model_flg") ? execution.getVariable("modification_datamart_use_model_flg") : "null") == true))||(psi_results== '&#1055;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1072; &#1089; &#1082;&#1086;&#1076;&#1086;&#1084; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;')}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0p3zo8g" sourceRef="ExclusiveGateway_1q4cky2" targetRef="Data">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_recreate_data_flg2 == "&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1085;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1072;, &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1076;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1074;&#1080;&#1090;&#1088;&#1080;&#1085;&#1099; &#1076;&#1083;&#1103; &#1088;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1080;"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1pnvdli" sourceRef="Activity_1h7ue0t" targetRef="EndEvent_0mi48om" />
-    <bpmn:serviceTask id="Activity_1h7ue0t" name="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1077;&#1085;&#1080;&#1077; &#1073;&#1080;&#1079;&#1085;&#1077;&#1089; &#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;" camunda:type="external" camunda:topic="bpmnFinish">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
-          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
-          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_14dhxsy</bpmn:incoming>
-      <bpmn:outgoing>Flow_1pnvdli</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:intermediateCatchEvent id="Event_0wb15kx" name="&#1048;&#1085;&#1080;&#1094;&#1080;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1073;&#1080;&#1079;&#1085;&#1077;&#1089;-&#1087;&#1088;&#1086;&#1094;&#1077;&#1089;&#1089;&#1072;">
+    <bpmn:sequenceFlow id="Flow_0x3qjq0" sourceRef="StartEvent_1" targetRef="Event_08jj5cf" />
+    <bpmn:intermediateCatchEvent id="Event_08jj5cf">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:outputParameter name="owner">${owner}</camunda:outputParameter>
           <camunda:outputParameter name="model">${ model }</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0ysm96m</bpmn:incoming>
-      <bpmn:outgoing>Flow_1wwq1rv</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0wowyuc" messageRef="Message_0k1wmfk" />
+      <bpmn:incoming>Flow_0x3qjq0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0h3jjve</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1m7m3o7" messageRef="Message_0ctpom2" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:sequenceFlow id="Flow_1wwq1rv" sourceRef="Event_0wb15kx" targetRef="Gateway_0p6b9a9" />
-    <bpmn:subProcess id="Activity_0r675ob">
-      <bpmn:incoming>Flow_0mqcpd9</bpmn:incoming>
-      <bpmn:incoming>Flow_0rzw5i0</bpmn:incoming>
-      <bpmn:incoming>Flow_13sqptu</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hykc08</bpmn:outgoing>
-      <bpmn:sequenceFlow id="Flow_0ww7i2j" sourceRef="Event_11w6mdk" targetRef="Gateway_1sf2t9p" />
-      <bpmn:sequenceFlow id="Flow_08e2lnn" sourceRef="Gateway_1sf2t9p" targetRef="Activity_16vtk5g">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(pim_integration_flg =='&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1074;&#1085;&#1077;&#1076;&#1088;&#1103;&#1077;&#1090;&#1089;&#1103; &#1074;&#1085;&#1077; &#1055;&#1048;&#1052;' &amp;&amp; additional_analytical_monitoring_flg != "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;") || (pim_integration_flg=='&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1073;&#1099;&#1083;&#1072; &#1074;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1072; &#1074; &#1055;&#1048;&#1052; (&#1089;&#1090;&#1072;&#1088;&#1072;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1100;)' &amp;&amp; additional_analytical_monitoring_flg != "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;")}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-      <bpmn:sequenceFlow id="Flow_0mmw2fh" sourceRef="Gateway_1sf2t9p" targetRef="Gateway_1c8t5ms" />
-      <bpmn:sequenceFlow id="Flow_0n7tmpi" sourceRef="Gateway_1c8t5ms" targetRef="Activity_1vftff8" />
-      <bpmn:sequenceFlow id="Flow_0ok8dbq" sourceRef="Gateway_1c8t5ms" targetRef="Activity_16vtk5g" />
-      <bpmn:endEvent id="Event_065ddcd">
-        <bpmn:incoming>Flow_1drurdh</bpmn:incoming>
-        <bpmn:terminateEventDefinition id="TerminateEventDefinition_1v9zdnz" />
-      </bpmn:endEvent>
-      <bpmn:parallelGateway id="Gateway_1c8t5ms">
-        <bpmn:incoming>Flow_0mmw2fh</bpmn:incoming>
-        <bpmn:outgoing>Flow_0n7tmpi</bpmn:outgoing>
-        <bpmn:outgoing>Flow_0ok8dbq</bpmn:outgoing>
-      </bpmn:parallelGateway>
-      <bpmn:exclusiveGateway id="Gateway_1sf2t9p" default="Flow_0mmw2fh">
-        <bpmn:incoming>Flow_0ww7i2j</bpmn:incoming>
-        <bpmn:outgoing>Flow_08e2lnn</bpmn:outgoing>
-        <bpmn:outgoing>Flow_0mmw2fh</bpmn:outgoing>
-        <bpmn:outgoing>Flow_1mg9wl0</bpmn:outgoing>
-      </bpmn:exclusiveGateway>
-      <bpmn:callActivity id="Activity_16vtk5g" name="&#1042;&#1072;&#1083;&#1080;&#1076;&#1072;&#1094;&#1080;&#1103;" calledElement="validation" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-        <bpmn:extensionElements>
-          <camunda:in source="validator_lead" target="validator_lead" />
-          <camunda:in source="dit_lead" target="dit_lead" />
-          <camunda:in source="model" target="model" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;decision_of_model_completion_flg&quot;)?execution.getVariable(&quot;decision_of_model_completion_flg&quot;):&quot;null&quot;)}" target="decision_of_model_completion_flg" />
-          <camunda:in source="model_binary_file" target="model_binary_file" />
-          <camunda:in source="analize_text_about_developing" target="analize_text_about_developing" />
-          <camunda:in source="scoring_calculation_scripts" target="scoring_calculation_scripts" />
-          <camunda:in source="total_scoring_calculation_scripts" target="total_scoring_calculation_scripts" />
-          <camunda:in source="long_datamart_build_script" target="long_datamart_build_script" />
-          <camunda:in source="short_datamart_build_script" target="short_datamart_build_script" />
-          <camunda:in source="datamart_description" target="datamart_description" />
-          <camunda:in source="validation_model_datamart" target="validation_model_datamart" />
-          <camunda:in source="pim_integration_flg" target="pim_integration_flg" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;out_type&quot;) ? execution.getVariable(&quot;out_type&quot;) : &quot;null&quot;)}" target="out_type" />
-          <camunda:in sourceExpression="${(execution.hasVariable(&quot;mr_ratio_k_proces_models&quot;) ? execution.getVariable(&quot;mr_ratio_k_proces_models&quot;) : &quot;null&quot;)}" target="mr_ratio_k_proces_models" />
-          <camunda:in sourceExpression="${(execution.hasVariable(&quot;validation_class_flg&quot;) ? execution.getVariable(&quot;validation_class_flg&quot;) : &quot;null&quot;)}" target="validation_class_flg" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;monitoring_deviations&quot;)?execution.getVariable(&quot;monitoring_deviations&quot;):&quot;null&quot;)}" target="monitoring_deviations" />
-          <camunda:in sourceExpression="${(execution.hasVariable(&quot;additional_analytical_monitoring_flg&quot;) ? execution.getVariable(&quot;additional_analytical_monitoring_flg&quot;) : &quot;null&quot;)}" target="additional_analytical_monitoring_flg" />
-        </bpmn:extensionElements>
-        <bpmn:incoming>Flow_08e2lnn</bpmn:incoming>
-        <bpmn:incoming>Flow_0ok8dbq</bpmn:incoming>
-        <bpmn:outgoing>Flow_1h6kogn</bpmn:outgoing>
-      </bpmn:callActivity>
-      <bpmn:callActivity id="Activity_1vftff8" name="&#1052;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;" calledElement="monitoring" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version9_2023_04">
-        <bpmn:extensionElements>
-          <camunda:in source="ds_lead" target="ds_lead" />
-          <camunda:in source="de_lead" target="de_lead" />
-          <camunda:in source="dit_lead" target="dit_lead" />
-          <camunda:in source="requirements_for_model_monitoring" target="requirements_for_model_monitoring" />
-          <camunda:in source="auto_correct_model" target="auto_correct_model" />
-          <camunda:in source="model" target="model" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;approving_autocorrect_changes_flg&quot;) ? execution.getVariable(&quot;approving_autocorrect_changes_flg&quot;) : &quot;null&quot;)}" target="approving_autocorrect_changes_flg" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;auto_monitoring_testing_flg&quot;) ? execution.getVariable(&quot;auto_monitoring_testing_flg&quot;) : &quot;null&quot;)}" target="auto_monitoring_testing_flg" />
-          <camunda:out source="monitoring_report" target="monitoring_report" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;removal_model_after_monitoring_flg&quot;) ? execution.getVariable(&quot;removal_model_after_monitoring_flg&quot;) : &quot;null&quot;)}" target="removal_model_after_monitoring_flg" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;deviation_significance_flg&quot;) ? execution.getVariable(&quot;deviation_significance_flg&quot;) : &quot;null&quot;)}" target="deviation_significance_flg" />
-          <camunda:out source="out_type" target="out_type" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;decision_of_model_completion_flg&quot;)?execution.getVariable(&quot;decision_of_model_completion_flg&quot;):&quot;null&quot;)}" target="decision_of_model_completion_flg" />
-          <camunda:in source="spk_etl_monitoring_process" target="spk_etl_monitoring_process" />
-          <camunda:in sourceExpression="${(execution.hasVariable(&quot;spk_rest_service&quot;) ? execution.getVariable(&quot;spk_rest_service&quot;) : &quot;null&quot;)}" target="spk_rest_service" />
-          <camunda:out sourceExpression="${(execution.hasVariable(&quot;monitoring_deviations&quot;)?execution.getVariable(&quot;monitoring_deviations&quot;):&quot;null&quot;)}" target="monitoring_deviations" />
-        </bpmn:extensionElements>
-        <bpmn:incoming>Flow_0n7tmpi</bpmn:incoming>
-        <bpmn:incoming>Flow_1mg9wl0</bpmn:incoming>
-        <bpmn:outgoing>Flow_0zj9n7z</bpmn:outgoing>
-      </bpmn:callActivity>
-      <bpmn:startEvent id="Event_11w6mdk">
-        <bpmn:outgoing>Flow_0ww7i2j</bpmn:outgoing>
-      </bpmn:startEvent>
-      <bpmn:sequenceFlow id="Flow_1drurdh" sourceRef="Activity_15pg9dz" targetRef="Event_065ddcd" />
-      <bpmn:sequenceFlow id="Flow_0zj9n7z" sourceRef="Activity_1vftff8" targetRef="Activity_15pg9dz" />
-      <bpmn:sequenceFlow id="Flow_1h6kogn" sourceRef="Activity_16vtk5g" targetRef="Activity_15pg9dz" />
-      <bpmn:serviceTask id="Activity_15pg9dz" name="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1077;&#1085;&#1080;&#1077; &#1088;&#1072;&#1073;&#1086;&#1090;&#1099;" camunda:type="external" camunda:topic="endEvent">
-        <bpmn:extensionElements>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
-          </camunda:inputOutput>
-        </bpmn:extensionElements>
-        <bpmn:incoming>Flow_0zj9n7z</bpmn:incoming>
-        <bpmn:incoming>Flow_1h6kogn</bpmn:incoming>
-        <bpmn:outgoing>Flow_1drurdh</bpmn:outgoing>
-      </bpmn:serviceTask>
-      <bpmn:sequenceFlow id="Flow_1mg9wl0" sourceRef="Gateway_1sf2t9p" targetRef="Activity_1vftff8">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${additional_analytical_monitoring_flg == "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;"}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-    </bpmn:subProcess>
-    <bpmn:sequenceFlow id="Flow_0mqcpd9" sourceRef="Gateway_1iv88m1" targetRef="Activity_0r675ob" />
-    <bpmn:endEvent id="Event_1ie2s61" name="&#1052;&#1086;&#1076;&#1077;&#1083;&#1080; &#1087;&#1088;&#1080;&#1089;&#1074;&#1072;&#1080;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; &quot;&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1072;&#1085;&#1072;, &#1085;&#1077; &#1074;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1072;&quot;">
-      <bpmn:incoming>Flow_1snp4r9</bpmn:incoming>
-      <bpmn:terminateEventDefinition id="TerminateEventDefinition_0m7lzjt" />
-    </bpmn:endEvent>
-    <bpmn:endEvent id="EndEvent_0mi48om">
-      <bpmn:incoming>Flow_1pnvdli</bpmn:incoming>
-      <bpmn:terminateEventDefinition id="TerminateEventDefinition_008gu1l" />
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0ujbq3h" sourceRef="Gateway_1iv88m1" targetRef="Event_16weg9n">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${((execution.hasVariable("decisions_model_flg") ? execution.getVariable("decisions_model_flg") : "null")=='&#1044;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1080; &#1085;&#1077; &#1072;&#1082;&#1090;&#1091;&#1072;&#1083;&#1100;&#1085;&#1099;')||( (execution.hasVariable("decisions_model_architecture_flg") ? execution.getVariable("decisions_model_architecture_flg") : "null") == '&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1085;&#1077; &#1074;&#1085;&#1077;&#1076;&#1088;&#1103;&#1077;&#1090;&#1089;&#1103;')}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:endEvent id="Event_16weg9n" name="&#1052;&#1086;&#1076;&#1077;&#1083;&#1080; &#1087;&#1088;&#1080;&#1089;&#1074;&#1072;&#1080;&#1074;&#1072;&#1077;&#1090;&#1089;&#1103; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; &quot;&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1072;&#1085;&#1072;, &#1085;&#1077; &#1074;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1072;&quot;">
-      <bpmn:incoming>Flow_0ujbq3h</bpmn:incoming>
-      <bpmn:terminateEventDefinition id="TerminateEventDefinition_0omvyi5" />
-    </bpmn:endEvent>
-    <bpmn:exclusiveGateway id="Gateway_0tf0516" default="Flow_0pk23b9">
-      <bpmn:incoming>Flow_0hykc08</bpmn:incoming>
-      <bpmn:outgoing>Flow_0gb65r7</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0pk23b9</bpmn:outgoing>
+    <bpmn:exclusiveGateway id="Gateway_1yjwo36" default="Flow_1oda6yf">
+      <bpmn:incoming>Flow_0h3jjve</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rzfdzo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1oda6yf</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0gb65r7" sourceRef="Gateway_0tf0516" targetRef="Model">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(decision_of_model_completion_flg == "&#1053;&#1077;&#1086;&#1073;&#1093;&#1086;&#1076;&#1080;&#1084;&#1072; &#1076;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;") || (monitoring_deviations == "&#1053;&#1077;&#1086;&#1073;&#1093;&#1086;&#1076;&#1080;&#1084;&#1072; &#1076;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;"|| monitoring_deviations == "&#1053;&#1077;&#1086;&#1073;&#1093;&#1086;&#1076;&#1080;&#1084;&#1072; &#1082;&#1086;&#1088;&#1088;&#1077;&#1082;&#1090;&#1080;&#1088;&#1086;&#1074;&#1082;&#1072; &#1089;&#1087;&#1080;&#1089;&#1082;&#1072; &#1090;&#1077;&#1089;&#1090;&#1086;&#1074; &#1080; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1086;&#1074; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;")}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0hykc08" sourceRef="Activity_0r675ob" targetRef="Gateway_0tf0516" />
-    <bpmn:sequenceFlow id="Flow_0pk23b9" sourceRef="Gateway_0tf0516" targetRef="Finish" />
-    <bpmn:sequenceFlow id="Flow_0rzw5i0" name="&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1074;&#1085;&#1077;&#1076;&#1088;&#1103;&#1077;&#1090;&#1089;&#1103; &#1074;&#1085;&#1077; &#1055;&#1048;&#1052;" sourceRef="ExclusiveGateway_1q4cky2" targetRef="Activity_0r675ob">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(pim_integration_flg == '&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1074;&#1085;&#1077;&#1076;&#1088;&#1103;&#1077;&#1090;&#1089;&#1103; &#1074;&#1085;&#1077; &#1055;&#1048;&#1052;' &amp;&amp; need_recreate_data_flg2 != "&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1085;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1072;,&#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1080;&#1085;&#1086;&#1081; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;") || (pim_integration_flg=='&#1052;&#1086;&#1076;&#1077;&#1083;&#1100; &#1073;&#1099;&#1083;&#1072; &#1074;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1072; &#1074; &#1055;&#1048;&#1052; (&#1089;&#1090;&#1072;&#1088;&#1072;&#1103; &#1084;&#1086;&#1076;&#1077;&#1083;&#1100;)' &amp;&amp; need_recreate_data_flg2 != "&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1085;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1072;,&#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1080;&#1085;&#1086;&#1081; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;")}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_13sqptu" sourceRef="Gateway_1iv88m1" targetRef="Activity_0r675ob">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${additional_analytical_monitoring_flg == "&#1058;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1088;&#1077;&#1072;&#1083;&#1080;&#1079;&#1072;&#1094;&#1080;&#1103; &#1076;&#1086;&#1087;&#1086;&#1083;&#1085;&#1080;&#1090;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1072;&#1085;&#1072;&#1083;&#1080;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1084;&#1086;&#1085;&#1080;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075;&#1072;"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0u04wln" sourceRef="ExclusiveGateway_1q4cky2" targetRef="Task_0e8379u">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_recreate_data_flg2== "&#1056;&#1072;&#1079;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1085;&#1077; &#1091;&#1089;&#1087;&#1077;&#1096;&#1085;&#1072;,&#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103; &#1080;&#1085;&#1086;&#1081; &#1080;&#1089;&#1090;&#1086;&#1095;&#1085;&#1080;&#1082; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0smaapu" sourceRef="ExclusiveGateway_1q4cky2" targetRef="Event_0gjz3aw">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${development_results_approving_flg== "&#1042;&#1085;&#1077;&#1076;&#1088;&#1077;&#1085;&#1080;&#1077; &#1085;&#1077; &#1090;&#1088;&#1077;&#1073;&#1091;&#1077;&#1090;&#1089;&#1103;, &#1084;&#1086;&#1076;&#1077;&#1083;&#1100; &#1085;&#1077; &#1087;&#1088;&#1080;&#1085;&#1103;&#1090;&#1072; &#1041;&#1055;, &#1076;&#1086;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1080; &#1085;&#1077; &#1072;&#1082;&#1090;&#1091;&#1072;&#1083;&#1100;&#1085;&#1099;"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:endEvent id="Event_0gjz3aw" name="&#1055;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076; &#1074; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; &quot;&#1040;&#1088;&#1093;&#1080;&#1074;&quot;">
-      <bpmn:incoming>Flow_0smaapu</bpmn:incoming>
-      <bpmn:terminateEventDefinition id="TerminateEventDefinition_18z44k6" />
-    </bpmn:endEvent>
-    <bpmn:exclusiveGateway id="Gateway_0p6b9a9" default="Flow_0wezm87">
-      <bpmn:incoming>Flow_1wwq1rv</bpmn:incoming>
-      <bpmn:outgoing>Flow_0wezm87</bpmn:outgoing>
-      <bpmn:outgoing>Flow_1jbqlmw</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0wezm87" sourceRef="Gateway_0p6b9a9" targetRef="Task_0e8379u" />
-    <bpmn:sequenceFlow id="Flow_1jbqlmw" name="AutoML" sourceRef="Gateway_0p6b9a9" targetRef="Integration">
+    <bpmn:sequenceFlow id="Flow_0h3jjve" sourceRef="Event_08jj5cf" targetRef="Gateway_1yjwo36" />
+    <bpmn:sequenceFlow id="Flow_1rzfdzo" sourceRef="Gateway_1yjwo36" targetRef="Activity_00urdx8">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("automl_flg") &amp;&amp; automl_flg == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1kssd9f" sourceRef="Gateway_1iv88m1" targetRef="Event_16thmu1">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(execution.hasVariable("automl_flg") &amp;&amp; automl_flg == true)&amp;&amp;(execution.hasVariable("terminate_after_integration") &amp;&amp; terminate_after_integration == true)}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:endEvent id="Event_16thmu1" name="&#1047;&#1072;&#1074;&#1077;&#1088;&#1096;&#1077;&#1085;&#1080;&#1077; AutoML &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;">
-      <bpmn:incoming>Flow_1kssd9f</bpmn:incoming>
-      <bpmn:terminateEventDefinition id="TerminateEventDefinition_00un9xk" />
+    <bpmn:sequenceFlow id="Flow_1oda6yf" sourceRef="Gateway_1yjwo36" targetRef="Activity_00fyk0n" />
+    <bpmn:callActivity id="Activity_00urdx8" name="Внедрение AutoML модели" calledElement="pim" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+      <bpmn:extensionElements>
+        <camunda:in source="model" target="model" />
+        <camunda:in source="container_cfg_file" target="container_cfg_file" />
+        <camunda:in source="doc_rest_service" target="doc_rest_service" />
+        <camunda:in source="model_image_nexus_link" target="model_image_nexus_link" />
+        <camunda:in source="using_mode" target="using_mode" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1rzfdzo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c3679u</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_0051hfm" name="Завершение AutoML модели">
+      <bpmn:incoming>Flow_0c3679u</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0c3679u" sourceRef="Activity_00urdx8" targetRef="Event_0051hfm" />
+    <bpmn:subProcess id="Activity_00fyk0n">
+      <bpmn:incoming>Flow_1oda6yf</bpmn:incoming>
+      <bpmn:outgoing>Flow_04rh2tk</bpmn:outgoing>
+      <bpmn:callActivity id="Activity_1ha9n2r" name="Инициализация" calledElement="initialization" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;auto_correct_model&#34;)?execution.getVariable(&#34;auto_correct_model&#34;) :&#34;null&#34;)}" target="auto_correct_model" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;data_development_availability&#34;)?execution.getVariable(&#34;data_development_availability&#34;) :&#34;null&#34;)}" target="data_development_availability" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;data_development_availability2&#34;) ? execution.getVariable(&#34;data_development_availability2&#34;) : &#34;null&#34;)}" target="data_development_availability2" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;datamart_script_success_flg&#34;)?execution.getVariable(&#34;datamart_script_success_flg&#34;) :&#34;null&#34;)}" target="datamart_script_success_flg" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;de_lead&#34;)?execution.getVariable(&#34;de_lead&#34;) :&#34;null&#34;)}" target="de_lead" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;dit_lead&#34;)?execution.getVariable(&#34;dit_lead&#34;) :&#34;null&#34;)}" target="dit_lead" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;ds_lead&#34;)?execution.getVariable(&#34;ds_lead&#34;) :&#34;null&#34;)}" target="ds_lead" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;mimp_lead&#34;)?execution.getVariable(&#34;mimp_lead&#34;) :&#34;null&#34;)}" target="mimp_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;modelops_lead&#34;)?execution.getVariable(&#34;modelops_lead&#34;) :&#34;null&#34;)}" target="modelops_lead" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;need_involve_de_flg2&#34;)?execution.getVariable(&#34;need_involve_de_flg2&#34;) :&#34;null&#34;)}" target="need_involve_de_flg2" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;need_recreate_data_flg2&#34;)?execution.getVariable(&#34;need_recreate_data_flg2&#34;) :&#34;null&#34;)}" target="need_recreate_data_flg2" />
+          <camunda:in source="owner" target="owner" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;pilot_results_approving_flg&#34;) ? execution.getVariable(&#34;pilot_results_approving_flg&#34;) : &#34;null&#34;)}" target="pilot_results_approving_flg" />
+          <camunda:in sourceExpression="${(execution.hasVariable(&#34;validator_lead&#34;)?execution.getVariable(&#34;validator_lead&#34;) :&#34;null&#34;)}" target="validator_lead" />
+          <camunda:out source="auto_correct_model" target="auto_correct_model" />
+          <camunda:out sourceExpression="${(execution.hasVariable(&#34;automl_flg&#34;) ? execution.getVariable(&#34;automl_flg&#34;) : &#34;false&#34;)}" target="automl_flg" />
+          <camunda:out source="de_lead" target="de_lead" />
+          <camunda:out source="dit_lead" target="dit_lead" />
+          <camunda:out source="ds_lead" target="ds_lead" />
+          <camunda:out sourceExpression="${(execution.hasVariable(&#34;entity_attributes_list&#34;)?execution.getVariable(&#34;entity_attributes_list&#34;) :&#34;null&#34;)}" target="entity_attributes_list" />
+          <camunda:out source="mimp_lead" target="mimp_lead" />
+          <camunda:out source="modelops_lead" target="modelops_lead" />
+          <camunda:out source="need_involve_de_flg2" target="need_involve_de_flg2" />
+          <camunda:out source="order_for_developing_or_buiseness_case" target="order_for_developing_or_buiseness_case" />
+          <camunda:out source="significance_validity" target="significance_validity" />
+          <camunda:out source="using_mode" target="using_mode" />
+          <camunda:out source="validator_lead" target="validator_lead" />
+          <camunda:out source="dev_model_status_flg" target="dev_model_status_flg" />
+          <camunda:in source="${(execution.hasVariable(&#34;dev_model_status_flg&#34;)?execution.getVariable(&#34;dev_model_status_flg&#34;) :&#34;null&#34;)}" target="dev_model_status_flg" />
+          <camunda:out source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="operational_monitoring" target="operational_monitoring" />
+          <camunda:out source="analytical_monitoring" target="analytical_monitoring" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1d6c0rd</bpmn:incoming>
+        <bpmn:outgoing>Flow_1doo8cm</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:exclusiveGateway id="Gateway_19cmsuy">
+        <bpmn:incoming>Flow_1doo8cm</bpmn:incoming>
+        <bpmn:outgoing>Flow_1wij1ze</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1njyu3x</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1f2hmr8</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0cn5q1x</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0fsxhza</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:callActivity id="Activity_1ez2ni5" name="Поиск данных" calledElement="data_search" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="entity_attributes_list" target="entity_attributes_list" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="modelops_lead" target="modelops_lead" />
+          <camunda:out sourceExpression="${(execution.hasVariable(&#34;pilot_results_approving_flg&#34;)?execution.getVariable(&#34;pilot_results_approving_flg&#34;) :&#34;null&#34;)}" target="pilot_results_approving_flg" />
+          <camunda:in source="${(execution.hasVariable(&#34;need_involve_de_flg2&#34;)?execution.getVariable(&#34;need_involve_de_flg2&#34;) :&#34;null&#34;)}" target="need_involve_de_flg2" />
+          <camunda:in source="validator_lead" target="validator_lead" />
+          <camunda:out source="data_development_availability3" target="data_development_availability3" />
+          <camunda:in source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:out source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:in source="significance_validity" target="significance_validity" />
+          <camunda:out source="significance_validity" target="significance_validity" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="operational_monitoring" target="operational_monitoring" />
+          <camunda:out source="operational_monitoring" target="operational_monitoring" />
+          <camunda:in source="analytical_monitoring" target="analytical_monitoring" />
+          <camunda:out source="analytical_monitoring" target="analytical_monitoring" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1wij1ze</bpmn:incoming>
+        <bpmn:outgoing>Flow_0zd9va3</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:callActivity id="Activity_16ojvy1" name="Построение витрины для разработки модели" calledElement="data_build" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="entity_attributes_list" target="entity_attributes_list" />
+          <camunda:in source="model" target="model" />
+          <camunda:out source="datamart_build_script" target="datamart_build_script" />
+          <camunda:out source="datamart_link" target="datamart_link" />
+          <camunda:out source="datamart_script_success_ds_flg" target="datamart_script_success_ds_flg" />
+          <camunda:in source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:out source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:in source="significance_validity" target="significance_validity" />
+          <camunda:out source="significance_validity" target="significance_validity" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="operational_monitoring" target="operational_monitoring" />
+          <camunda:out source="operational_monitoring" target="operational_monitoring" />
+          <camunda:in source="analytical_monitoring" target="analytical_monitoring" />
+          <camunda:out source="analytical_monitoring" target="analytical_monitoring" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1f2hmr8</bpmn:incoming>
+        <bpmn:incoming>Flow_0zd9va3</bpmn:incoming>
+        <bpmn:incoming>Flow_1wqj4sn</bpmn:incoming>
+        <bpmn:outgoing>Flow_0qpoiv2</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:callActivity id="Activity_0u38422" name="Сокращенное заведение разработанных моделей" calledElement="fast_model_process" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:out source="fast_first_model_validation_flg" target="fast_first_model_validation_flg" />
+          <camunda:out source="fast_model_decision_flg" target="fast_model_decision_flg" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="validator_lead" target="validator_lead" />
+          <camunda:in source="modelops_lead" target="modelops_lead" />
+          <camunda:out source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:in source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:in source="significance_validity" target="significance_validity" />
+          <camunda:out source="significance_validity" target="significance_validity" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="dev_model_status_flg" target="dev_model_status_flg" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="operational_monitoring" target="operational_monitoring" />
+          <camunda:out source="operational_monitoring" target="operational_monitoring" />
+          <camunda:in source="analytical_monitoring" target="analytical_monitoring" />
+          <camunda:out source="analytical_monitoring" target="analytical_monitoring" />
+          <camunda:out source="model_integration_mode_flg" target="model_integration_mode_flg" />
+          <camunda:out source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+          <camunda:out source="model_product_flg" target="model_product_flg" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1njyu3x</bpmn:incoming>
+        <bpmn:outgoing>Flow_0yr2fvn</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:exclusiveGateway id="Gateway_0580ww8">
+        <bpmn:incoming>Flow_0yr2fvn</bpmn:incoming>
+        <bpmn:outgoing>Flow_0y0yqu6</bpmn:outgoing>
+        <bpmn:outgoing>Flow_087o85a</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1iz5lyl</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0i3i74v</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0zqmx03</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:exclusiveGateway id="Gateway_1vxqszy">
+        <bpmn:incoming>Flow_0qpoiv2</bpmn:incoming>
+        <bpmn:outgoing>Flow_0o5p2qx</bpmn:outgoing>
+        <bpmn:outgoing>Flow_08h1mu5</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:callActivity id="Activity_0ak18iu" name="Разработка модели" calledElement="model" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:out source="model_development_results_approving_flg" target="model_development_results_approving_flg" />
+          <camunda:out source="need_piloting_prototype_stand_flg" target="need_piloting_prototype_stand_flg" />
+          <camunda:out source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+          <camunda:in source="validator_lead" target="validator_lead" />
+          <camunda:in source="significance_validity" target="significance_validity" />
+          <camunda:out source="significance_validity" target="significance_validity" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="operational_monitoring" target="operational_monitoring" />
+          <camunda:out source="operational_monitoring" target="operational_monitoring" />
+          <camunda:in source="analytical_monitoring" target="analytical_monitoring" />
+          <camunda:out source="analytical_monitoring" target="analytical_monitoring" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0cn5q1x</bpmn:incoming>
+        <bpmn:incoming>Flow_0o5p2qx</bpmn:incoming>
+        <bpmn:incoming>Flow_0lv3yxl</bpmn:incoming>
+        <bpmn:outgoing>Flow_080hofd</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:callActivity id="Activity_0dbme87" name="Пилотирование модели" calledElement="model_pilot" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:out source="pilot_model_developing_flg" target="pilot_model_developing_flg" />
+          <camunda:out source="decision_pilot_model_flg" target="decision_pilot_model_flg" />
+          <camunda:in source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:out source="need_first_validation_flg" target="need_first_validation_flg" />
+          <camunda:in source="significance_validity" target="significance_validity" />
+          <camunda:out source="significance_validity" target="significance_validity" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="operational_monitoring" target="operational_monitoring" />
+          <camunda:out source="operational_monitoring" target="operational_monitoring" />
+          <camunda:in source="analytical_monitoring" target="analytical_monitoring" />
+          <camunda:out source="analytical_monitoring" target="analytical_monitoring" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0fsxhza</bpmn:incoming>
+        <bpmn:incoming>Flow_08h1mu5</bpmn:incoming>
+        <bpmn:outgoing>Flow_08tkf53</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:exclusiveGateway id="Gateway_06f7muf">
+        <bpmn:incoming>Flow_08tkf53</bpmn:incoming>
+        <bpmn:outgoing>Flow_1wqj4sn</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0lv3yxl</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1fbb33n</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1p3jrxx</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:endEvent id="Event_16uj2hn" name="Статус: Разработана, не внедрена">
+        <bpmn:incoming>Flow_1fbb33n</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Event_14vl12h" name="Статус: Архив">
+        <bpmn:incoming>Flow_1p3jrxx</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:exclusiveGateway id="Gateway_0rk4f9o">
+        <bpmn:incoming>Flow_080hofd</bpmn:incoming>
+        <bpmn:outgoing>Flow_1e7auhq</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0uvgzn4</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:exclusiveGateway id="Gateway_19wsnyw">
+        <bpmn:incoming>Flow_1e7auhq</bpmn:incoming>
+        <bpmn:incoming>Flow_0t5uxb8</bpmn:incoming>
+        <bpmn:outgoing>Flow_0g1a0kv</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1qy70mw</bpmn:outgoing>
+        <bpmn:outgoing>Flow_002adr5</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1eqpyrz</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:inclusiveGateway id="Gateway_10ypezz">
+        <bpmn:incoming>Flow_0i3i74v</bpmn:incoming>
+        <bpmn:incoming>Flow_1yf861z</bpmn:incoming>
+        <bpmn:incoming>Flow_0ds3at0</bpmn:incoming>
+        <bpmn:outgoing>Flow_0mbljb2</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0vedefp</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0ltd7o7</bpmn:outgoing>
+      </bpmn:inclusiveGateway>
+      <bpmn:exclusiveGateway id="Gateway_13lr4cp">
+        <bpmn:incoming>Flow_0g1a0kv</bpmn:incoming>
+        <bpmn:outgoing>Flow_1yf861z</bpmn:outgoing>
+        <bpmn:outgoing>Flow_16tppvx</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:parallelGateway id="Gateway_0xgyq4p">
+        <bpmn:incoming>Flow_16tppvx</bpmn:incoming>
+        <bpmn:outgoing>Flow_0ds3at0</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1eed0gh</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:intermediateThrowEvent id="Event_0wo3guw" name="Статус: Опытная эксплуатация на контуре разработки">
+        <bpmn:incoming>Flow_0uvgzn4</bpmn:incoming>
+        <bpmn:outgoing>Flow_0t5uxb8</bpmn:outgoing>
+      </bpmn:intermediateThrowEvent>
+      <bpmn:endEvent id="Event_00y1fgd" name="Статус: Разработана, не внедрена">
+        <bpmn:incoming>Flow_1qy70mw</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:callActivity id="Activity_1o2pz98" name="Продуктивизация модели" calledElement="inegration_model" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="modelops_lead" target="modelops_lead" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:out source="model_integration_mode_flg" target="model_integration_mode_flg" />
+          <camunda:in source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+          <camunda:out source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0mbljb2</bpmn:incoming>
+        <bpmn:outgoing>Flow_129e5gg</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:callActivity id="Activity_0k3c9qm" name="Разработка витрины для полной валидации" calledElement="fullvalidation_datamart" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="validator_lead" target="validator_lead" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="operational_monitoring" target="operational_monitoring" />
+          <camunda:in source="analytical_monitoring" target="analytical_monitoring" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0vedefp</bpmn:incoming>
+      </bpmn:callActivity>
+      <bpmn:callActivity id="Activity_0j742yt" name="Разработка промышленной витрины" calledElement="integration_datamart" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="modelops_lead" target="modelops_lead" />
+          <camunda:in source="need_plan_validation_flg" target="need_plan_validation_flg" />
+          <camunda:in source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+          <camunda:out source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0ltd7o7</bpmn:incoming>
+        <bpmn:outgoing>Flow_0riknew</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:exclusiveGateway id="Gateway_15eq5eq">
+        <bpmn:incoming>Flow_1gwd39t</bpmn:incoming>
+        <bpmn:outgoing>Flow_00gl0jj</bpmn:outgoing>
+        <bpmn:outgoing>Flow_04kh8fq</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:endEvent id="Event_1e836gc" name="Статус: Разработана, внедрена вне ПИМ">
+        <bpmn:incoming>Flow_00gl0jj</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:callActivity id="Activity_00535fy" name="Тестирование на препрод и перенос на прод контур" calledElement="test_preprod_transfer_prod" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="modelops_lead" target="modelops_lead" />
+          <camunda:in source="release_manager" target="release_manager" />
+          <camunda:in source="need_prom_datamart_developing_flg" target="need_prom_datamart_developing_flg" />
+          <camunda:out variables="all" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_04kh8fq</bpmn:incoming>
+        <bpmn:outgoing>Flow_0s70xdr</bpmn:outgoing>
+      </bpmn:callActivity>
+      <bpmn:endEvent id="Event_0dklj8u" name="Статус: Разработана, внедрена в ПИМ">
+        <bpmn:incoming>Flow_0s70xdr</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:callActivity id="Activity_1tg4fio" name="Первичная валидация" calledElement="model_validation" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_04_06">
+        <bpmn:extensionElements>
+          <camunda:in source="de_lead" target="de_lead" />
+          <camunda:in source="ds_lead" target="ds_lead" />
+          <camunda:in source="model" target="model" />
+          <camunda:in source="validator_lead" target="validator_lead" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1eed0gh</bpmn:incoming>
+      </bpmn:callActivity>
+      <bpmn:inclusiveGateway id="Gateway_0p6ueki">
+        <bpmn:incoming>Flow_129e5gg</bpmn:incoming>
+        <bpmn:incoming>Flow_0riknew</bpmn:incoming>
+        <bpmn:outgoing>Flow_1gwd39t</bpmn:outgoing>
+      </bpmn:inclusiveGateway>
+      <bpmn:endEvent id="Event_1fjzzbv" name="Статус: Архив">
+        <bpmn:incoming>Flow_002adr5</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Event_0l1s9nj" name="Статус: Разработана, внедрена вне ПИМ">
+        <bpmn:incoming>Flow_1eqpyrz</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Event_07ir8t3" name="Статус: Разработана, не внедрена">
+        <bpmn:incoming>Flow_087o85a</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Event_1gkulo1" name="Статус: Архив">
+        <bpmn:incoming>Flow_0y0yqu6</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:endEvent id="Event_1eb2qb0" name="Статус: Разработана, внедрена в ПИМ">
+        <bpmn:incoming>Flow_1iz5lyl</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1doo8cm" sourceRef="Activity_1ha9n2r" targetRef="Gateway_19cmsuy" />
+      <bpmn:sequenceFlow id="Flow_1wij1ze" sourceRef="Gateway_19cmsuy" targetRef="Activity_1ez2ni5">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_involve_de_flg2=='Для разработки витрины для разработки требуется привлечение DE'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1njyu3x" sourceRef="Gateway_19cmsuy" targetRef="Activity_0u38422">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("dev_model_status_flg") &amp;&amp; dev_model_status_flg=='Да (актуально для старых моделей старше 2022 года)'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1f2hmr8" sourceRef="Gateway_19cmsuy" targetRef="Activity_16ojvy1">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_involve_de_flg2== 'Для разработки витрины для разработки привлечение DE не требуется'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0cn5q1x" sourceRef="Gateway_19cmsuy" targetRef="Activity_0ak18iu">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_involve_de_flg2") &amp;&amp; need_involve_de_flg2== 'Разработка витрины не требуется, стандартный процесс разработки'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0fsxhza" sourceRef="Gateway_19cmsuy" targetRef="Activity_0dbme87">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_involve_de_flg2") &amp;&amp; need_involve_de_flg2== 'Разработка витрины не требуется, модель пилотируется'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0zd9va3" sourceRef="Activity_1ez2ni5" targetRef="Activity_16ojvy1" />
+      <bpmn:sequenceFlow id="Flow_1wqj4sn" sourceRef="Gateway_06f7muf" targetRef="Activity_16ojvy1">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("decision_pilot_model_flg") &amp;&amp; decision_pilot_model_flg== 'Модель принята владельцем, необходимо создание витрины для разработки'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0qpoiv2" sourceRef="Activity_16ojvy1" targetRef="Gateway_1vxqszy" />
+      <bpmn:sequenceFlow id="Flow_0yr2fvn" sourceRef="Activity_0u38422" targetRef="Gateway_0580ww8" />
+      <bpmn:sequenceFlow id="Flow_0y0yqu6" sourceRef="Gateway_0580ww8" targetRef="Event_1gkulo1">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель не эффективна в БП заказчика'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_087o85a" sourceRef="Gateway_0580ww8" targetRef="Event_07ir8t3">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель разработана и принята заказчиком, продуктивизация не нужна'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1iz5lyl" sourceRef="Gateway_0580ww8" targetRef="Event_1eb2qb0">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_product_flg") &amp;&amp; model_product_flg=='Модель продуктивизирована и установлена на прод'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0i3i74v" sourceRef="Gateway_0580ww8" targetRef="Gateway_10ypezz">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель разработана и принята заказчиком, нужна продуктивизация'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0o5p2qx" sourceRef="Gateway_1vxqszy" targetRef="Activity_0ak18iu">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("datamart_script_success_ds_flg") &amp;&amp; datamart_script_success_ds_flg== 'Разработка успешна'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_08h1mu5" sourceRef="Gateway_1vxqszy" targetRef="Activity_0dbme87">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("datamart_script_success_ds_flg") &amp;&amp; datamart_script_success_ds_flg== 'Разработка успешна, требуется пилотирование модели'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0lv3yxl" sourceRef="Gateway_06f7muf" targetRef="Activity_0ak18iu">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("decision_pilot_model_flg") &amp;&amp; decision_pilot_model_flg== 'Принята владельцем,  создание витрины для разработки не требуется'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_080hofd" sourceRef="Activity_0ak18iu" targetRef="Gateway_0rk4f9o" />
+      <bpmn:sequenceFlow id="Flow_08tkf53" sourceRef="Activity_0dbme87" targetRef="Gateway_06f7muf" />
+      <bpmn:sequenceFlow id="Flow_1fbb33n" sourceRef="Gateway_06f7muf" targetRef="Event_16uj2hn">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("decision_pilot_model_flg") &amp;&amp; decision_pilot_model_flg== 'Принята владельцем, внедрение не требуется'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1p3jrxx" sourceRef="Gateway_06f7muf" targetRef="Event_14vl12h">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("decision_pilot_model_flg") &amp;&amp; decision_pilot_model_flg== 'Не принята владельцем, доработки не актуальны' || pilot_model_developing_flg== 'Разработка не актуальна'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1e7auhq" sourceRef="Gateway_0rk4f9o" targetRef="Gateway_19wsnyw">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_piloting_prototype_stand_flg") &amp;&amp; need_piloting_prototype_stand_flg== false}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0uvgzn4" sourceRef="Gateway_0rk4f9o" targetRef="Event_0wo3guw">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_piloting_prototype_stand_flg") &amp;&amp; need_piloting_prototype_stand_flg== true}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1eqpyrz" sourceRef="Gateway_19wsnyw" targetRef="Event_0l1s9nj">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение на стороне заказчика'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_002adr5" sourceRef="Gateway_19wsnyw" targetRef="Event_1fjzzbv">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg== 'Модель не принята владельцем, доработки не актуальны'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0t5uxb8" sourceRef="Event_0wo3guw" targetRef="Gateway_19wsnyw" />
+      <bpmn:sequenceFlow id="Flow_0g1a0kv" sourceRef="Gateway_19wsnyw" targetRef="Gateway_13lr4cp">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg== 'Модель принята владельцем, внедрение требуется'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1qy70mw" sourceRef="Gateway_19wsnyw" targetRef="Event_00y1fgd">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; (model_development_results_approving_flg== 'Модель принята владельцем, внедрение не требуется' || model_development_results_approving_flg== 'Модель не принята владельцем, доработки не актуальны')}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1yf861z" sourceRef="Gateway_13lr4cp" targetRef="Gateway_10ypezz">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_first_validation_flg") &amp;&amp; need_first_validation_flg==false}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0ds3at0" sourceRef="Gateway_0xgyq4p" targetRef="Gateway_10ypezz" />
+      <bpmn:sequenceFlow id="Flow_0mbljb2" sourceRef="Gateway_10ypezz" targetRef="Activity_1o2pz98">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение требуется') || (execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель разработана и принята заказчиком, нужна продуктивизация')}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0vedefp" sourceRef="Gateway_10ypezz" targetRef="Activity_0k3c9qm">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(execution.hasVariable("need_plan_validation_flg") &amp;&amp; need_plan_validation_flg==true) || (execution.hasVariable("significance_validity") &amp;&amp; significance_validity=='Высокая')}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0ltd7o7" sourceRef="Gateway_10ypezz" targetRef="Activity_0j742yt">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_prom_datamart_developing_flg") &amp;&amp; need_prom_datamart_developing_flg=='Да'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_16tppvx" sourceRef="Gateway_13lr4cp" targetRef="Gateway_0xgyq4p">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("need_first_validation_flg") &amp;&amp; need_first_validation_flg==true}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_1eed0gh" sourceRef="Gateway_0xgyq4p" targetRef="Activity_1tg4fio" />
+      <bpmn:sequenceFlow id="Flow_129e5gg" sourceRef="Activity_1o2pz98" targetRef="Gateway_0p6ueki" />
+      <bpmn:sequenceFlow id="Flow_0riknew" sourceRef="Activity_0j742yt" targetRef="Gateway_0p6ueki" />
+      <bpmn:sequenceFlow id="Flow_1gwd39t" sourceRef="Gateway_0p6ueki" targetRef="Gateway_15eq5eq" />
+      <bpmn:sequenceFlow id="Flow_00gl0jj" sourceRef="Gateway_15eq5eq" targetRef="Event_1e836gc">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_integration_mode_flg") &amp;&amp; model_integration_mode_flg=='Вне ПИМ'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_04kh8fq" sourceRef="Gateway_15eq5eq" targetRef="Activity_00535fy">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_integration_mode_flg") &amp;&amp; (model_integration_mode_flg=='Online' || model_integration_mode_flg=='Batch')}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+      <bpmn:sequenceFlow id="Flow_0s70xdr" sourceRef="Activity_00535fy" targetRef="Event_0dklj8u" />
+      <bpmn:startEvent id="Event_0qspxt6">
+        <bpmn:outgoing>Flow_1d6c0rd</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_1d6c0rd" sourceRef="Event_0qspxt6" targetRef="Activity_1ha9n2r" />
+      <bpmn:endEvent id="Event_0g3meiz" name="Статус: Внедрена вне ПИМ">
+        <bpmn:incoming>Flow_0zqmx03</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0zqmx03" sourceRef="Gateway_0580ww8" targetRef="Event_0g3meiz">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель принята заказчиком, внедрение на его стороне'}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
+    </bpmn:subProcess>
+    <bpmn:intermediateCatchEvent id="Event_0qef57h">
+      <bpmn:incoming>Flow_04rh2tk</bpmn:incoming>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1luwow2">
+        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">2999-01-01T12:00:00Z</bpmn:timeDate>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_04rh2tk" sourceRef="Activity_00fyk0n" targetRef="Event_0qef57h" />
   </bpmn:process>
-  <bpmn:message id="Message_0k1wmfk" name="Message_340hg50" />
+  <bpmn:message id="Message_0ctpom2" name="Message_340hg50" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="main">
-      <bpmndi:BPMNEdge id="Flow_1kssd9f_di" bpmnElement="Flow_1kssd9f">
-        <di:waypoint x="1260" y="305" />
-        <di:waypoint x="1260" y="240" />
-        <di:waypoint x="1302" y="240" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1jbqlmw_di" bpmnElement="Flow_1jbqlmw">
-        <di:waypoint x="380" y="305" />
-        <di:waypoint x="380" y="100" />
-        <di:waypoint x="1110" y="100" />
-        <di:waypoint x="1110" y="290" />
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="662" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16bt88d_di" bpmnElement="Event_08jj5cf">
+        <dc:Bounds x="242" y="662" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1yjwo36_di" bpmnElement="Gateway_1yjwo36" isMarkerVisible="true">
+        <dc:Bounds x="335" y="655" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nsh3o9_di" bpmnElement="Activity_00urdx8">
+        <dc:Bounds x="310" y="510" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0051hfm_di" bpmnElement="Event_0051hfm">
+        <dc:Bounds x="342" y="402" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="726" y="82" width="38" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0wezm87_di" bpmnElement="Flow_0wezm87">
-        <di:waypoint x="405" y="330" />
-        <di:waypoint x="470" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0smaapu_di" bpmnElement="Flow_0smaapu">
-        <di:waypoint x="1000" y="355" />
-        <di:waypoint x="1000" y="680" />
-        <di:waypoint x="1072" y="680" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0u04wln_di" bpmnElement="Flow_0u04wln">
-        <di:waypoint x="1000" y="305" />
-        <di:waypoint x="1000" y="190" />
-        <di:waypoint x="520" y="190" />
-        <di:waypoint x="520" y="290" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_13sqptu_di" bpmnElement="Flow_13sqptu">
-        <di:waypoint x="1260" y="355" />
-        <di:waypoint x="1260" y="540" />
-        <di:waypoint x="1660" y="540" />
-        <di:waypoint x="1660" y="470" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0rzw5i0_di" bpmnElement="Flow_0rzw5i0">
-        <di:waypoint x="1000" y="355" />
-        <di:waypoint x="1000" y="570" />
-        <di:waypoint x="1771" y="570" />
-        <di:waypoint x="1771" y="470" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1050" y="580" width="80" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0pk23b9_di" bpmnElement="Flow_0pk23b9">
-        <di:waypoint x="2255" y="330" />
-        <di:waypoint x="2310" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0hykc08_di" bpmnElement="Flow_0hykc08">
-        <di:waypoint x="2141" y="330" />
-        <di:waypoint x="2205" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0gb65r7_di" bpmnElement="Flow_0gb65r7">
-        <di:waypoint x="2230" y="305" />
-        <di:waypoint x="2230" y="130" />
-        <di:waypoint x="890" y="130" />
-        <di:waypoint x="890" y="290" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1052" y="157" width="87" height="66" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ujbq3h_di" bpmnElement="Flow_0ujbq3h">
-        <di:waypoint x="1260" y="355" />
-        <di:waypoint x="1260" y="430" />
-        <di:waypoint x="1302" y="430" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0mqcpd9_di" bpmnElement="Flow_0mqcpd9">
-        <di:waypoint x="1285" y="330" />
-        <di:waypoint x="1401" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1wwq1rv_di" bpmnElement="Flow_1wwq1rv">
-        <di:waypoint x="298" y="330" />
-        <di:waypoint x="355" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1pnvdli_di" bpmnElement="Flow_1pnvdli">
-        <di:waypoint x="2540" y="320" />
-        <di:waypoint x="2582" y="320" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0p3zo8g_di" bpmnElement="Flow_0p3zo8g">
-        <di:waypoint x="990" y="345" />
-        <di:waypoint x="990" y="430" />
-        <di:waypoint x="670" y="430" />
-        <di:waypoint x="670" y="370" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="669" y="220" width="54" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0j9mdvp_di" bpmnElement="Flow_0j9mdvp">
-        <di:waypoint x="1260" y="305" />
-        <di:waypoint x="1260" y="220" />
-        <di:waypoint x="910" y="220" />
-        <di:waypoint x="910" y="290" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="869" y="570" width="85" height="40" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0n58nna_di" bpmnElement="Flow_0n58nna">
-        <di:waypoint x="780" y="305" />
-        <di:waypoint x="780" y="220" />
-        <di:waypoint x="540" y="220" />
-        <di:waypoint x="540" y="290" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="475" y="540" width="76" height="106" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1cud76a_di" bpmnElement="Flow_1cud76a">
-        <di:waypoint x="805" y="330" />
-        <di:waypoint x="840" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1snp4r9_di" bpmnElement="Flow_1snp4r9">
-        <di:waypoint x="1000" y="355" />
-        <di:waypoint x="1000" y="430" />
-        <di:waypoint x="1072" y="430" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ysm96m_di" bpmnElement="Flow_0ysm96m">
-        <di:waypoint x="188" y="330" />
-        <di:waypoint x="262" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_14dhxsy_di" bpmnElement="SequenceFlow_14dhxsy">
-        <di:waypoint x="2410" y="320" />
-        <di:waypoint x="2440" y="320" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1kklugr_di" bpmnElement="SequenceFlow_1kklugr">
-        <di:waypoint x="1160" y="330" />
-        <di:waypoint x="1235" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0a54z3a_di" bpmnElement="SequenceFlow_0a54z3a">
-        <di:waypoint x="1025" y="330" />
-        <di:waypoint x="1060" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_09wqxjt_di" bpmnElement="SequenceFlow_09wqxjt">
-        <di:waypoint x="940" y="330" />
-        <di:waypoint x="975" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1eiimyp_di" bpmnElement="SequenceFlow_1eiimyp">
-        <di:waypoint x="720" y="330" />
-        <di:waypoint x="755" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1hbx1ad_di" bpmnElement="SequenceFlow_1hbx1ad">
-        <di:waypoint x="570" y="330" />
-        <di:waypoint x="620" y="330" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="CallActivity_0uog38p_di" bpmnElement="Task_0e8379u">
-        <dc:Bounds x="470" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="CallActivity_1q2pg19_di" bpmnElement="Data">
-        <dc:Bounds x="620" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="CallActivity_1efpb1n_di" bpmnElement="Model">
-        <dc:Bounds x="840" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ExclusiveGateway_1q4cky2_di" bpmnElement="ExclusiveGateway_1q4cky2" isMarkerVisible="true">
-        <dc:Bounds x="975" y="305" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="CallActivity_0z365j8_di" bpmnElement="Integration">
-        <dc:Bounds x="1060" y="290" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="CallActivity_0vsvnlv_di" bpmnElement="Finish">
-        <dc:Bounds x="2310" y="280" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_0no4ian_di" bpmnElement="StartEvent_0no4ian">
-        <dc:Bounds x="152" y="312" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1c32dz8_di" bpmnElement="Gateway_1c32dz8" isMarkerVisible="true">
-        <dc:Bounds x="755" y="305" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1iv88m1_di" bpmnElement="Gateway_1iv88m1" isMarkerVisible="true">
-        <dc:Bounds x="1235" y="305" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0b9iksx_di" bpmnElement="Activity_1h7ue0t">
-        <dc:Bounds x="2440" y="280" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0xfzpzt_di" bpmnElement="Event_0wb15kx">
-        <dc:Bounds x="262" y="312" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="237" y="355" width="87" height="27" />
+          <dc:Bounds x="321" y="372" width="79" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0rqxp1m_di" bpmnElement="Activity_0r675ob" isExpanded="true">
-        <dc:Bounds x="1401" y="190" width="740" height="280" />
+      <bpmndi:BPMNShape id="Activity_0fbw2du_di" bpmnElement="Activity_00fyk0n" isExpanded="true">
+        <dc:Bounds x="530" y="80" width="2270" height="1120" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1mg9wl0_di" bpmnElement="Flow_1mg9wl0">
-        <di:waypoint x="1520" y="304" />
-        <di:waypoint x="1520" y="249" />
-        <di:waypoint x="1718" y="249" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1h6kogn_di" bpmnElement="Flow_1h6kogn">
-        <di:waypoint x="1820" y="390" />
-        <di:waypoint x="1970" y="390" />
-        <di:waypoint x="1970" y="369" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0zj9n7z_di" bpmnElement="Flow_0zj9n7z">
-        <di:waypoint x="1818" y="269" />
-        <di:waypoint x="1970" y="269" />
-        <di:waypoint x="1970" y="289" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1drurdh_di" bpmnElement="Flow_1drurdh">
-        <di:waypoint x="2020" y="329" />
-        <di:waypoint x="2062" y="329" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ok8dbq_di" bpmnElement="Flow_0ok8dbq">
-        <di:waypoint x="1670" y="354" />
-        <di:waypoint x="1670" y="390" />
-        <di:waypoint x="1720" y="390" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0n7tmpi_di" bpmnElement="Flow_0n7tmpi">
-        <di:waypoint x="1670" y="304" />
-        <di:waypoint x="1670" y="269" />
-        <di:waypoint x="1718" y="269" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0mmw2fh_di" bpmnElement="Flow_0mmw2fh">
-        <di:waypoint x="1545" y="329" />
-        <di:waypoint x="1645" y="329" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_08e2lnn_di" bpmnElement="Flow_08e2lnn">
-        <di:waypoint x="1520" y="354" />
-        <di:waypoint x="1520" y="410" />
-        <di:waypoint x="1720" y="410" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ww7i2j_di" bpmnElement="Flow_0ww7i2j">
-        <di:waypoint x="1458" y="329" />
-        <di:waypoint x="1495" y="329" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1iiccey_di" bpmnElement="Event_065ddcd">
-        <dc:Bounds x="2062" y="311" width="36" height="36" />
+      <bpmndi:BPMNShape id="BPMNShape_0g9m101" bpmnElement="Activity_1ha9n2r">
+        <dc:Bounds x="770" y="650" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1z0r82j_di" bpmnElement="Gateway_1c8t5ms">
-        <dc:Bounds x="1645" y="304" width="50" height="50" />
+      <bpmndi:BPMNShape id="BPMNShape_1n8bcr3" bpmnElement="Gateway_19cmsuy" isMarkerVisible="true">
+        <dc:Bounds x="945" y="665" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1sf2t9p_di" bpmnElement="Gateway_1sf2t9p" isMarkerVisible="true">
-        <dc:Bounds x="1495" y="304" width="50" height="50" />
+      <bpmndi:BPMNShape id="BPMNShape_1mfkrwg" bpmnElement="Activity_1ez2ni5">
+        <dc:Bounds x="1070" y="650" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_16vtk5g_di" bpmnElement="Activity_16vtk5g">
-        <dc:Bounds x="1720" y="350" width="100" height="80" />
+      <bpmndi:BPMNShape id="BPMNShape_1elyf8j" bpmnElement="Activity_16ojvy1">
+        <dc:Bounds x="1290" y="650" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1vftff8_di" bpmnElement="Activity_1vftff8">
-        <dc:Bounds x="1718" y="229" width="100" height="80" />
+      <bpmndi:BPMNShape id="BPMNShape_0rim672" bpmnElement="Activity_0u38422">
+        <dc:Bounds x="1070" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_11w6mdk_di" bpmnElement="Event_11w6mdk">
-        <dc:Bounds x="1422" y="311" width="36" height="36" />
+      <bpmndi:BPMNShape id="BPMNShape_08oiodf" bpmnElement="Gateway_0580ww8" isMarkerVisible="true">
+        <dc:Bounds x="1245" y="515" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1v2r2zv_di" bpmnElement="Activity_15pg9dz">
-        <dc:Bounds x="1920" y="289" width="100" height="80" />
+      <bpmndi:BPMNShape id="BPMNShape_0smiwry" bpmnElement="Gateway_1vxqszy" isMarkerVisible="true">
+        <dc:Bounds x="1435" y="665" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ihcjus_di" bpmnElement="Event_1ie2s61">
-        <dc:Bounds x="1072" y="412" width="36" height="36" />
+      <bpmndi:BPMNShape id="BPMNShape_1qwxelh" bpmnElement="Activity_0ak18iu">
+        <dc:Bounds x="1570" y="650" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_028c1vt" bpmnElement="Activity_0dbme87">
+        <dc:Bounds x="1570" y="480" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_00u00p4" bpmnElement="Gateway_06f7muf" isMarkerVisible="true">
+        <dc:Bounds x="1755" y="495" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_196ajbp" bpmnElement="Event_16uj2hn">
+        <dc:Bounds x="1862" y="302" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1046" y="457" width="88" height="66" />
+          <dc:Bounds x="1838" y="345" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0vzp7jg_di" bpmnElement="EndEvent_0mi48om">
-        <dc:Bounds x="2582" y="302" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_17ust2t_di" bpmnElement="Event_16weg9n">
-        <dc:Bounds x="1302" y="412" width="36" height="36" />
+      <bpmndi:BPMNShape id="BPMNShape_0o3wtv0" bpmnElement="Event_14vl12h">
+        <dc:Bounds x="1862" y="412" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1276" y="457" width="88" height="66" />
+          <dc:Bounds x="1844" y="455" width="73" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0tf0516_di" bpmnElement="Gateway_0tf0516" isMarkerVisible="true">
-        <dc:Bounds x="2205" y="305" width="50" height="50" />
+      <bpmndi:BPMNShape id="BPMNShape_0kh7jn3" bpmnElement="Gateway_0rk4f9o" isMarkerVisible="true">
+        <dc:Bounds x="1755" y="665" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1x6sp42_di" bpmnElement="Event_0gjz3aw">
-        <dc:Bounds x="1072" y="662" width="36" height="36" />
+      <bpmndi:BPMNShape id="BPMNShape_1fcu65l" bpmnElement="Gateway_19wsnyw" isMarkerVisible="true">
+        <dc:Bounds x="1895" y="665" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_007pzg5" bpmnElement="Gateway_10ypezz">
+        <dc:Bounds x="2175" y="665" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1rri8fr" bpmnElement="Gateway_13lr4cp" isMarkerVisible="true">
+        <dc:Bounds x="2035" y="665" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1v0dndh" bpmnElement="Gateway_0xgyq4p">
+        <dc:Bounds x="2035" y="765" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_04j5ynx" bpmnElement="Event_0wo3guw">
+        <dc:Bounds x="1762" y="782" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1046" y="716" width="89" height="27" />
+          <dc:Bounds x="1737" y="825" width="87" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0p6b9a9_di" bpmnElement="Gateway_0p6b9a9" isMarkerVisible="true">
-        <dc:Bounds x="355" y="305" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1l700fv_di" bpmnElement="Event_16thmu1">
-        <dc:Bounds x="1302" y="222" width="36" height="36" />
+      <bpmndi:BPMNShape id="BPMNShape_01wjrve" bpmnElement="Event_00y1fgd">
+        <dc:Bounds x="1982" y="472" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1280" y="265" width="80" height="27" />
+          <dc:Bounds x="1958" y="520" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0jaz664" bpmnElement="Activity_1o2pz98">
+        <dc:Bounds x="2320" y="650" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0llngto" bpmnElement="Activity_0k3c9qm">
+        <dc:Bounds x="2320" y="820" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1misq1d" bpmnElement="Activity_0j742yt">
+        <dc:Bounds x="2320" y="470" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0styqn7" bpmnElement="Gateway_15eq5eq" isMarkerVisible="true">
+        <dc:Bounds x="2555" y="665" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1wx81j1" bpmnElement="Event_1e836gc">
+        <dc:Bounds x="2562" y="772" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2545" y="815" width="71" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_14ny7wk" bpmnElement="Activity_00535fy">
+        <dc:Bounds x="2520" y="470" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_19d4e47" bpmnElement="Event_0dklj8u">
+        <dc:Bounds x="2722" y="492" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2697" y="535" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0xihxnu" bpmnElement="Activity_1tg4fio">
+        <dc:Bounds x="2010" y="850" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1td35em" bpmnElement="Gateway_0p6ueki">
+        <dc:Bounds x="2455" y="665" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1c2w0q8" bpmnElement="Event_1fjzzbv">
+        <dc:Bounds x="1982" y="582" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1964" y="623" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1o76v2q" bpmnElement="Event_0l1s9nj">
+        <dc:Bounds x="1902" y="802" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1885" y="845" width="71" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0sa0n75" bpmnElement="Event_07ir8t3">
+        <dc:Bounds x="1132" y="292" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1108" y="335" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0e40l0p" bpmnElement="Event_1gkulo1">
+        <dc:Bounds x="1352" y="292" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1334" y="335" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1f0ndu7" bpmnElement="Event_1eb2qb0">
+        <dc:Bounds x="1132" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1107" y="205" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qspxt6_di" bpmnElement="Event_0qspxt6">
+        <dc:Bounds x="662" y="672" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0g3meiz_di" bpmnElement="Event_0g3meiz">
+        <dc:Bounds x="1352" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1334" y="205" width="72" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_00ar42c" bpmnElement="Flow_1doo8cm">
+        <di:waypoint x="870" y="690" />
+        <di:waypoint x="945" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0quoylg" bpmnElement="Flow_1wij1ze">
+        <di:waypoint x="995" y="690" />
+        <di:waypoint x="1070" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0poc3ds" bpmnElement="Flow_1njyu3x">
+        <di:waypoint x="970" y="665" />
+        <di:waypoint x="970" y="540" />
+        <di:waypoint x="1070" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_10vku9j" bpmnElement="Flow_1f2hmr8">
+        <di:waypoint x="970" y="715" />
+        <di:waypoint x="970" y="790" />
+        <di:waypoint x="1340" y="790" />
+        <di:waypoint x="1340" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1bee930" bpmnElement="Flow_0cn5q1x">
+        <di:waypoint x="970" y="715" />
+        <di:waypoint x="970" y="790" />
+        <di:waypoint x="1630" y="790" />
+        <di:waypoint x="1630" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0xr7mye" bpmnElement="Flow_0fsxhza">
+        <di:waypoint x="970" y="665" />
+        <di:waypoint x="970" y="400" />
+        <di:waypoint x="1620" y="400" />
+        <di:waypoint x="1620" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_05yscs6" bpmnElement="Flow_0zd9va3">
+        <di:waypoint x="1170" y="690" />
+        <di:waypoint x="1290" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_17m8gky" bpmnElement="Flow_1wqj4sn">
+        <di:waypoint x="1780" y="495" />
+        <di:waypoint x="1780" y="430" />
+        <di:waypoint x="1370" y="430" />
+        <di:waypoint x="1370" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_02beihs" bpmnElement="Flow_0qpoiv2">
+        <di:waypoint x="1390" y="690" />
+        <di:waypoint x="1435" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_13wifq7" bpmnElement="Flow_0yr2fvn">
+        <di:waypoint x="1170" y="540" />
+        <di:waypoint x="1245" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0j64gcf" bpmnElement="Flow_0y0yqu6">
+        <di:waypoint x="1270" y="515" />
+        <di:waypoint x="1270" y="310" />
+        <di:waypoint x="1352" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0nc3cjj" bpmnElement="Flow_087o85a">
+        <di:waypoint x="1270" y="515" />
+        <di:waypoint x="1270" y="310" />
+        <di:waypoint x="1168" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0amk2n9" bpmnElement="Flow_1iz5lyl">
+        <di:waypoint x="1270" y="515" />
+        <di:waypoint x="1270" y="180" />
+        <di:waypoint x="1168" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_10rwjf1" bpmnElement="Flow_0i3i74v">
+        <di:waypoint x="1270" y="565" />
+        <di:waypoint x="1270" y="1010" />
+        <di:waypoint x="2200" y="1010" />
+        <di:waypoint x="2200" y="715" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_06t44m7" bpmnElement="Flow_0o5p2qx">
+        <di:waypoint x="1485" y="690" />
+        <di:waypoint x="1570" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0sylgvu" bpmnElement="Flow_08h1mu5">
+        <di:waypoint x="1460" y="665" />
+        <di:waypoint x="1460" y="520" />
+        <di:waypoint x="1570" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_02vx63t" bpmnElement="Flow_0lv3yxl">
+        <di:waypoint x="1780" y="545" />
+        <di:waypoint x="1780" y="610" />
+        <di:waypoint x="1620" y="610" />
+        <di:waypoint x="1620" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1bs5uyu" bpmnElement="Flow_080hofd">
+        <di:waypoint x="1670" y="690" />
+        <di:waypoint x="1755" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_08aoq4k" bpmnElement="Flow_08tkf53">
+        <di:waypoint x="1670" y="520" />
+        <di:waypoint x="1755" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_03ele5e" bpmnElement="Flow_1fbb33n">
+        <di:waypoint x="1780" y="495" />
+        <di:waypoint x="1780" y="320" />
+        <di:waypoint x="1862" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_159qd8e" bpmnElement="Flow_1p3jrxx">
+        <di:waypoint x="1780" y="495" />
+        <di:waypoint x="1780" y="430" />
+        <di:waypoint x="1862" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1g62vwk" bpmnElement="Flow_1e7auhq">
+        <di:waypoint x="1805" y="690" />
+        <di:waypoint x="1895" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0g4qlnn" bpmnElement="Flow_0uvgzn4">
+        <di:waypoint x="1780" y="715" />
+        <di:waypoint x="1780" y="782" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0wmw8t5" bpmnElement="Flow_1eqpyrz">
+        <di:waypoint x="1920" y="715" />
+        <di:waypoint x="1920" y="802" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_058jhpy" bpmnElement="Flow_002adr5">
+        <di:waypoint x="1920" y="665" />
+        <di:waypoint x="1920" y="600" />
+        <di:waypoint x="1982" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_03c1apc" bpmnElement="Flow_0t5uxb8">
+        <di:waypoint x="1798" y="800" />
+        <di:waypoint x="1840" y="800" />
+        <di:waypoint x="1840" y="690" />
+        <di:waypoint x="1895" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_01klogv" bpmnElement="Flow_0g1a0kv">
+        <di:waypoint x="1945" y="690" />
+        <di:waypoint x="2035" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_18o8k8i" bpmnElement="Flow_1qy70mw">
+        <di:waypoint x="1920" y="665" />
+        <di:waypoint x="1920" y="490" />
+        <di:waypoint x="1982" y="490" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_05k8cqs" bpmnElement="Flow_1yf861z">
+        <di:waypoint x="2085" y="690" />
+        <di:waypoint x="2175" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1pdmqq9" bpmnElement="Flow_0ds3at0">
+        <di:waypoint x="2085" y="790" />
+        <di:waypoint x="2120" y="790" />
+        <di:waypoint x="2120" y="690" />
+        <di:waypoint x="2175" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0b1duin" bpmnElement="Flow_0mbljb2">
+        <di:waypoint x="2225" y="690" />
+        <di:waypoint x="2320" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0rfkdpw" bpmnElement="Flow_0vedefp">
+        <di:waypoint x="2220" y="695" />
+        <di:waypoint x="2220" y="860" />
+        <di:waypoint x="2320" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_19zp0qy" bpmnElement="Flow_0ltd7o7">
+        <di:waypoint x="2200" y="665" />
+        <di:waypoint x="2200" y="510" />
+        <di:waypoint x="2320" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1rv33s7" bpmnElement="Flow_16tppvx">
+        <di:waypoint x="2060" y="715" />
+        <di:waypoint x="2060" y="765" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1oxjbl6" bpmnElement="Flow_1eed0gh">
+        <di:waypoint x="2060" y="815" />
+        <di:waypoint x="2060" y="850" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0as35ud" bpmnElement="Flow_129e5gg">
+        <di:waypoint x="2420" y="690" />
+        <di:waypoint x="2455" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1kbjwm8" bpmnElement="Flow_0riknew">
+        <di:waypoint x="2420" y="510" />
+        <di:waypoint x="2480" y="510" />
+        <di:waypoint x="2480" y="665" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0cykbmg" bpmnElement="Flow_1gwd39t">
+        <di:waypoint x="2505" y="690" />
+        <di:waypoint x="2555" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_175t88n" bpmnElement="Flow_00gl0jj">
+        <di:waypoint x="2580" y="715" />
+        <di:waypoint x="2580" y="772" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_162hm74" bpmnElement="Flow_04kh8fq">
+        <di:waypoint x="2580" y="665" />
+        <di:waypoint x="2580" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1b1f830" bpmnElement="Flow_0s70xdr">
+        <di:waypoint x="2620" y="510" />
+        <di:waypoint x="2722" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1d6c0rd_di" bpmnElement="Flow_1d6c0rd">
+        <di:waypoint x="698" y="690" />
+        <di:waypoint x="770" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zqmx03_di" bpmnElement="Flow_0zqmx03">
+        <di:waypoint x="1270" y="515" />
+        <di:waypoint x="1270" y="180" />
+        <di:waypoint x="1352" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1940htq_di" bpmnElement="Event_0qef57h">
+        <dc:Bounds x="2952" y="622" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0x3qjq0_di" bpmnElement="Flow_0x3qjq0">
+        <di:waypoint x="188" y="680" />
+        <di:waypoint x="242" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h3jjve_di" bpmnElement="Flow_0h3jjve">
+        <di:waypoint x="278" y="680" />
+        <di:waypoint x="335" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rzfdzo_di" bpmnElement="Flow_1rzfdzo">
+        <di:waypoint x="360" y="655" />
+        <di:waypoint x="360" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oda6yf_di" bpmnElement="Flow_1oda6yf">
+        <di:waypoint x="385" y="680" />
+        <di:waypoint x="530" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c3679u_di" bpmnElement="Flow_0c3679u">
+        <di:waypoint x="360" y="510" />
+        <di:waypoint x="360" y="438" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04rh2tk_di" bpmnElement="Flow_04rh2tk">
+        <di:waypoint x="2800" y="640" />
+        <di:waypoint x="2952" y="640" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
