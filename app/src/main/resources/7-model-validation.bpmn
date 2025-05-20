@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0lfpxlz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.32.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_0rwewtp">
+    <bpmn:participant id="Participant_1hog3o2" name="Первичная валидация" processRef="model_validation" />
+  </bpmn:collaboration>
+  <bpmn:process id="model_validation" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+    <bpmn:laneSet id="LaneSet_18zt086">
+      <bpmn:lane id="Lane_1oshfef" name="DS-Lead">
+        <bpmn:flowNodeRef>Activity_0n0wme9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1letfln</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>decision_of_model_integration</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_05i1yga" name="Валидатор">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1n1ki61</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0kt8e80</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1r3i538</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_18989nf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1s18zvw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>first_validation_event</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>analysis_first_validation</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0isydcw</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="Gateway_1n1ki61">
+      <bpmn:incoming>Flow_0isydcw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qe1h0d</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1jwnzqy</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_0kt8e80" name="Инициализация бизнес-процесса" camunda:type="external" camunda:topic="bpmnStart">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Первичная валидация</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qe1h0d</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_1r3i538">
+      <bpmn:incoming>Flow_1yn4u0m</bpmn:incoming>
+      <bpmn:outgoing>Flow_19eaxtt</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1rtscp8</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_18989nf" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Первичная валидация</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19eaxtt</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nctbdd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1s18zvw" name="Завершение процесса">
+      <bpmn:incoming>Flow_0nctbdd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_0n0wme9" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Первичная валидация</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_18duhz0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vqmbtd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1letfln" name="Завершение процесса">
+      <bpmn:incoming>Flow_0vqmbtd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="first_validation_event" name="Проведение первичной валидации" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="first_validation_type" label="Тип валидации" type="string" />
+          <camunda:formField id="validation_result" label="Результат валидации" type="string" />
+          <camunda:formField id="validation_department" label="Подразделение, проводившее валидацию" type="string" />
+          <camunda:formField id="validation_report_approve_date" label="Дата утверждения отчета о валидации" type="string" />
+          <camunda:formField id="validation_result_approve_date" label="Информация о дате утверждения на УО МР текущих (действующих) агрегированных результатов валидации" type="string" />
+          <camunda:formField id="validation_period" label="Период проведения валидации" type="string" />
+          <camunda:formField id="deviations_during_validation2_flg" label="Отклонения выявлены?" type="string" defaultValue="false" />
+          <camunda:formField id="first_auto_validation_result" label="Отчет по валидации" type="string" />
+          <camunda:formField id="first_validation_tests_result" label="Результаты проведения тестов первичной валидации" type="string" />
+          <camunda:formField id="sfera_code_validation_link" label="Ссылка на сферу исходный код (для скриптов тестов/сценариев валидации)" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Первичная валидация</camunda:inputParameter>
+          <camunda:outputParameter name="first_validation_type">${first_validation_type}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_result">${validation_result}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_department">${validation_department}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_report_approve_date">${validation_report_approve_date}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_result_approve_date">${validation_result_approve_date}</camunda:outputParameter>
+          <camunda:outputParameter name="validation_period">${validation_period}</camunda:outputParameter>
+          <camunda:outputParameter name="deviations_during_validation2_flg">${deviations_during_validation2_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="first_auto_validation_result">${first_auto_validation_result}</camunda:outputParameter>
+          <camunda:outputParameter name="first_validation_tests_result">${first_validation_tests_result}</camunda:outputParameter>
+          <camunda:outputParameter name="sfera_code_validation_link">${sfera_code_validation_link}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1jwnzqy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1yn4u0m</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="decision_of_model_integration" name="Принятие совместно с бизнес-партнером, владельцем модели, DS, решения о необходимости доработки модели и внедрения модели в промышленную эксплуатацию" camunda:candidateGroups="ds_lead">
+      <bpmn:documentation>Принятие решения о необходимости доработки модели и внедрения модели в промышленную эксплуатацию</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="decision_of_model_integration_flg" label="Требуется доработка модели?" type="string" />
+          <camunda:formField id="decision_of_model_integration" label="Решение Владельца по модели" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Первичная валидация</camunda:inputParameter>
+          <camunda:outputParameter name="decision_of_model_integration_flg">${decision_of_model_integration_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="decision_of_model_integration">${decision_of_model_integration}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qdzyes</bpmn:incoming>
+      <bpmn:outgoing>Flow_18duhz0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="analysis_first_validation" name="Проведение дополнительного количественного анализа и формирование рекомендаций" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:documentation>Проведение количественного анализа и формирование рекомендаций</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="additional_analysis_and_recommendation" label="Дополнительный количественный анализ и рекомендации группы валидации" type="string" />
+          <camunda:formField id="fisrt_validation_cfg" label="Конфигурационный файл первичной валидации" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Первичная валидация</camunda:inputParameter>
+          <camunda:outputParameter name="additional_analysis_and_recommendation">${additional_analysis_and_recommendation}</camunda:outputParameter>
+          <camunda:outputParameter name="fisrt_validation_cfg">${fisrt_validation_cfg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1rtscp8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qdzyes</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0isydcw" sourceRef="StartEvent_1" targetRef="Gateway_1n1ki61" />
+    <bpmn:sequenceFlow id="Flow_0qe1h0d" sourceRef="Gateway_1n1ki61" targetRef="Activity_0kt8e80" />
+    <bpmn:sequenceFlow id="Flow_1jwnzqy" sourceRef="Gateway_1n1ki61" targetRef="first_validation_event" />
+    <bpmn:sequenceFlow id="Flow_1yn4u0m" sourceRef="first_validation_event" targetRef="Gateway_1r3i538" />
+    <bpmn:sequenceFlow id="Flow_19eaxtt" name="Отклонения не выявлены" sourceRef="Gateway_1r3i538" targetRef="Activity_18989nf">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${deviations_during_validation2_flg==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1rtscp8" name="Выявлены отклонения" sourceRef="Gateway_1r3i538" targetRef="analysis_first_validation">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${deviations_during_validation2_flg==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0nctbdd" sourceRef="Activity_18989nf" targetRef="Event_1s18zvw" />
+    <bpmn:sequenceFlow id="Flow_18duhz0" sourceRef="decision_of_model_integration" targetRef="Activity_0n0wme9" />
+    <bpmn:sequenceFlow id="Flow_0vqmbtd" sourceRef="Activity_0n0wme9" targetRef="Event_1letfln" />
+    <bpmn:sequenceFlow id="Flow_1qdzyes" sourceRef="analysis_first_validation" targetRef="decision_of_model_integration" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0rwewtp">
+      <bpmndi:BPMNShape id="Participant_1hog3o2_di" bpmnElement="Participant_1hog3o2" isHorizontal="true">
+        <dc:Bounds x="129" y="79" width="961" height="701" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_05i1yga_di" bpmnElement="Lane_05i1yga" isHorizontal="true">
+        <dc:Bounds x="159" y="79" width="931" height="351" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1oshfef_di" bpmnElement="Lane_1oshfef" isHorizontal="true">
+        <dc:Bounds x="159" y="430" width="931" height="350" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="282" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1utj5rk_di" bpmnElement="Gateway_1n1ki61">
+        <dc:Bounds x="375" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ln1eey_di" bpmnElement="Activity_0kt8e80">
+        <dc:Bounds x="350" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1r3i538_di" bpmnElement="Gateway_1r3i538" isMarkerVisible="true">
+        <dc:Bounds x="655" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06ns8bh_di" bpmnElement="Activity_18989nf">
+        <dc:Bounds x="800" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1s18zvw_di" bpmnElement="Event_1s18zvw">
+        <dc:Bounds x="972" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="958" y="275" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_182169l_di" bpmnElement="Activity_0n0wme9">
+        <dc:Bounds x="810" y="570" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1letfln_di" bpmnElement="Event_1letfln">
+        <dc:Bounds x="992" y="592" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="978" y="635" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ihknhe_di" bpmnElement="first_validation_event">
+        <dc:Bounds x="490" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o0lkbb_di" bpmnElement="decision_of_model_integration">
+        <dc:Bounds x="630" y="570" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_067qj2f_di" bpmnElement="analysis_first_validation">
+        <dc:Bounds x="630" y="330" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0isydcw_di" bpmnElement="Flow_0isydcw">
+        <di:waypoint x="318" y="250" />
+        <di:waypoint x="375" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qe1h0d_di" bpmnElement="Flow_0qe1h0d">
+        <di:waypoint x="400" y="225" />
+        <di:waypoint x="400" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jwnzqy_di" bpmnElement="Flow_1jwnzqy">
+        <di:waypoint x="425" y="250" />
+        <di:waypoint x="490" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yn4u0m_di" bpmnElement="Flow_1yn4u0m">
+        <di:waypoint x="590" y="250" />
+        <di:waypoint x="655" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19eaxtt_di" bpmnElement="Flow_19eaxtt">
+        <di:waypoint x="705" y="250" />
+        <di:waypoint x="800" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="711" y="216" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rtscp8_di" bpmnElement="Flow_1rtscp8">
+        <di:waypoint x="680" y="275" />
+        <di:waypoint x="680" y="330" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="610" y="286" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nctbdd_di" bpmnElement="Flow_0nctbdd">
+        <di:waypoint x="900" y="250" />
+        <di:waypoint x="972" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18duhz0_di" bpmnElement="Flow_18duhz0">
+        <di:waypoint x="730" y="610" />
+        <di:waypoint x="810" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vqmbtd_di" bpmnElement="Flow_0vqmbtd">
+        <di:waypoint x="910" y="610" />
+        <di:waypoint x="992" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qdzyes_di" bpmnElement="Flow_1qdzyes">
+        <di:waypoint x="680" y="410" />
+        <di:waypoint x="680" y="570" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

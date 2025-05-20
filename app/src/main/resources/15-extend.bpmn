@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0uxxwwz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.32.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_132utos">
+    <bpmn:participant id="Participant_02v4dx2" name="Вывод модели из эксплуатации" processRef="removal" />
+  </bpmn:collaboration>
+  <bpmn:process id="removal" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+    <bpmn:laneSet id="LaneSet_1aszk48">
+      <bpmn:lane id="Lane_0b0hm0n" name="DS-Lead">
+        <bpmn:flowNodeRef>Gateway_18vsbh1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ejyepu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>model_decommiss_confirm_ds</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_13on1io" name="Релиз-менеджер/ModelOps">
+        <bpmn:flowNodeRef>Event_1qllfww</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>model_decommiss_confirm_rm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0u0uxhh</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0wwl0ba</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:parallelGateway id="Gateway_18vsbh1">
+      <bpmn:incoming>Flow_1hs32en</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e175i9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0t5mqfu</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1hs32en</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1qllfww" name="Статус: Архив">
+      <bpmn:incoming>Flow_0ejfa2c</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_1ejyepu" name="Инициация процесса" camunda:type="external" camunda:topic="bpmnStart">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1e175i9</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0t5mqfu" sourceRef="Gateway_18vsbh1" targetRef="model_decommiss_confirm_ds" />
+    <bpmn:sequenceFlow id="Flow_0t7tw0e" sourceRef="model_decommiss_confirm_ds" targetRef="model_decommiss_confirm_rm" />
+    <bpmn:sequenceFlow id="Flow_1hs32en" sourceRef="StartEvent_1" targetRef="Gateway_18vsbh1" />
+    <bpmn:sequenceFlow id="Flow_1e175i9" sourceRef="Gateway_18vsbh1" targetRef="Activity_1ejyepu" />
+    <bpmn:sequenceFlow id="Flow_0yjk5nq" sourceRef="model_decommiss_confirm_rm" targetRef="Activity_0u0uxhh" />
+    <bpmn:sequenceFlow id="Flow_1exzjft" sourceRef="Activity_0u0uxhh" targetRef="Activity_0wwl0ba" />
+    <bpmn:userTask id="model_decommiss_confirm_ds" name="Подтверждение вывода модели из эксплуатации" camunda:candidateGroups="ds_lead">
+      <bpmn:documentation>Подтверждение вывода модели из эксплуатации</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="model_decommiss_confirm_flg" label="Подтверждаете вывод модели из эксплуатации" type="string" />
+          <camunda:formField id="model_decommiss_confirm_file" label="Подтверждение вывода модели" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+          <camunda:outputParameter name="model_decommiss_confirm_flg">${model_decommiss_confirm_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="model_decommiss_confirm_file">${model_decommiss_confirm_file}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0t5mqfu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0t7tw0e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="model_decommiss_confirm_rm" name="Подтверждение вывода из эксплуатации" camunda:candidateGroups="release_manager, modelops_lead, modelops">
+      <bpmn:documentation>Подтверждение вывода из эксплуатации</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="model_decommiss_confirm_flg" label="Подтверждаете вывод модели из эксплуатации" type="string" />
+          <camunda:formField id="rs_model_decommiss_date" label="Дата выведения РС/Модели из эксплуатации" type="string" />
+          <camunda:formField id="remove_decision" label="Реквизиты решения о выведения из эксплуатации" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+          <camunda:outputParameter name="model_decommiss_confirm_flg">${model_decommiss_confirm_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="rs_model_decommiss_date">${rs_model_decommiss_date}</camunda:outputParameter>
+          <camunda:outputParameter name="remove_decision">${remove_decision}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0t7tw0e</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yjk5nq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0u0uxhh" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0yjk5nq</bpmn:incoming>
+      <bpmn:outgoing>Flow_1exzjft</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0ejfa2c" sourceRef="Activity_0wwl0ba" targetRef="Event_1qllfww" />
+    <bpmn:serviceTask id="Activity_0wwl0ba" name="Завершение всех связанных бизнес процессов" camunda:type="external" camunda:topic="cancel">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод модели из эксплуатации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1exzjft</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ejfa2c</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_132utos">
+      <bpmndi:BPMNShape id="Participant_02v4dx2_di" bpmnElement="Participant_02v4dx2" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1050" height="730" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_13on1io_di" bpmnElement="Lane_13on1io" isHorizontal="true">
+        <dc:Bounds x="190" y="450" width="1020" height="360" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0b0hm0n_di" bpmnElement="Lane_0b0hm0n" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1020" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0s8dm8y_di" bpmnElement="Gateway_18vsbh1">
+        <dc:Bounds x="355" y="235" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="262" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qllfww_di" bpmnElement="Event_1qllfww">
+        <dc:Bounds x="1092" y="692" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1074" y="735" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1d01vti_di" bpmnElement="Activity_1ejyepu">
+        <dc:Bounds x="470" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g5sycq_di" bpmnElement="model_decommiss_confirm_ds">
+        <dc:Bounds x="470" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_098kpfi_di" bpmnElement="model_decommiss_confirm_rm">
+        <dc:Bounds x="470" y="670" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1th4mgl_di" bpmnElement="Activity_0u0uxhh">
+        <dc:Bounds x="660" y="670" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11r7jz3_di" bpmnElement="Activity_0wwl0ba">
+        <dc:Bounds x="880" y="670" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0t5mqfu_di" bpmnElement="Flow_0t5mqfu">
+        <di:waypoint x="405" y="260" />
+        <di:waypoint x="470" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t7tw0e_di" bpmnElement="Flow_0t7tw0e">
+        <di:waypoint x="520" y="300" />
+        <di:waypoint x="520" y="670" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hs32en_di" bpmnElement="Flow_1hs32en">
+        <di:waypoint x="298" y="260" />
+        <di:waypoint x="355" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e175i9_di" bpmnElement="Flow_1e175i9">
+        <di:waypoint x="380" y="235" />
+        <di:waypoint x="380" y="150" />
+        <di:waypoint x="470" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yjk5nq_di" bpmnElement="Flow_0yjk5nq">
+        <di:waypoint x="570" y="710" />
+        <di:waypoint x="660" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1exzjft_di" bpmnElement="Flow_1exzjft">
+        <di:waypoint x="760" y="710" />
+        <di:waypoint x="880" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ejfa2c_di" bpmnElement="Flow_0ejfa2c">
+        <di:waypoint x="980" y="710" />
+        <di:waypoint x="1092" y="710" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

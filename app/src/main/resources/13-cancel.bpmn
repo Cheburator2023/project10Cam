@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1ccqrxj" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.32.0">
+  <bpmn:collaboration id="Collaboration_0mxcmxd">
+    <bpmn:participant id="Participant_0ymd65x" name="Отмена разработки модели" processRef="cancel" />
+  </bpmn:collaboration>
+  <bpmn:process id="cancel" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+    <bpmn:laneSet id="LaneSet_14ov1wz">
+      <bpmn:lane id="Lane_15qid3v" name="DS Lead">
+        <bpmn:flowNodeRef>cancel_model_development_ds_lead</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0hdq49x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0viqrrb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_00cg79a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0c26y9a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0wjmcy2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0okzi0g</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ge0dem</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_04qcj8p</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:userTask id="cancel_model_development_ds_lead" name="Согласование отмены разработки модели" camunda:candidateGroups="ds_lead">
+      <bpmn:documentation>Укажите причину</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Отмена разработки</camunda:inputParameter>
+          <camunda:outputParameter name="cancel_development_reason">${cancel_development_reason}</camunda:outputParameter>
+          <camunda:outputParameter name="cancel_ds_approve_flg">${cancel_ds_approve_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="cancel_development_reason" label="Отмена разработки модели" type="string">
+            <camunda:properties>
+              <camunda:property id="artefact_id" value="778" />
+              <camunda:property id="artefact_desc" value="Укажите причину вывода модели из эксплуатации" />
+              <camunda:property id="artefact_context" />
+              <camunda:property id="is_main_info_flg" value="0" />
+              <camunda:property id="is_class_flg" value="0" />
+              <camunda:property id="artefact_type_id" value="1" />
+              <camunda:property id="artefact_business_group_id" value="1" />
+              <camunda:property id="is_multi_fill_flg" value="0" />
+              <camunda:property id="artefact_parent_id" />
+              <camunda:property id="artefact_parent_value" />
+              <camunda:property id="artefact_default_value" />
+              <camunda:property id="is_default_value_flg" />
+              <camunda:property id="artefact_hint" />
+              <camunda:property id="is_edit_flg" />
+              <camunda:property id="artefact_regular_expression" />
+              <camunda:property id="is_required_flg" value="1" />
+            </camunda:properties>
+          </camunda:formField>
+          <camunda:formField id="cancel_ds_approve_flg" label="Отмена согласована?" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17oe1m2</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lh0jx8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:parallelGateway id="Gateway_0hdq49x">
+      <bpmn:incoming>Flow_1ipfc6b</bpmn:incoming>
+      <bpmn:outgoing>Flow_14gab9t</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17oe1m2</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_0viqrrb" name="Инициализация бизнес процесса" camunda:type="external" camunda:topic="bpmnStart">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Отмена разработки</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14gab9t</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1ipfc6b</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_00cg79a" name="Конец">
+      <bpmn:incoming>Flow_1bzgy6j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_0c26y9a" name="Завершение всех связанных бизнес процессов" camunda:type="external" camunda:topic="cancel">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Отмена разработки</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0jkj6wb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bzgy6j</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_17oe1m2" sourceRef="Gateway_0hdq49x" targetRef="cancel_model_development_ds_lead" />
+    <bpmn:sequenceFlow id="Flow_1ipfc6b" sourceRef="StartEvent_1" targetRef="Gateway_0hdq49x" />
+    <bpmn:sequenceFlow id="Flow_14gab9t" sourceRef="Gateway_0hdq49x" targetRef="Activity_0viqrrb" />
+    <bpmn:sequenceFlow id="Flow_1bzgy6j" sourceRef="Activity_0c26y9a" targetRef="Event_00cg79a" />
+    <bpmn:sequenceFlow id="Flow_0jkj6wb" sourceRef="Activity_0wjmcy2" targetRef="Activity_0c26y9a" />
+    <bpmn:sequenceFlow id="Flow_1lh0jx8" sourceRef="cancel_model_development_ds_lead" targetRef="Gateway_0okzi0g" />
+    <bpmn:serviceTask id="Activity_0wjmcy2" name="Завершение бизнес процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Отмена разработки</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_123lb1v</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jkj6wb</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0okzi0g" name="Согласовано?">
+      <bpmn:incoming>Flow_1lh0jx8</bpmn:incoming>
+      <bpmn:outgoing>Flow_123lb1v</bpmn:outgoing>
+      <bpmn:outgoing>Flow_05qeu1q</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_123lb1v" name="Да" sourceRef="Gateway_0okzi0g" targetRef="Activity_0wjmcy2">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${cancel_ds_approve_flg==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_05qeu1q" name="Нет" sourceRef="Gateway_0okzi0g" targetRef="Activity_0ge0dem">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${cancel_ds_approve_flg==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_0ge0dem" name="Завершение бизнес процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${model}</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Отмена разработки</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_05qeu1q</bpmn:incoming>
+      <bpmn:outgoing>Flow_02texru</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_04qcj8p">
+      <bpmn:incoming>Flow_02texru</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_02texru" sourceRef="Activity_0ge0dem" targetRef="Event_04qcj8p" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0mxcmxd">
+      <bpmndi:BPMNShape id="Participant_0ymd65x_di" bpmnElement="Participant_0ymd65x" isHorizontal="true" bioc:stroke="black" bioc:fill="white">
+        <dc:Bounds x="160" y="80" width="1560" height="640" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_15qid3v_di" bpmnElement="Lane_15qid3v" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1530" height="640" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1skjo51_di" bpmnElement="cancel_model_development_ds_lead">
+        <dc:Bounds x="591" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_11kpr52_di" bpmnElement="Gateway_0hdq49x">
+        <dc:Bounds x="405" y="375" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0viqrrb_di" bpmnElement="Activity_0viqrrb">
+        <dc:Bounds x="380" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="293" y="382" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_00cg79a_di" bpmnElement="Event_00cg79a">
+        <dc:Bounds x="1555" y="382" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1557" y="358" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c26y9a_di" bpmnElement="Activity_0c26y9a">
+        <dc:Bounds x="1398" y="360" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wjmcy2_di" bpmnElement="Activity_0wjmcy2">
+        <dc:Bounds x="950" y="360" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0okzi0g_di" bpmnElement="Gateway_0okzi0g" isMarkerVisible="true">
+        <dc:Bounds x="785" y="375" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="774" y="345" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12mmbh0_di" bpmnElement="Activity_0ge0dem">
+        <dc:Bounds x="950" y="490" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_04qcj8p_di" bpmnElement="Event_04qcj8p">
+        <dc:Bounds x="1162" y="512" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_17oe1m2_di" bpmnElement="Flow_17oe1m2">
+        <di:waypoint x="455" y="400" />
+        <di:waypoint x="591" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ipfc6b_di" bpmnElement="Flow_1ipfc6b">
+        <di:waypoint x="329" y="400" />
+        <di:waypoint x="405" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14gab9t_di" bpmnElement="Flow_14gab9t">
+        <di:waypoint x="430" y="375" />
+        <di:waypoint x="430" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bzgy6j_di" bpmnElement="Flow_1bzgy6j">
+        <di:waypoint x="1498" y="400" />
+        <di:waypoint x="1555" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jkj6wb_di" bpmnElement="Flow_0jkj6wb">
+        <di:waypoint x="1050" y="400" />
+        <di:waypoint x="1398" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lh0jx8_di" bpmnElement="Flow_1lh0jx8">
+        <di:waypoint x="691" y="400" />
+        <di:waypoint x="785" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_123lb1v_di" bpmnElement="Flow_123lb1v">
+        <di:waypoint x="835" y="400" />
+        <di:waypoint x="950" y="400" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="886" y="382" width="14" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05qeu1q_di" bpmnElement="Flow_05qeu1q">
+        <di:waypoint x="810" y="425" />
+        <di:waypoint x="810" y="530" />
+        <di:waypoint x="950" y="530" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="880" y="513" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02texru_di" bpmnElement="Flow_02texru">
+        <di:waypoint x="1050" y="530" />
+        <di:waypoint x="1162" y="530" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

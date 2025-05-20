@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0hs9b9b" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.32.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_0exxqj2">
+    <bpmn:participant id="Participant_00mvhb1" name="11. Тестирование на препрод, перенос на прод контур" processRef="test_preprod_transfer_prod" />
+  </bpmn:collaboration>
+  <bpmn:process id="test_preprod_transfer_prod" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+    <bpmn:laneSet id="LaneSet_1l88k1s">
+      <bpmn:lane id="Lane_1iign6f" name="DE">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1n0e61w</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_10otqca</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>transfer_to_prod_datamart_build_dag</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1fsoqpo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>test_datamart_psi_preprod</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>transfer_to_preprod_datamart_build_dag</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0hfvnb4" name="ModelOps">
+        <bpmn:flowNodeRef>test_model_psi_preprod</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>transfer_to_preprod_model_artefacts</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0u0mj2x" name="Релиз-менеджер/ModelOps">
+        <bpmn:flowNodeRef>Event_1xbna0o</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_00d7m99</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0hyctni</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>transfer_model_prod_commit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>control_transfer_model_prod</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1gs4uzf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="Gateway_1n0e61w">
+      <bpmn:incoming>Flow_1gs4uzf</bpmn:incoming>
+      <bpmn:outgoing>Flow_166bbva</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17zrs27</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_10otqca" name="Инициализация бизнес-процесса" camunda:type="external" camunda:topic="bpmnStart">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_166bbva</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1xbna0o" name="Статус: Разработана, внедрена в ПИМ">
+      <bpmn:incoming>Flow_19z4lyk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_00d7m99" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Внедрена в ПИМ</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_00ouaoi</bpmn:incoming>
+      <bpmn:outgoing>Flow_19z4lyk</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="transfer_to_prod_datamart_build_dag" name="Контроль за переносом DAGa сборки витрины на прод контур" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>Контроль за переносом DAGa сборки витрины на прод контур</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="transfer_to_prod_datamart_build_dag_flg" label="DAG сборки промышленной витрины перенесен на промышленный контур?" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="transfer_to_prod_datamart_build_dag_flg">${transfer_to_prod_datamart_build_dag_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1pxpkj4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jdyo0j</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:inclusiveGateway id="Gateway_0hyctni">
+      <bpmn:incoming>Flow_0jdyo0j</bpmn:incoming>
+      <bpmn:incoming>Flow_1vnkgny</bpmn:incoming>
+      <bpmn:outgoing>Flow_00ouaoi</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:userTask id="transfer_model_prod_commit" name="Подтверждение переноса модели на промышленный контур" camunda:candidateGroups="release_manager, modelops_lead, modelops">
+      <bpmn:documentation>Подтверждение переноса модели на промышленный контур</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="integration_decree_date" label="Дата распоряжения о внедрении" type="string" />
+          <camunda:formField id="release" label="Релиз" type="string" />
+          <camunda:formField id="model_epic_09" label="Эпик 09" type="string" />
+          <camunda:formField id="model_epic_11" label="Эпик 11" type="string" />
+          <camunda:formField id="model_epic_11_date" label="Дата решения для эпика 11" type="string" />
+          <camunda:formField id="date_of_introduction_into_operation" label="Дата внедрения в промышленную эксплуатацию" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="integration_decree_date">${integration_decree_date}</camunda:outputParameter>
+          <camunda:outputParameter name="release">${release}</camunda:outputParameter>
+          <camunda:outputParameter name="model_epic_09">${model_epic_09}</camunda:outputParameter>
+          <camunda:outputParameter name="model_epic_11">${model_epic_11}</camunda:outputParameter>
+          <camunda:outputParameter name="model_epic_11_date">${model_epic_11_date}</camunda:outputParameter>
+          <camunda:outputParameter name="date_of_introduction_into_operation">${date_of_introduction_into_operation}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1gnwmfp</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wosole</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="control_transfer_model_prod" name="Контроль за переносом на прод контур" camunda:candidateGroups="release_manager, modelops_lead, modelops">
+      <bpmn:documentation>Контроль за переносом на прод контур</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="tranfer_model_prod_flg" label="Модель перенесена на промышленный контур?" type="string" />
+          <camunda:formField id="customer_model_id" label="CustomModelID" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="tranfer_model_prod_flg">${tranfer_model_prod_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="customer_model_id">${customer_model_id}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wosole</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vnkgny</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:inclusiveGateway id="Gateway_1fsoqpo">
+      <bpmn:incoming>Flow_17zrs27</bpmn:incoming>
+      <bpmn:outgoing>Flow_01rh4k9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_03034o3</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:userTask id="test_model_psi_preprod" name="Тестирование модели на препрод контуре" camunda:candidateGroups="modelops_lead,modelops">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="preprod_test_model_flg" label="Модель прошла тестирование на препрод контуре?" type="string" />
+          <camunda:formField id="preprod_psi_model_link" label="Ссылка на протокол ПСИ по модели" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="preprod_test_model_flg">${preprod_test_model_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="preprod_psi_model_link">${preprod_psi_model_link}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_080jwds</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gnwmfp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="transfer_to_preprod_model_artefacts" name="Перенос артефактов модели на препрод" camunda:candidateGroups="modelops_lead,modelops">
+      <bpmn:documentation>Перенос артефактов модели на препрод</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="transfer_to_preprod_model_artefacts_flg" label="Подтвердите перенос артефактов" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="transfer_to_preprod_model_artefacts_flg">${transfer_to_preprod_model_artefacts_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03034o3</bpmn:incoming>
+      <bpmn:outgoing>Flow_080jwds</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="test_datamart_psi_preprod" name="Тестирование витрины и проведение ПСИ на препрод контуре" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>Тестирование витрины и проведение ПСИ на препрод контуре</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="preprod_test_datamart_flg" label="Витрина прошла тестирование на препрод контуре?" type="string" />
+          <camunda:formField id="preprod_psi_datamart_link" label="Ссылка на протокол ПСИ по витрине" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="preprod_test_datamart_flg">${preprod_test_datamart_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="preprod_psi_datamart_link">${preprod_psi_datamart_link}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_016gqu9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pxpkj4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="transfer_to_preprod_datamart_build_dag" name="Перенос DAG сборки витрины на препрод контур" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>Перенос DAG сборки витрины на препрод контур</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="transfer_to_preprod_datamart_build_dag_flg" label="DAG сборки витрины перенесен на препрод контур?" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе 
+внедрения</camunda:inputParameter>
+          <camunda:outputParameter name="transfer_to_preprod_datamart_build_dag_flg">${transfer_to_preprod_datamart_build_dag_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01rh4k9</bpmn:incoming>
+      <bpmn:outgoing>Flow_016gqu9</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1gs4uzf" sourceRef="StartEvent_1" targetRef="Gateway_1n0e61w" />
+    <bpmn:sequenceFlow id="Flow_166bbva" sourceRef="Gateway_1n0e61w" targetRef="Activity_10otqca" />
+    <bpmn:sequenceFlow id="Flow_17zrs27" sourceRef="Gateway_1n0e61w" targetRef="Gateway_1fsoqpo" />
+    <bpmn:sequenceFlow id="Flow_19z4lyk" sourceRef="Activity_00d7m99" targetRef="Event_1xbna0o" />
+    <bpmn:sequenceFlow id="Flow_00ouaoi" sourceRef="Gateway_0hyctni" targetRef="Activity_00d7m99" />
+    <bpmn:sequenceFlow id="Flow_1pxpkj4" sourceRef="test_datamart_psi_preprod" targetRef="transfer_to_prod_datamart_build_dag" />
+    <bpmn:sequenceFlow id="Flow_0jdyo0j" sourceRef="transfer_to_prod_datamart_build_dag" targetRef="Gateway_0hyctni" />
+    <bpmn:sequenceFlow id="Flow_1vnkgny" sourceRef="control_transfer_model_prod" targetRef="Gateway_0hyctni" />
+    <bpmn:sequenceFlow id="Flow_1gnwmfp" sourceRef="test_model_psi_preprod" targetRef="transfer_model_prod_commit" />
+    <bpmn:sequenceFlow id="Flow_1wosole" sourceRef="transfer_model_prod_commit" targetRef="control_transfer_model_prod" />
+    <bpmn:sequenceFlow id="Flow_01rh4k9" sourceRef="Gateway_1fsoqpo" targetRef="transfer_to_preprod_datamart_build_dag">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_prom_datamart_developing_flg == 'Да'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_03034o3" name="Для моделей не разрабатывалась пром витрина" sourceRef="Gateway_1fsoqpo" targetRef="transfer_to_preprod_model_artefacts">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_080jwds" sourceRef="transfer_to_preprod_model_artefacts" targetRef="test_model_psi_preprod" />
+    <bpmn:sequenceFlow id="Flow_016gqu9" sourceRef="transfer_to_preprod_datamart_build_dag" targetRef="test_datamart_psi_preprod" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0exxqj2">
+      <bpmndi:BPMNShape id="Participant_00mvhb1_di" bpmnElement="Participant_00mvhb1" isHorizontal="true">
+        <dc:Bounds x="155" y="79" width="1380" height="1041" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0u0mj2x_di" bpmnElement="Lane_0u0mj2x" isHorizontal="true">
+        <dc:Bounds x="185" y="760" width="1350" height="360" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0hfvnb4_di" bpmnElement="Lane_0hfvnb4" isHorizontal="true">
+        <dc:Bounds x="185" y="370" width="1350" height="390" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1iign6f_di" bpmnElement="Lane_1iign6f" isHorizontal="true">
+        <dc:Bounds x="185" y="79" width="1350" height="291" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="287" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_14q9swx_di" bpmnElement="Gateway_1n0e61w">
+        <dc:Bounds x="380" y="215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1q6rzvl_di" bpmnElement="Activity_10otqca">
+        <dc:Bounds x="355" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xbna0o_di" bpmnElement="Event_1xbna0o">
+        <dc:Bounds x="1397" y="942" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1372" y="985" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gpjy0s_di" bpmnElement="Activity_00d7m99">
+        <dc:Bounds x="1185" y="920" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1izoxpr_di" bpmnElement="transfer_to_prod_datamart_build_dag">
+        <dc:Bounds x="1035" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0hyctni_di" bpmnElement="Gateway_0hyctni">
+        <dc:Bounds x="1060" y="935" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06rfpw1_di" bpmnElement="transfer_model_prod_commit">
+        <dc:Bounds x="735" y="920" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nmqu3y_di" bpmnElement="control_transfer_model_prod">
+        <dc:Bounds x="875" y="920" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1fsoqpo_di" bpmnElement="Gateway_1fsoqpo">
+        <dc:Bounds x="490" y="215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12q46t3_di" bpmnElement="test_model_psi_preprod">
+        <dc:Bounds x="465" y="590" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cf6x8s_di" bpmnElement="transfer_to_preprod_model_artefacts">
+        <dc:Bounds x="465" y="450" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p43p2i_di" bpmnElement="test_datamart_psi_preprod">
+        <dc:Bounds x="825" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00roh0e_di" bpmnElement="transfer_to_preprod_datamart_build_dag">
+        <dc:Bounds x="645" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1gs4uzf_di" bpmnElement="Flow_1gs4uzf">
+        <di:waypoint x="323" y="240" />
+        <di:waypoint x="380" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_166bbva_di" bpmnElement="Flow_166bbva">
+        <di:waypoint x="405" y="215" />
+        <di:waypoint x="405" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17zrs27_di" bpmnElement="Flow_17zrs27">
+        <di:waypoint x="430" y="240" />
+        <di:waypoint x="490" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19z4lyk_di" bpmnElement="Flow_19z4lyk">
+        <di:waypoint x="1285" y="960" />
+        <di:waypoint x="1397" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00ouaoi_di" bpmnElement="Flow_00ouaoi">
+        <di:waypoint x="1110" y="960" />
+        <di:waypoint x="1185" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pxpkj4_di" bpmnElement="Flow_1pxpkj4">
+        <di:waypoint x="925" y="240" />
+        <di:waypoint x="1035" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jdyo0j_di" bpmnElement="Flow_0jdyo0j">
+        <di:waypoint x="1085" y="280" />
+        <di:waypoint x="1085" y="935" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vnkgny_di" bpmnElement="Flow_1vnkgny">
+        <di:waypoint x="975" y="960" />
+        <di:waypoint x="1060" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gnwmfp_di" bpmnElement="Flow_1gnwmfp">
+        <di:waypoint x="565" y="630" />
+        <di:waypoint x="675" y="630" />
+        <di:waypoint x="675" y="960" />
+        <di:waypoint x="735" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wosole_di" bpmnElement="Flow_1wosole">
+        <di:waypoint x="835" y="960" />
+        <di:waypoint x="875" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01rh4k9_di" bpmnElement="Flow_01rh4k9">
+        <di:waypoint x="540" y="240" />
+        <di:waypoint x="645" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03034o3_di" bpmnElement="Flow_03034o3">
+        <di:waypoint x="515" y="265" />
+        <di:waypoint x="515" y="450" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="530" y="300" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_080jwds_di" bpmnElement="Flow_080jwds">
+        <di:waypoint x="515" y="530" />
+        <di:waypoint x="515" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_016gqu9_di" bpmnElement="Flow_016gqu9">
+        <di:waypoint x="745" y="240" />
+        <di:waypoint x="825" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

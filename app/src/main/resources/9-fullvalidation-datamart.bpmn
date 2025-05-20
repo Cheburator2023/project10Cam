@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1iqyyte" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.32.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_1jx51x8">
+    <bpmn:participant id="Participant_1bpnll4" name="9. Разработка витрины для полной валидации" processRef="fullvalidation_datamart" />
+  </bpmn:collaboration>
+  <bpmn:process id="fullvalidation_datamart" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+    <bpmn:laneSet id="LaneSet_0ixat1j">
+      <bpmn:lane id="Lane_0xuhbgy" name="DE">
+        <bpmn:flowNodeRef>Gateway_01fkof3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>full_validation_datamart_de</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>finish_datamart_prototype</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>finish_test_datamart_dev</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1d10wmr" name="Валидатор">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1gmmcye</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_10kia0a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1ql11ox</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1wc663b</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1n46ti0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1ilx9pz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_02l18u0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_020jb1e</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0pojass</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0wsu4n9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1tp265x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>def_params_plan_validation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>full_validation_datamart_dev_validator</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>form_requirements_plan_validation_datamart</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>plan_validation_decision</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1vd1b0r</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="Gateway_1gmmcye">
+      <bpmn:incoming>Flow_1vd1b0r</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fmcen5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0g452rc</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="Activity_10kia0a" name="Инициация бизнес-процесса" camunda:type="external" camunda:topic="bpmnStart">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0fmcen5</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_1ql11ox">
+      <bpmn:incoming>Flow_0fpxi8n</bpmn:incoming>
+      <bpmn:outgoing>Flow_054yygc</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0i2exro</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1k9zf5u</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_1wc663b" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_054yygc</bpmn:incoming>
+      <bpmn:outgoing>Flow_17p7g9a</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1n46ti0" name="Завершение процесса">
+      <bpmn:incoming>Flow_17p7g9a</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1ilx9pz">
+      <bpmn:incoming>Flow_16hlo8v</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rv1z8o</bpmn:outgoing>
+      <bpmn:outgoing>Flow_12dhy8w</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_02l18u0">
+      <bpmn:incoming>Flow_02jo662</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fcrj9a</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0wjjd1f</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_020jb1e" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0fcrj9a</bpmn:incoming>
+      <bpmn:outgoing>Flow_0d5jjeq</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0pojass" name="Завершение процесса">
+      <bpmn:incoming>Flow_0d5jjeq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_01fkof3">
+      <bpmn:incoming>Flow_0j2euan</bpmn:incoming>
+      <bpmn:outgoing>Flow_1y4t1dz</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0y7c3dx</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17z00qv</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_0wsu4n9" name="Завершение бизнес-процесса" camunda:type="external" camunda:topic="bpmnFinish">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
+          <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
+          <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0f6mm0l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ja449r</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1tp265x" name="Завершение процесса">
+      <bpmn:incoming>Flow_0ja449r</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="def_params_plan_validation" name="Анализ входящей документации и воспроизведение алгоритмов сборки витрин. Определение параметров плановой валидации" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:documentation>Определите параметры</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="full_validation_execution_order_comment_flg" label="Комментарий к порядку проведения полной валидации" type="string" />
+          <camunda:formField id="need_additional_datamart_dev_flg" label="Требуется разработка дополнительной витрины?" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="full_validation_execution_order_comment_flg">${full_validation_execution_order_comment_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="need_additional_datamart_dev_flg">${need_additional_datamart_dev_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0g452rc</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fpxi8n</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="full_validation_datamart_dev_validator" name="Разработка витрины для полной валидации" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="plan_validation_datamart_name" label="Название витрины для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_desc" label="Описание источника данных для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_link" label="Ссылка на витрину для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_dag_link" label="Скрипт/DAG сборки витрины для полной валидации" type="string" />
+          <camunda:formField id="statement_reg_is_req_flg" label="Требуется постановка на регламент" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_name">${plan_validation_datamart_name}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_desc">${plan_validation_datamart_desc}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_link">${plan_validation_datamart_link}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_dag_link">${plan_validation_datamart_dag_link}</camunda:outputParameter>
+          <camunda:outputParameter name="statement_reg_is_req_flg">${statement_reg_is_req_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0i2exro</bpmn:incoming>
+      <bpmn:outgoing>Flow_02jo662</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="full_validation_datamart_de" name="Разработка витрины полной валидации" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>Разработка витрины полной валидации</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="plan_validation_datamart_decision" label="Решение по витрине" type="string" />
+          <camunda:formField id="plan_validation_datamart_name" label="Название витрины для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_desc" label="Описание источника данных для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_link" label="Ссылка на витрину для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_dag_link" label="Скрипт/DAG сборки витрины для полной валидации" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_decision">${plan_validation_datamart_decision}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_name">${plan_validation_datamart_name}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_desc">${plan_validation_datamart_desc}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_link">${plan_validation_datamart_link}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_dag_link">${plan_validation_datamart_dag_link}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_12dhy8w</bpmn:incoming>
+      <bpmn:outgoing>Flow_0j2euan</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="form_requirements_plan_validation_datamart" name="Формирование требований на витрину для полной валидации" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="requirements_plan_validation_datamart" label="Требования на витрину полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_developer_flg" label="Кто разрабатывает витрину полной валидации?" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="requirements_plan_validation_datamart">${requirements_plan_validation_datamart}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_developer_flg">${plan_validation_datamart_developer_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1k9zf5u</bpmn:incoming>
+      <bpmn:incoming>Flow_1y4t1dz</bpmn:incoming>
+      <bpmn:outgoing>Flow_16hlo8v</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="plan_validation_decision" name="Приемка витрины для полной валидации" camunda:candidateGroups="validator_lead,validator">
+      <bpmn:documentation>Приемка витрины для полной валидации</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="plan_validation_datamart_name" label="Название витрины для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_desc" label="Описание источника данных для полной валидации" type="string" />
+          <camunda:formField id="plan_validation_datamart_link" label="Ссылка на витрину для полной валидации" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_name">${plan_validation_datamart_name}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_desc">${plan_validation_datamart_desc}</camunda:outputParameter>
+          <camunda:outputParameter name="plan_validation_datamart_link">${plan_validation_datamart_link}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rv1z8o</bpmn:incoming>
+      <bpmn:incoming>Flow_0wjjd1f</bpmn:incoming>
+      <bpmn:incoming>Flow_1tif05h</bpmn:incoming>
+      <bpmn:outgoing>Flow_0f6mm0l</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="finish_datamart_prototype" name="Прототипирование витрины" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>Прототипирование витрины</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="finish_datamart_prototype_flg" label="Прототипирование витрины завершено?" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="finish_datamart_prototype_flg">${finish_datamart_prototype_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0y7c3dx</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cszaor</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="finish_test_datamart_dev" name="Тестирование витрины в контуре разработки" camunda:candidateGroups="de_lead, de">
+      <bpmn:documentation>Тестирование витрины в контуре разработки</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="finish_test_datamart_dev_flg" label="Подтвердите завершении тестирования витрины" type="string" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="model_stage">Разработка витрины для полной валидации</camunda:inputParameter>
+          <camunda:outputParameter name="finish_test_datamart_dev_flg">${finish_test_datamart_dev_flg}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17z00qv</bpmn:incoming>
+      <bpmn:incoming>Flow_0cszaor</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tif05h</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1vd1b0r" sourceRef="StartEvent_1" targetRef="Gateway_1gmmcye" />
+    <bpmn:sequenceFlow id="Flow_0fmcen5" sourceRef="Gateway_1gmmcye" targetRef="Activity_10kia0a" />
+    <bpmn:sequenceFlow id="Flow_0g452rc" sourceRef="Gateway_1gmmcye" targetRef="def_params_plan_validation" />
+    <bpmn:sequenceFlow id="Flow_0fpxi8n" sourceRef="def_params_plan_validation" targetRef="Gateway_1ql11ox" />
+    <bpmn:sequenceFlow id="Flow_054yygc" name="Разработка витрины не требуется" sourceRef="Gateway_1ql11ox" targetRef="Activity_1wc663b">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_additional_datamart_dev_flg=='Разработка витрины не требуется'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0i2exro" name="Требуется разработка отдельной витрины силами валидации" sourceRef="Gateway_1ql11ox" targetRef="full_validation_datamart_dev_validator">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_additional_datamart_dev_flg=='Требуется разработка отдельной витрины силами валидации'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1k9zf5u" name="Требуется привлечение ДИТ/DE для разработки витрины" sourceRef="Gateway_1ql11ox" targetRef="form_requirements_plan_validation_datamart">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${need_additional_datamart_dev_flg=='Требуется привлечение ДИТ/DE для разработки витрины'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_17p7g9a" sourceRef="Activity_1wc663b" targetRef="Event_1n46ti0" />
+    <bpmn:sequenceFlow id="Flow_16hlo8v" sourceRef="form_requirements_plan_validation_datamart" targetRef="Gateway_1ilx9pz" />
+    <bpmn:sequenceFlow id="Flow_0rv1z8o" name="Модель разрабатывает ДИТ" sourceRef="Gateway_1ilx9pz" targetRef="plan_validation_decision">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plan_validation_datamart_developer_flg=='ДИТ'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_12dhy8w" name="Модель разрабатывает DE" sourceRef="Gateway_1ilx9pz" targetRef="full_validation_datamart_de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plan_validation_datamart_developer_flg=='DE'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_02jo662" sourceRef="full_validation_datamart_dev_validator" targetRef="Gateway_02l18u0" />
+    <bpmn:sequenceFlow id="Flow_0wjjd1f" name="Требуется постановка на регламент" sourceRef="Gateway_02l18u0" targetRef="plan_validation_decision">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${statement_reg_is_req_flg==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0fcrj9a" name="Не требуется постановка на регламент" sourceRef="Gateway_02l18u0" targetRef="Activity_020jb1e">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${statement_reg_is_req_flg==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0d5jjeq" sourceRef="Activity_020jb1e" targetRef="Event_0pojass" />
+    <bpmn:sequenceFlow id="Flow_0j2euan" sourceRef="full_validation_datamart_de" targetRef="Gateway_01fkof3" />
+    <bpmn:sequenceFlow id="Flow_1y4t1dz" name="Требуется доработка требований" sourceRef="Gateway_01fkof3" targetRef="form_requirements_plan_validation_datamart">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plan_validation_datamart_decision=='Требуется доработка требований'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0y7c3dx" name="Требуется пилотирование на стенде прототипирования" sourceRef="Gateway_01fkof3" targetRef="finish_datamart_prototype">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plan_validation_datamart_decision=='Требуется пилотирование на стенде прототипирования'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_17z00qv" name="Прототипирование на стенде не требуется" sourceRef="Gateway_01fkof3" targetRef="finish_test_datamart_dev">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${plan_validation_datamart_decision=='Пилотирование на стенде прототипирования не требуется'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0f6mm0l" sourceRef="plan_validation_decision" targetRef="Activity_0wsu4n9" />
+    <bpmn:sequenceFlow id="Flow_0ja449r" sourceRef="Activity_0wsu4n9" targetRef="Event_1tp265x" />
+    <bpmn:sequenceFlow id="Flow_0cszaor" sourceRef="finish_datamart_prototype" targetRef="finish_test_datamart_dev" />
+    <bpmn:sequenceFlow id="Flow_1tif05h" sourceRef="finish_test_datamart_dev" targetRef="plan_validation_decision" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1jx51x8">
+      <bpmndi:BPMNShape id="Participant_1bpnll4_di" bpmnElement="Participant_1bpnll4" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1800" height="1090" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1d10wmr_di" bpmnElement="Lane_1d10wmr" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="1770" height="600" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0xuhbgy_di" bpmnElement="Lane_0xuhbgy" isHorizontal="true">
+        <dc:Bounds x="190" y="680" width="1770" height="490" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="292" y="432" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0ad9br6_di" bpmnElement="Gateway_1gmmcye">
+        <dc:Bounds x="415" y="425" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1inaa92_di" bpmnElement="Activity_10kia0a">
+        <dc:Bounds x="390" y="520" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ql11ox_di" bpmnElement="Gateway_1ql11ox" isMarkerVisible="true">
+        <dc:Bounds x="755" y="425" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1l1mc10_di" bpmnElement="Activity_1wc663b">
+        <dc:Bounds x="730" y="270" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1n46ti0_di" bpmnElement="Event_1n46ti0">
+        <dc:Bounds x="762" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="748" y="142" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ilx9pz_di" bpmnElement="Gateway_1ilx9pz" isMarkerVisible="true">
+        <dc:Bounds x="1195" y="525" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_02l18u0_di" bpmnElement="Gateway_02l18u0" isMarkerVisible="true">
+        <dc:Bounds x="1195" y="285" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16m39a2_di" bpmnElement="Activity_020jb1e">
+        <dc:Bounds x="1310" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pojass_di" bpmnElement="Event_0pojass">
+        <dc:Bounds x="1482" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1468" y="215" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_01fkof3_di" bpmnElement="Gateway_01fkof3" isMarkerVisible="true">
+        <dc:Bounds x="1325" y="825" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gcf1wh_di" bpmnElement="Activity_0wsu4n9">
+        <dc:Bounds x="1630" y="510" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1tp265x_di" bpmnElement="Event_1tp265x">
+        <dc:Bounds x="1832" y="532" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1818" y="575" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0anlsm1_di" bpmnElement="def_params_plan_validation">
+        <dc:Bounds x="560" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lmf170_di" bpmnElement="full_validation_datamart_dev_validator">
+        <dc:Bounds x="1000" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ufya80_di" bpmnElement="full_validation_datamart_de">
+        <dc:Bounds x="1170" y="810" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_15g5uqt_di" bpmnElement="form_requirements_plan_validation_datamart">
+        <dc:Bounds x="1000" y="510" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1h16cfm_di" bpmnElement="plan_validation_decision">
+        <dc:Bounds x="1430" y="510" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kj9mh5_di" bpmnElement="finish_datamart_prototype">
+        <dc:Bounds x="1500" y="750" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1u40n1b_di" bpmnElement="finish_test_datamart_dev">
+        <dc:Bounds x="1500" y="990" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1vd1b0r_di" bpmnElement="Flow_1vd1b0r">
+        <di:waypoint x="328" y="450" />
+        <di:waypoint x="415" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fmcen5_di" bpmnElement="Flow_0fmcen5">
+        <di:waypoint x="440" y="475" />
+        <di:waypoint x="440" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g452rc_di" bpmnElement="Flow_0g452rc">
+        <di:waypoint x="465" y="450" />
+        <di:waypoint x="560" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fpxi8n_di" bpmnElement="Flow_0fpxi8n">
+        <di:waypoint x="660" y="450" />
+        <di:waypoint x="755" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_054yygc_di" bpmnElement="Flow_054yygc">
+        <di:waypoint x="780" y="425" />
+        <di:waypoint x="780" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="710" y="370" width="59" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i2exro_di" bpmnElement="Flow_0i2exro">
+        <di:waypoint x="805" y="450" />
+        <di:waypoint x="910" y="450" />
+        <di:waypoint x="910" y="310" />
+        <di:waypoint x="1000" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="917" y="377" width="85" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k9zf5u_di" bpmnElement="Flow_1k9zf5u">
+        <di:waypoint x="780" y="475" />
+        <di:waypoint x="780" y="550" />
+        <di:waypoint x="1000" y="550" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="816" y="557" width="67" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17p7g9a_di" bpmnElement="Flow_17p7g9a">
+        <di:waypoint x="780" y="270" />
+        <di:waypoint x="780" y="208" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16hlo8v_di" bpmnElement="Flow_16hlo8v">
+        <di:waypoint x="1100" y="550" />
+        <di:waypoint x="1195" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rv1z8o_di" bpmnElement="Flow_0rv1z8o">
+        <di:waypoint x="1245" y="550" />
+        <di:waypoint x="1430" y="550" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1299" y="500" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12dhy8w_di" bpmnElement="Flow_12dhy8w">
+        <di:waypoint x="1220" y="575" />
+        <di:waypoint x="1220" y="810" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1231" y="710" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02jo662_di" bpmnElement="Flow_02jo662">
+        <di:waypoint x="1100" y="310" />
+        <di:waypoint x="1195" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wjjd1f_di" bpmnElement="Flow_0wjjd1f">
+        <di:waypoint x="1245" y="310" />
+        <di:waypoint x="1480" y="310" />
+        <di:waypoint x="1480" y="510" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1326" y="320" width="74" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fcrj9a_di" bpmnElement="Flow_0fcrj9a">
+        <di:waypoint x="1220" y="285" />
+        <di:waypoint x="1220" y="190" />
+        <di:waypoint x="1310" y="190" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1133" y="190" width="74" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d5jjeq_di" bpmnElement="Flow_0d5jjeq">
+        <di:waypoint x="1410" y="190" />
+        <di:waypoint x="1482" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j2euan_di" bpmnElement="Flow_0j2euan">
+        <di:waypoint x="1270" y="850" />
+        <di:waypoint x="1325" y="850" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y4t1dz_di" bpmnElement="Flow_1y4t1dz">
+        <di:waypoint x="1350" y="875" />
+        <di:waypoint x="1350" y="960" />
+        <di:waypoint x="1050" y="960" />
+        <di:waypoint x="1050" y="590" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1170" y="970" width="60" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y7c3dx_di" bpmnElement="Flow_0y7c3dx">
+        <di:waypoint x="1375" y="850" />
+        <di:waypoint x="1430" y="850" />
+        <di:waypoint x="1430" y="790" />
+        <di:waypoint x="1500" y="790" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1418" y="837" width="83" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17z00qv_di" bpmnElement="Flow_17z00qv">
+        <di:waypoint x="1350" y="875" />
+        <di:waypoint x="1350" y="1030" />
+        <di:waypoint x="1500" y="1030" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1357" y="1040" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0f6mm0l_di" bpmnElement="Flow_0f6mm0l">
+        <di:waypoint x="1530" y="550" />
+        <di:waypoint x="1630" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ja449r_di" bpmnElement="Flow_0ja449r">
+        <di:waypoint x="1730" y="550" />
+        <di:waypoint x="1832" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cszaor_di" bpmnElement="Flow_0cszaor">
+        <di:waypoint x="1550" y="830" />
+        <di:waypoint x="1550" y="990" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tif05h_di" bpmnElement="Flow_1tif05h">
+        <di:waypoint x="1600" y="1030" />
+        <di:waypoint x="1710" y="1030" />
+        <di:waypoint x="1710" y="660" />
+        <di:waypoint x="1480" y="660" />
+        <di:waypoint x="1480" y="590" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
