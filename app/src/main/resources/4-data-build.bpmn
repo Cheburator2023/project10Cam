@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Data-Build-BP">
     <bpmn:participant id="Participant_1mifh62" name="4. Построение витрины для разработки модели" processRef="data_build" />
   </bpmn:collaboration>
-  <bpmn:process id="data_build" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+  <bpmn:process id="data_build" isExecutable="true" camunda:versionTag="version11_2025_07_02">
     <bpmn:laneSet id="LaneSet_0i64mpi">
       <bpmn:lane id="Lane_1u61cuo" name="DS">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -258,7 +258,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0i7u92o" sourceRef="data_build_script_attach_ds" targetRef="Gateway_0f23s5v" />
     <bpmn:sequenceFlow id="Flow_1hb5sjk" name="Разработка успешна, переход на этап пилотирования модели" sourceRef="Gateway_0f23s5v" targetRef="Activity_0czek2k">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${datamart_script_success_ds_flg== 'Разработка успешна, требуется пилотирование'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${datamart_script_success_ds_flg== 'Разработка успешна, требуется пилотирование модели'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1e4w2cu" name="Разработка успешна" sourceRef="Gateway_0f23s5v" targetRef="Activity_0gyuf8p">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${datamart_script_success_ds_flg== 'Разработка успешна'}</bpmn:conditionExpression>

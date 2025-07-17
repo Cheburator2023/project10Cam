@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0ssjkpa">
     <bpmn:participant id="Participant_1l7o7fw" name="Разработка модели" processRef="model" />
   </bpmn:collaboration>
-  <bpmn:process id="model" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+  <bpmn:process id="model" isExecutable="true" camunda:versionTag="version11_2025_07_02">
     <bpmn:laneSet id="LaneSet_1vbeo8v">
       <bpmn:lane id="Lane_0vun16e" name="DS-Lead">
         <bpmn:flowNodeRef>development_results_approving</bpmn:flowNodeRef>
