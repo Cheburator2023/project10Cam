@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0g1zly7">
     <bpmn:participant id="Participant_13o4mx5" name="1. Инициализация" processRef="initialization" />
   </bpmn:collaboration>
-  <bpmn:process id="initialization" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+  <bpmn:process id="initialization" isExecutable="true" camunda:versionTag="version11_2025_07_02">
     <bpmn:extensionElements>
       <camunda:properties>
         <camunda:property name="ep_model_stage" value="Инициализация" />

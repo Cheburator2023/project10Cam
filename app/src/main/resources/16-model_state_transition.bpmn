@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_132utos">
     <bpmn:participant id="Participant_02v4dx2" name="Транзит состояния модели" processRef="model_state_transition" />
   </bpmn:collaboration>
-  <bpmn:process id="model_state_transition" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+  <bpmn:process id="model_state_transition" isExecutable="true" camunda:versionTag="version11_2025_07_02">
     <bpmn:laneSet id="LaneSet_1aszk48">
       <bpmn:lane id="Lane_193rzly" name="ModelOps">
         <bpmn:flowNodeRef>model_decommiss_confirm_rm</bpmn:flowNodeRef>
