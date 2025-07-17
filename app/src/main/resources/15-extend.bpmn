@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_132utos">
     <bpmn:participant id="Participant_02v4dx2" name="Вывод модели из эксплуатации" processRef="removal" />
   </bpmn:collaboration>
-  <bpmn:process id="removal" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="removal" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_1aszk48">
       <bpmn:lane id="Lane_0b0hm0n" name="DS-Lead">
         <bpmn:flowNodeRef>Gateway_18vsbh1</bpmn:flowNodeRef>

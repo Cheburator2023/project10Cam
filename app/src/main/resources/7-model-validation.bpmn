@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0rwewtp">
     <bpmn:participant id="Participant_1hog3o2" name="Первичная валидация" processRef="model_validation" />
   </bpmn:collaboration>
-  <bpmn:process id="model_validation" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="model_validation" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_18zt086">
       <bpmn:lane id="Lane_1oshfef" name="DS-Lead">
         <bpmn:flowNodeRef>Activity_0n0wme9</bpmn:flowNodeRef>

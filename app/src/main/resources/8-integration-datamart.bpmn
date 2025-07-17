@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_1uzznx0">
     <bpmn:participant id="Participant_0v3tlev" name="8. Разработка промышленной витрины" processRef="integration_datamart" />
   </bpmn:collaboration>
-  <bpmn:process id="integration_datamart" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="integration_datamart" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_0g5yu7b">
       <bpmn:lane id="Lane_1igk9mq" name="DE">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>

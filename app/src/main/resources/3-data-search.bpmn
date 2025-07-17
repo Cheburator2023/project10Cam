@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Data-Search-BPM">
     <bpmn:participant id="Participant_0glqwv9" name="3. Поиск данных" processRef="data_search" />
   </bpmn:collaboration>
-  <bpmn:process id="data_search" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="data_search" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_02dnlx8">
       <bpmn:lane id="Lane_1logcgr" name="DE">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
