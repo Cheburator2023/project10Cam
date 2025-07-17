@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0exxqj2">
     <bpmn:participant id="Participant_00mvhb1" name="11. Тестирование на препрод, перенос на прод контур" processRef="test_preprod_transfer_prod" />
   </bpmn:collaboration>
-  <bpmn:process id="test_preprod_transfer_prod" isExecutable="true" camunda:versionTag="version11_2025_04_06">
+  <bpmn:process id="test_preprod_transfer_prod" isExecutable="true" camunda:versionTag="version11_2025_07_02">
     <bpmn:laneSet id="LaneSet_1l88k1s">
       <bpmn:lane id="Lane_1iign6f" name="DE">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
