@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_1jx51x8">
     <bpmn:participant id="Participant_1bpnll4" name="9. Разработка витрины для полной валидации" processRef="fullvalidation_datamart" />
   </bpmn:collaboration>
-  <bpmn:process id="fullvalidation_datamart" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="fullvalidation_datamart" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_0ixat1j">
       <bpmn:lane id="Lane_0xuhbgy" name="DE">
         <bpmn:flowNodeRef>Gateway_01fkof3</bpmn:flowNodeRef>

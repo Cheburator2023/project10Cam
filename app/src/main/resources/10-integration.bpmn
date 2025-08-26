@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_08phnpx">
     <bpmn:participant id="Participant_0xt6hu8" name="10. Продуктивизация модели" processRef="inegration_model" />
   </bpmn:collaboration>
-  <bpmn:process id="inegration_model" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="inegration_model" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_1lncec6">
       <bpmn:lane id="Lane_0zybm5u" name="ModelOps">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>

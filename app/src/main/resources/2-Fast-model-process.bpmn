@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_18s81ce">
     <bpmn:participant id="Participant_0r8hufe" name="Сокращенное заведение моделей" processRef="fast_model_process" />
   </bpmn:collaboration>
-  <bpmn:process id="fast_model_process" isExecutable="true" camunda:versionTag="version11_2025_07_02">
+  <bpmn:process id="fast_model_process" isExecutable="true" camunda:versionTag="version11_2025_07_17">
     <bpmn:laneSet id="LaneSet_1rci32u">
       <bpmn:lane id="Lane_0fj0a7b" name="ModelOps">
         <bpmn:flowNodeRef>Gateway_083g5el</bpmn:flowNodeRef>
