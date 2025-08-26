@@ -115,17 +115,17 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_developing_datamart_flg=='Витрина для разработки не разрабатывалась'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1srtmxx" sourceRef="Gateway_0c7b67p" targetRef="Gateway_0a2734w" />
-    <bpmn:sequenceFlow id="Flow_10umr5y" name="Модель не эффективна в БП заказчика" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_not_effect">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель не эффективна в БП заказчика'}</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_10umr5y" name="Модель не принята владельцем, доработки не актуальны" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_not_effect">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель не принята владельцем, доработки не актуальны'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1wc8ulu" name="Модель принята владельцем, внедрение на стороне заказчика" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель принята заказчиком, внедрение на его стороне'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель принята владельцем, внедрение на стороне заказчика'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1ldmf6x" name="Модель разработана, принята заказчиком, продуктивизация не нужна" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_not_need_intergation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель разработана и принята заказчиком, продуктивизация не нужна'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель принята владельцем, внедрение не требуется'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0jwlqah" name="Модель разработана и принята заказчиком, нужна продуктивизация" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_need_intergation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель разработана и принята заказчиком, нужна продуктивизация'}</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_0jwlqah" name="Модель принята владельцем, внедрение требуется" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_need_intergation">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель принята владельцем, внедрение требуется'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_145p0c7" sourceRef="filling_info_datamart_dev_de" targetRef="Gateway_1if5xzw" />
     <bpmn:sequenceFlow id="Flow_01us8vw" sourceRef="filling_info_datamart_dev_ds" targetRef="Gateway_1if5xzw" />
@@ -580,14 +580,14 @@
         <camunda:formData>
           <camunda:formField id="fast_model_developing_datamart_flg" label="Для модели разрабатывалась витрина для разработки?" type="string" />
           <camunda:formField id="fast_first_model_validation_flg" label="Для модели проводилась первичная валидация?" type="string" />
-          <camunda:formField id="fast_model_decision_flg" label="Решение о внедрении модели" type="string" />
+          <camunda:formField id="model_development_results_approving_flg" label="Решение о внедрении модели" type="string" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка модели</camunda:inputParameter>
           <camunda:inputParameter name="model_status">В процессе разработки</camunda:inputParameter>
           <camunda:outputParameter name="fast_model_developing_datamart_flg">${fast_model_developing_datamart_flg}</camunda:outputParameter>
           <camunda:outputParameter name="fast_first_model_validation_flg">${fast_first_model_validation_flg}</camunda:outputParameter>
-          <camunda:outputParameter name="fast_model_decision_flg">${fast_model_decision_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="model_development_results_approving_flg">${model_development_results_approving_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0aghduv</bpmn:incoming>

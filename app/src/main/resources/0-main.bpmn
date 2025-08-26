@@ -145,7 +145,7 @@
       <bpmn:callActivity id="Activity_0u38422" name="Сокращенное заведение разработанных моделей" calledElement="fast_model_process" camunda:calledElementBinding="versionTag" camunda:calledElementVersionTag="version11_2025_07_17">
         <bpmn:extensionElements>
           <camunda:out source="fast_first_model_validation_flg" target="fast_first_model_validation_flg" />
-          <camunda:out source="fast_model_decision_flg" target="fast_model_decision_flg" />
+          <camunda:out source="model_development_results_approving_flg" target="model_development_results_approving_flg" />
           <camunda:in source="ds_lead" target="ds_lead" />
           <camunda:in source="de_lead" target="de_lead" />
           <camunda:in source="validator_lead" target="validator_lead" />
@@ -396,16 +396,16 @@
       <bpmn:sequenceFlow id="Flow_0qpoiv2" sourceRef="Activity_16ojvy1" targetRef="Gateway_1vxqszy" />
       <bpmn:sequenceFlow id="Flow_0yr2fvn" sourceRef="Activity_0u38422" targetRef="Gateway_0580ww8" />
       <bpmn:sequenceFlow id="Flow_0y0yqu6" sourceRef="Gateway_0580ww8" targetRef="Event_1gkulo1">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель не эффективна в БП заказчика'}</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель не принята владельцем, доработки не актуальны'}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_087o85a" sourceRef="Gateway_0580ww8" targetRef="Event_07ir8t3">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель разработана и принята заказчиком, продуктивизация не нужна'}</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение не требуется'}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_1iz5lyl" sourceRef="Gateway_0580ww8" targetRef="Event_1eb2qb0">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_product_flg") &amp;&amp; model_product_flg=='Модель продуктивизирована и установлена на прод'}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_0i3i74v" sourceRef="Gateway_0580ww8" targetRef="Gateway_10ypezz">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель разработана и принята заказчиком, нужна продуктивизация'}</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение требуется'}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_0o5p2qx" sourceRef="Gateway_1vxqszy" targetRef="Activity_0ak18iu">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("datamart_script_success_ds_flg") &amp;&amp; datamart_script_success_ds_flg== 'Разработка успешна'}</bpmn:conditionExpression>
@@ -448,7 +448,7 @@
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_0ds3at0" sourceRef="Gateway_0xgyq4p" targetRef="Gateway_10ypezz" />
       <bpmn:sequenceFlow id="Flow_0mbljb2" sourceRef="Gateway_10ypezz" targetRef="Activity_1o2pz98">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение требуется') || (execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель разработана и принята заказчиком, нужна продуктивизация')}</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение требуется')}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_0vedefp" sourceRef="Gateway_10ypezz" targetRef="Activity_0k3c9qm">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${(execution.hasVariable("need_plan_validation_flg") &amp;&amp; need_plan_validation_flg==true) || (execution.hasVariable("significance_validity") &amp;&amp; significance_validity=='Высокая')}</bpmn:conditionExpression>
@@ -478,7 +478,7 @@
         <bpmn:incoming>Flow_0zqmx03</bpmn:incoming>
       </bpmn:endEvent>
       <bpmn:sequenceFlow id="Flow_0zqmx03" sourceRef="Gateway_0580ww8" targetRef="Event_0g3meiz">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("fast_model_decision_flg") &amp;&amp; fast_model_decision_flg=='Модель принята заказчиком, внедрение на его стороне'}</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${execution.hasVariable("model_development_results_approving_flg") &amp;&amp; model_development_results_approving_flg=='Модель принята владельцем, внедрение на стороне заказчика'}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
     </bpmn:subProcess>
     <bpmn:intermediateCatchEvent id="Event_0qef57h">
