@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0mxcmxd">
     <bpmn:participant id="Participant_0ymd65x" name="Отмена разработки модели" processRef="cancel" />
   </bpmn:collaboration>
-  <bpmn:process id="cancel" isExecutable="true" camunda:versionTag="version_2025_10_29_v1">
+  <bpmn:process id="cancel" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:laneSet id="LaneSet_14ov1wz">
       <bpmn:lane id="Lane_15qid3v" name="DS Lead">
         <bpmn:flowNodeRef>cancel_model_development_ds_lead</bpmn:flowNodeRef>

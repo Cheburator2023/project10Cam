@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_132utos">
     <bpmn:participant id="Participant_02v4dx2" name="Вывод модели из эксплуатации" processRef="removal" />
   </bpmn:collaboration>
-  <bpmn:process id="removal" isExecutable="true" camunda:versionTag="version_2025_10_29_v1">
+  <bpmn:process id="removal" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:laneSet id="LaneSet_1aszk48">
       <bpmn:lane id="Lane_0b0hm0n" name="DS-Lead">
         <bpmn:flowNodeRef>Gateway_18vsbh1</bpmn:flowNodeRef>
@@ -35,7 +35,7 @@
           <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
           <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
-          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод модели из эксплуатации</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1e175i9</bpmn:incoming>
@@ -54,7 +54,7 @@
           <camunda:formField id="model_decommiss_confirm_file" label="Подтверждение вывода модели" type="string" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод модели из эксплуатации</camunda:inputParameter>
           <camunda:outputParameter name="model_decommiss_confirm_flg">${model_decommiss_confirm_flg}</camunda:outputParameter>
           <camunda:outputParameter name="model_decommiss_confirm_file">${model_decommiss_confirm_file}</camunda:outputParameter>
         </camunda:inputOutput>
@@ -71,7 +71,7 @@
           <camunda:formField id="remove_decision" label="Реквизиты решения о выведения из эксплуатации" type="string" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод модели из эксплуатации</camunda:inputParameter>
           <camunda:outputParameter name="model_decommiss_confirm_flg">${model_decommiss_confirm_flg}</camunda:outputParameter>
           <camunda:outputParameter name="rs_model_decommiss_date">${rs_model_decommiss_date}</camunda:outputParameter>
           <camunda:outputParameter name="remove_decision">${remove_decision}</camunda:outputParameter>
@@ -86,7 +86,7 @@
           <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
           <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
-          <camunda:inputParameter name="model_stage">Вывод из эксплуатации</camunda:inputParameter>
+          <camunda:inputParameter name="model_stage">Вывод модели из эксплуатации</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0yjk5nq</bpmn:incoming>

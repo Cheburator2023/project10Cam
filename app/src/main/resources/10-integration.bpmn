@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_08phnpx">
     <bpmn:participant id="Participant_0xt6hu8" name="10. Продуктивизация модели" processRef="inegration_model" />
   </bpmn:collaboration>
-  <bpmn:process id="inegration_model" isExecutable="true" camunda:versionTag="version_2025_10_29_v1">
+  <bpmn:process id="inegration_model" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:laneSet id="LaneSet_1lncec6">
       <bpmn:lane id="Lane_0zybm5u" name="ModelOps">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -48,8 +48,7 @@
           <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
           <camunda:inputParameter name="model_stage">Продуктивизация модели</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jdddno</bpmn:incoming>
@@ -62,8 +61,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Продуктивизация модели</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="final_version_spec">${final_version_spec}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -79,8 +77,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Продуктивизация модели</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="model_pilot_dev_flg">${model_pilot_dev_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -99,8 +96,7 @@
           <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
           <camunda:inputParameter name="model_stage">Продуктивизация модели</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ann8ww</bpmn:incoming>
@@ -126,8 +122,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Продуктивизация модели</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="model_service_dev_link">${model_service_dev_link}</camunda:outputParameter>
           <camunda:outputParameter name="model_integration_dag_link">${model_integration_dag_link}</camunda:outputParameter>
           <camunda:outputParameter name="need_pilot_dev_flg">${need_pilot_dev_flg}</camunda:outputParameter>
