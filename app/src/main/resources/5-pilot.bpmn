@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Model-Pilot-BP">
     <bpmn:participant id="Participant_11t166p" name="5. Пилотирование модели" processRef="model_pilot" />
   </bpmn:collaboration>
-  <bpmn:process id="model_pilot" isExecutable="true" camunda:versionTag="version11_2025_07_17">
+  <bpmn:process id="model_pilot" isExecutable="true" camunda:versionTag="version_2025_10_29_v1">
     <bpmn:laneSet id="LaneSet_0t1ykcj">
       <bpmn:lane id="Lane_0pjfei3" name="DS">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>

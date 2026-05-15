@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Data-Build-BP">
     <bpmn:participant id="Participant_1mifh62" name="4. Построение витрины для разработки модели" processRef="data_build" />
   </bpmn:collaboration>
-  <bpmn:process id="data_build" isExecutable="true" camunda:versionTag="version11_2025_07_17">
+  <bpmn:process id="data_build" isExecutable="true" camunda:versionTag="version_2025_10_29_v1">
     <bpmn:laneSet id="LaneSet_0i64mpi">
       <bpmn:lane id="Lane_1u61cuo" name="DS">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
