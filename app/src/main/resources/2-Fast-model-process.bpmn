@@ -3,12 +3,10 @@
   <bpmn:collaboration id="Collaboration_18s81ce">
     <bpmn:participant id="Participant_0r8hufe" name="Сокращенное заведение моделей" processRef="fast_model_process" />
   </bpmn:collaboration>
-  <bpmn:process id="fast_model_process" isExecutable="true" camunda:versionTag="version11_2025_07_17">
+  <bpmn:process id="fast_model_process" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:laneSet id="LaneSet_1rci32u">
       <bpmn:lane id="Lane_0fj0a7b" name="ModelOps">
-        <bpmn:flowNodeRef>Gateway_083g5el</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>filling_prod_info_batch_model</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>filling_prod_info_online_model</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>fast_model_wrapper_formation</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_050eugv" name="Валидатор">
         <bpmn:flowNodeRef>Gateway_0ccsh4z</bpmn:flowNodeRef>
@@ -68,6 +66,11 @@
     <bpmn:sequenceFlow id="Flow_0fg7hqp" name="Для модели не готовилась витрина для пром применения" sourceRef="Gateway_013gj5q" targetRef="filling_info_prom_datamart_ready_de">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_integration_datamart_flg=='Для модели не разрабатывалась витрина для промышленного применения'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_prom_datamart_to_gateway" sourceRef="filling_info_prom_datamart_ready_de" targetRef="Gateway_01jz0r5" />
+    <bpmn:sequenceFlow id="Flow_prom_datamart_de_to_gateway" sourceRef="filling_info_prom_datamart_de" targetRef="Gateway_01jz0r5" />
+    <bpmn:sequenceFlow id="Flow_first_validation_to_gateway" sourceRef="filling_info_first_validation" targetRef="Gateway_01jz0r5" />
+    <bpmn:sequenceFlow id="Flow_full_validation_to_gateway" sourceRef="filling_info_full_validation" targetRef="Gateway_01jz0r5" />
+    <bpmn:sequenceFlow id="Flow_gateway_to_completion" sourceRef="Gateway_01jz0r5" targetRef="Activity_1i7i7xq" />
     <bpmn:sequenceFlow id="Flow_04gwyo8" name="Для модели готовилась витрина для промышленного применения" sourceRef="Gateway_013gj5q" targetRef="filling_info_prom_datamart_de">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_integration_datamart_flg=='Для модели готовилась витрина  для промышленного применения'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -76,7 +79,6 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0sc1vdd" sourceRef="Gateway_19qm542" targetRef="Gateway_0ezsksh" />
     <bpmn:sequenceFlow id="Flow_18oruwo" sourceRef="Activity_1i7i7xq" targetRef="Event_0x4lxui" />
-    <bpmn:sequenceFlow id="Flow_1cv46ph" sourceRef="Gateway_01jz0r5" targetRef="Activity_1i7i7xq" />
     <bpmn:sequenceFlow id="Flow_04tql17" sourceRef="filling_info_datamart_dev_prod_de" targetRef="Gateway_01jz0r5" />
     <bpmn:sequenceFlow id="Flow_1ih4fxi" sourceRef="filling_info_datamart_dev_prod_ds" targetRef="Gateway_01jz0r5" />
     <bpmn:sequenceFlow id="Flow_0wq1fmq" sourceRef="filling_info_ready_datamart_dev_prod_ds" targetRef="Gateway_01jz0r5" />
@@ -115,17 +117,17 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_developing_datamart_flg=='Витрина для разработки не разрабатывалась'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1srtmxx" sourceRef="Gateway_0c7b67p" targetRef="Gateway_0a2734w" />
-    <bpmn:sequenceFlow id="Flow_10umr5y" name="Модель не принята владельцем, доработки не актуальны" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_not_effect">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель не принята владельцем, доработки не актуальны'}</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_10umr5y" name="Модель не эффективна в БП заказчика" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_not_effect">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель не эффективна в БП заказчика'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1wc8ulu" name="Модель принята владельцем, внедрение на стороне заказчика" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель принята владельцем, внедрение на стороне заказчика'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель принята заказчиком, внедрение на его стороне'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1ldmf6x" name="Модель разработана, принята заказчиком, продуктивизация не нужна" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_not_need_intergation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель принята владельцем, внедрение не требуется'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель разработана и принята заказчиком, продуктивизация не нужна'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0jwlqah" name="Модель принята владельцем, внедрение требуется" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_need_intergation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_development_results_approving_flg=='Модель принята владельцем, внедрение требуется'}</bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="Flow_0jwlqah" name="Модель разработана и принята заказчиком, нужна продуктивизация" sourceRef="Gateway_1if5xzw" targetRef="filling_model_info_need_intergation">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_decision_flg=='Модель разработана и принята заказчиком, нужна продуктивизация'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_145p0c7" sourceRef="filling_info_datamart_dev_de" targetRef="Gateway_1if5xzw" />
     <bpmn:sequenceFlow id="Flow_01us8vw" sourceRef="filling_info_datamart_dev_ds" targetRef="Gateway_1if5xzw" />
@@ -138,8 +140,7 @@
     <bpmn:sequenceFlow id="Flow_0t51t86" name="Да" sourceRef="Gateway_15khxeq" targetRef="filling_info_first_validation">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_first_model_validation_flg=='Первичная валидация проводилась'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1g6znt4" sourceRef="filling_prod_info_online_model" targetRef="Gateway_01jz0r5" />
-    <bpmn:sequenceFlow id="Flow_1phixzi" sourceRef="filling_prod_info_batch_model" targetRef="Gateway_01jz0r5" />
+    <bpmn:sequenceFlow id="Flow_1g6znt4" sourceRef="fast_model_wrapper_formation" targetRef="Gateway_01jz0r5" />
     <bpmn:sequenceFlow id="Flow_1j6ubzd" sourceRef="Gateway_0ccsh4z" targetRef="Event_1jyugbh" />
     <bpmn:sequenceFlow id="Flow_0k50mlk" name="Проводилась полная валидация" sourceRef="Gateway_0ccsh4z" targetRef="filling_info_full_validation">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_validation_status_flg==true}</bpmn:conditionExpression>
@@ -148,13 +149,7 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_first_validation_status_flg==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_021m2cd" sourceRef="Gateway_1edtlbz" targetRef="Gateway_0ccsh4z" />
-    <bpmn:sequenceFlow id="Flow_00m9psx" name="online" sourceRef="Gateway_083g5el" targetRef="filling_prod_info_online_model">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_integration_mode_flg=='Online'}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0t0yzcs" name="batch" sourceRef="Gateway_083g5el" targetRef="filling_prod_info_batch_model">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fast_model_integration_mode_flg=='Batch'}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1mql6ez" sourceRef="Gateway_1edtlbz" targetRef="Gateway_083g5el" />
+    <bpmn:sequenceFlow id="Flow_1mql6ez" sourceRef="Gateway_1edtlbz" targetRef="fast_model_wrapper_formation" />
     <bpmn:sequenceFlow id="Flow_18vbuvv" name="Модель продуктивизирована и установлена на прод" sourceRef="Gateway_0o1ghyz" targetRef="fast_model_product_config">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${model_product_flg=='Модель продуктивизирована и установлена на прод'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -189,6 +184,7 @@
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0fg7hqp</bpmn:incoming>
+      <bpmn:outgoing>Flow_prom_datamart_to_gateway</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_013gj5q">
       <bpmn:incoming>Flow_1mr8lv6</bpmn:incoming>
@@ -219,6 +215,7 @@
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_04gwyo8</bpmn:incoming>
+      <bpmn:outgoing>Flow_prom_datamart_de_to_gateway</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:intermediateThrowEvent id="Event_1sl528t" name="Переход на этап  &#34;Разработка витрины для полной валидации&#34;">
       <bpmn:incoming>Flow_02a851t</bpmn:incoming>
@@ -243,7 +240,7 @@
           <camunda:inputParameter name="model_status">Внедрена в ПИМ</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1cv46ph</bpmn:incoming>
+      <bpmn:incoming>Flow_gateway_to_completion</bpmn:incoming>
       <bpmn:outgoing>Flow_18oruwo</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:intermediateThrowEvent id="Event_0x4lxui" name="Статус &#34;Разработана, внедрена в ПИМ&#34;">
@@ -327,9 +324,12 @@
       <bpmn:incoming>Flow_0wq1fmq</bpmn:incoming>
       <bpmn:incoming>Flow_1ih4fxi</bpmn:incoming>
       <bpmn:incoming>Flow_04tql17</bpmn:incoming>
-      <bpmn:incoming>Flow_1phixzi</bpmn:incoming>
       <bpmn:incoming>Flow_1g6znt4</bpmn:incoming>
-      <bpmn:outgoing>Flow_1cv46ph</bpmn:outgoing>
+      <bpmn:incoming>Flow_prom_datamart_to_gateway</bpmn:incoming>
+      <bpmn:incoming>Flow_prom_datamart_de_to_gateway</bpmn:incoming>
+      <bpmn:incoming>Flow_first_validation_to_gateway</bpmn:incoming>
+      <bpmn:incoming>Flow_full_validation_to_gateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_gateway_to_completion</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:exclusiveGateway id="Gateway_1a2qx1w">
       <bpmn:incoming>Flow_03s8fp6</bpmn:incoming>
@@ -580,14 +580,14 @@
         <camunda:formData>
           <camunda:formField id="fast_model_developing_datamart_flg" label="Для модели разрабатывалась витрина для разработки?" type="string" />
           <camunda:formField id="fast_first_model_validation_flg" label="Для модели проводилась первичная валидация?" type="string" />
-          <camunda:formField id="model_development_results_approving_flg" label="Решение о внедрении модели" type="string" />
+          <camunda:formField id="fast_model_decision_flg" label="Решение о внедрении модели" type="string" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка модели</camunda:inputParameter>
           <camunda:inputParameter name="model_status">В процессе разработки</camunda:inputParameter>
           <camunda:outputParameter name="fast_model_developing_datamart_flg">${fast_model_developing_datamart_flg}</camunda:outputParameter>
           <camunda:outputParameter name="fast_first_model_validation_flg">${fast_first_model_validation_flg}</camunda:outputParameter>
-          <camunda:outputParameter name="model_development_results_approving_flg">${model_development_results_approving_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="fast_model_decision_flg">${fast_model_decision_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0aghduv</bpmn:incoming>
@@ -598,7 +598,7 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="model_validation_status_flg" label="Для модели проводится полная валидация?" type="string" />
-          <camunda:formField id="fast_model_integration_mode_flg" label="Какой у модели режим применения?" type="string" />
+          <camunda:formField id="deployment_channel" label="Канал внедрения" type="string" />
           <camunda:formField id="fast_model_integration_datamart_flg" label="Для модели готовилась витрина для применения?" type="string" />
           <camunda:formField id="fast_model_developing_datamart_flg" label="Для модели разрабатывалась витрина для разработки?" type="string" />
           <camunda:formField id="model_first_validation_status_flg" label="Для модели проводится первичная?" type="string" />
@@ -607,7 +607,7 @@
           <camunda:inputParameter name="model_stage">Разработка модели</camunda:inputParameter>
           <camunda:inputParameter name="model_status">В процессе разработки</camunda:inputParameter>
           <camunda:outputParameter name="model_validation_status_flg">${model_validation_status_flg}</camunda:outputParameter>
-          <camunda:outputParameter name="fast_model_integration_mode_flg">${fast_model_integration_mode_flg}</camunda:outputParameter>
+          <camunda:outputParameter name="deployment_channel">${deployment_channel}</camunda:outputParameter>
           <camunda:outputParameter name="fast_model_integration_datamart_flg">${fast_model_integration_datamart_flg}</camunda:outputParameter>
           <camunda:outputParameter name="fast_model_developing_datamart_flg">${fast_model_developing_datamart_flg}</camunda:outputParameter>
           <camunda:outputParameter name="model_first_validation_status_flg">${model_first_validation_status_flg}</camunda:outputParameter>
@@ -651,6 +651,7 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0t51t86</bpmn:incoming>
       <bpmn:incoming>Flow_16zgq69</bpmn:incoming>
+      <bpmn:outgoing>Flow_first_validation_to_gateway</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="filling_info_full_validation" name="Заполнение информации по полной валидации, заполнение информации по витрине для полной валидации" camunda:candidateGroups="validator_lead,validator">
       <bpmn:extensionElements>
@@ -688,66 +689,59 @@
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0k50mlk</bpmn:incoming>
+      <bpmn:outgoing>Flow_full_validation_to_gateway</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="filling_prod_info_online_model" name="Заполнение информации о продуктивизации online модели" camunda:candidateGroups="modelops,modelops_lead">
+    <bpmn:userTask id="fast_model_wrapper_formation" name="Формирование обвязки модели" camunda:candidateGroups="modelops,modelops_lead">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="final_version_spec" label="Итоговая версия спецификаций" type="string" />
-          <camunda:formField id="model_service_dev_link" label="Ссылка на сервис модели в контуре разработки" type="string" />
-          <camunda:formField id="preprod_psi_model_link" label="Ссылка на протокол ПСИ по модели" type="string" />
           <camunda:formField id="integration_decree_date" label="Дата распоряжения о внедрении" type="string" />
-          <camunda:formField id="model_epic_11" label="Эпик 11" type="string" />
-          <camunda:formField id="release" label="Релиз" type="string" />
-          <camunda:formField id="model_epic_09" label="Эпик 09" type="string" />
-          <camunda:formField id="model_epic_11_date" label="Дата решения для эпика 11" type="string" />
-          <camunda:formField id="date_of_introduction_into_operation" label="Дата внедрения в промышленную эксплуатацию" type="string" />
-        </camunda:formData>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="model_stage">Разработка модели</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">В процессе разработки</camunda:inputParameter>
-          <camunda:outputParameter name="final_version_spec">${final_version_spec}</camunda:outputParameter>
-          <camunda:outputParameter name="model_service_dev_link">${model_service_dev_link}</camunda:outputParameter>
-          <camunda:outputParameter name="preprod_psi_model_link">${preprod_psi_model_link}</camunda:outputParameter>
-          <camunda:outputParameter name="integration_decree_date">${integration_decree_date}</camunda:outputParameter>
-          <camunda:outputParameter name="model_epic_11">${model_epic_11}</camunda:outputParameter>
-          <camunda:outputParameter name="release">${release}</camunda:outputParameter>
-          <camunda:outputParameter name="model_epic_09">${model_epic_09}</camunda:outputParameter>
-          <camunda:outputParameter name="model_epic_11_date">${model_epic_11_date}</camunda:outputParameter>
-          <camunda:outputParameter name="date_of_introduction_into_operation">${date_of_introduction_into_operation}</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_00m9psx</bpmn:incoming>
-      <bpmn:outgoing>Flow_1g6znt4</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="filling_prod_info_batch_model" name="Заполнение информации о продуктивизации batch модели" camunda:candidateGroups="modelops,modelops_lead">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="final_version_spec" label="Итоговая версия спецификаций" type="string" />
           <camunda:formField id="model_integration_dag_link" label="Ссылка на DAG применения модели" type="string" />
+          <camunda:formField id="model_service_dev_link" label="Ссылка на сервис модели в контуре разработки" type="string" />
+          <camunda:formField id="final_version_spec" label="Итоговая версия спецификаций" type="string" />
           <camunda:formField id="preprod_psi_model_link" label="Ссылка на протокол ПСИ по модели" type="string" />
-          <camunda:formField id="integration_decree_date" label="Дата распоряжения о внедрении" type="string" />
-          <camunda:formField id="model_epic_11" label="Эпик 11" type="string" />
           <camunda:formField id="release" label="Релиз" type="string" />
           <camunda:formField id="model_epic_09" label="Эпик 09" type="string" />
+          <camunda:formField id="model_epic_11" label="Эпик 11" type="string" />
           <camunda:formField id="model_epic_11_date" label="Дата решения для эпика 11" type="string" />
           <camunda:formField id="date_of_introduction_into_operation" label="Дата внедрения в промышленную эксплуатацию" type="string" />
+          <camunda:formField id="data_lineage_ml_link" label="Ссылка на Data Lineage ML" type="string" />
+          <camunda:formField id="source_code_link" label="Ссылка на исходный код проекта" type="string" />
+          <camunda:formField id="build_link" label="Ссылка на сборку" type="string" />
+          <camunda:formField id="docker_artifact_link" label="Ссылка на артефакт сборки (docker)" type="string" />
+          <camunda:formField id="output_table" label="Выходная таблица" type="string" />
+          <camunda:formField id="allocation_assessment_class" label="Класс оценки аллокаций" type="string" />
+          <camunda:formField id="allocation_assessment_parameters" label="Параметры оценки аллокации" type="string" />
+          <camunda:formField id="devsecops_project_area" label="Проектная область в Сфера DevSecOps" type="string" />
+          <camunda:formField id="code_repository_uri" label="Uri репозитория кода" type="string" />
+          <camunda:formField id="release_branch" label="Релизная ветка" type="string" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка модели</camunda:inputParameter>
           <camunda:inputParameter name="model_status">В процессе разработки</camunda:inputParameter>
-          <camunda:outputParameter name="final_version_spec">${final_version_spec}</camunda:outputParameter>
-          <camunda:outputParameter name="model_integration_dag_link">${model_integration_dag_link}</camunda:outputParameter>
-          <camunda:outputParameter name="preprod_psi_model_link">${preprod_psi_model_link}</camunda:outputParameter>
           <camunda:outputParameter name="integration_decree_date">${integration_decree_date}</camunda:outputParameter>
-          <camunda:outputParameter name="model_epic_11">${model_epic_11}</camunda:outputParameter>
+          <camunda:outputParameter name="model_integration_dag_link">${model_integration_dag_link}</camunda:outputParameter>
+          <camunda:outputParameter name="model_service_dev_link">${model_service_dev_link}</camunda:outputParameter>
+          <camunda:outputParameter name="final_version_spec">${final_version_spec}</camunda:outputParameter>
+          <camunda:outputParameter name="preprod_psi_model_link">${preprod_psi_model_link}</camunda:outputParameter>
           <camunda:outputParameter name="release">${release}</camunda:outputParameter>
           <camunda:outputParameter name="model_epic_09">${model_epic_09}</camunda:outputParameter>
+          <camunda:outputParameter name="model_epic_11">${model_epic_11}</camunda:outputParameter>
           <camunda:outputParameter name="model_epic_11_date">${model_epic_11_date}</camunda:outputParameter>
           <camunda:outputParameter name="date_of_introduction_into_operation">${date_of_introduction_into_operation}</camunda:outputParameter>
+          <camunda:outputParameter name="data_lineage_ml_link">${data_lineage_ml_link}</camunda:outputParameter>
+          <camunda:outputParameter name="source_code_link">${source_code_link}</camunda:outputParameter>
+          <camunda:outputParameter name="build_link">${build_link}</camunda:outputParameter>
+          <camunda:outputParameter name="docker_artifact_link">${docker_artifact_link}</camunda:outputParameter>
+          <camunda:outputParameter name="output_table">${output_table}</camunda:outputParameter>
+          <camunda:outputParameter name="allocation_assessment_class">${allocation_assessment_class}</camunda:outputParameter>
+          <camunda:outputParameter name="allocation_assessment_parameters">${allocation_assessment_parameters}</camunda:outputParameter>
+          <camunda:outputParameter name="devsecops_project_area">${devsecops_project_area}</camunda:outputParameter>
+          <camunda:outputParameter name="code_repository_uri">${code_repository_uri}</camunda:outputParameter>
+          <camunda:outputParameter name="release_branch">${release_branch}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0t0yzcs</bpmn:incoming>
-      <bpmn:outgoing>Flow_1phixzi</bpmn:outgoing>
+      <bpmn:incoming>Flow_1mql6ez</bpmn:incoming>
+      <bpmn:outgoing>Flow_1g6znt4</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="filling_info_model_dev" name="Заполнение информации по разработке модели" camunda:candidateGroups="ds_lead, ds">
       <bpmn:documentation>Заполнение информации по разработке модели</bpmn:documentation>
@@ -788,11 +782,6 @@
       <bpmn:outgoing>Flow_16zgq69</bpmn:outgoing>
       <bpmn:outgoing>Flow_1j6ubzd</bpmn:outgoing>
     </bpmn:inclusiveGateway>
-    <bpmn:exclusiveGateway id="Gateway_083g5el">
-      <bpmn:incoming>Flow_1mql6ez</bpmn:incoming>
-      <bpmn:outgoing>Flow_0t0yzcs</bpmn:outgoing>
-      <bpmn:outgoing>Flow_00m9psx</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:exclusiveGateway id="Gateway_0o1ghyz">
       <bpmn:incoming>Flow_0btmksd</bpmn:incoming>
       <bpmn:outgoing>Flow_0aghduv</bpmn:outgoing>
@@ -1006,11 +995,8 @@
         <dc:Bounds x="900" y="1490" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1j35txd_di" bpmnElement="filling_prod_info_online_model">
-        <dc:Bounds x="900" y="1300" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1uzppft_di" bpmnElement="filling_prod_info_batch_model">
-        <dc:Bounds x="900" y="1190" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_fast_model_wrapper_formation_di" bpmnElement="fast_model_wrapper_formation">
+        <dc:Bounds x="900" y="1245" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0p4n39h_di" bpmnElement="filling_info_model_dev">
         <dc:Bounds x="430" y="200" width="100" height="80" />
@@ -1020,9 +1006,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="456" y="1470" width="67" height="40" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_083g5el_di" bpmnElement="Gateway_083g5el" isMarkerVisible="true">
-        <dc:Bounds x="715" y="1205" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0o1ghyz_di" bpmnElement="Gateway_0o1ghyz" isMarkerVisible="true">
         <dc:Bounds x="715" y="215" width="50" height="50" />
@@ -1048,6 +1031,32 @@
           <dc:Bounds x="757" y="797" width="76" height="66" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_prom_datamart_to_gateway_di" bpmnElement="Flow_prom_datamart_to_gateway">
+        <di:waypoint x="830" y="980" />
+        <di:waypoint x="830" y="1100" />
+        <di:waypoint x="1460" y="1100" />
+        <di:waypoint x="1460" y="725" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_prom_datamart_de_to_gateway_di" bpmnElement="Flow_prom_datamart_de_to_gateway">
+        <di:waypoint x="950" y="1050" />
+        <di:waypoint x="950" y="1070" />
+        <di:waypoint x="1460" y="1070" />
+        <di:waypoint x="1460" y="725" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_first_validation_to_gateway_di" bpmnElement="Flow_first_validation_to_gateway">
+        <di:waypoint x="1000" y="1650" />
+        <di:waypoint x="1460" y="1650" />
+        <di:waypoint x="1460" y="725" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_full_validation_to_gateway_di" bpmnElement="Flow_full_validation_to_gateway">
+        <di:waypoint x="1000" y="1530" />
+        <di:waypoint x="1460" y="1530" />
+        <di:waypoint x="1460" y="725" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_gateway_to_completion_di" bpmnElement="Flow_gateway_to_completion">
+        <di:waypoint x="1460" y="675" />
+        <di:waypoint x="1460" y="630" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04gwyo8_di" bpmnElement="Flow_04gwyo8">
         <di:waypoint x="950" y="835" />
         <di:waypoint x="950" y="970" />
@@ -1066,10 +1075,6 @@
       <bpmndi:BPMNEdge id="Flow_18oruwo_di" bpmnElement="Flow_18oruwo">
         <di:waypoint x="1460" y="550" />
         <di:waypoint x="1460" y="498" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1cv46ph_di" bpmnElement="Flow_1cv46ph">
-        <di:waypoint x="1460" y="675" />
-        <di:waypoint x="1460" y="630" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04tql17_di" bpmnElement="Flow_04tql17">
         <di:waypoint x="1370" y="990" />
@@ -1268,20 +1273,15 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0t51t86_di" bpmnElement="Flow_0t51t86">
         <di:waypoint x="1933" y="265" />
-        <di:waypoint x="1933" y="1640" />
-        <di:waypoint x="1000" y="1640" />
+        <di:waypoint x="1933" y="1620" />
+        <di:waypoint x="1000" y="1620" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1904" y="285" width="13" height="14" />
+          <dc:Bounds x="1904" y="285" width="14" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1g6znt4_di" bpmnElement="Flow_1g6znt4">
-        <di:waypoint x="1000" y="1340" />
-        <di:waypoint x="1460" y="1340" />
-        <di:waypoint x="1460" y="725" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1phixzi_di" bpmnElement="Flow_1phixzi">
-        <di:waypoint x="1000" y="1230" />
-        <di:waypoint x="1460" y="1230" />
+        <di:waypoint x="1000" y="1285" />
+        <di:waypoint x="1460" y="1285" />
         <di:waypoint x="1460" y="725" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1j6ubzd_di" bpmnElement="Flow_1j6ubzd">
@@ -1308,24 +1308,10 @@
         <di:waypoint x="540" y="570" />
         <di:waypoint x="540" y="1505" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_00m9psx_di" bpmnElement="Flow_00m9psx">
-        <di:waypoint x="740" y="1255" />
-        <di:waypoint x="740" y="1340" />
-        <di:waypoint x="900" y="1340" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="815" y="1323" width="30" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0t0yzcs_di" bpmnElement="Flow_0t0yzcs">
-        <di:waypoint x="765" y="1230" />
-        <di:waypoint x="900" y="1230" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="821" y="1212" width="27" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1mql6ez_di" bpmnElement="Flow_1mql6ez">
         <di:waypoint x="740" y="595" />
-        <di:waypoint x="740" y="1205" />
+        <di:waypoint x="740" y="1285" />
+        <di:waypoint x="900" y="1285" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18vbuvv_di" bpmnElement="Flow_18vbuvv">
         <di:waypoint x="740" y="265" />

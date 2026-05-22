@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0exxqj2">
     <bpmn:participant id="Participant_00mvhb1" name="11. Тестирование на препрод, перенос на прод контур" processRef="test_preprod_transfer_prod" />
   </bpmn:collaboration>
-  <bpmn:process id="test_preprod_transfer_prod" isExecutable="true" camunda:versionTag="version11_2025_07_17">
+  <bpmn:process id="test_preprod_transfer_prod" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:laneSet id="LaneSet_1l88k1s">
       <bpmn:lane id="Lane_1iign6f" name="DE">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -41,8 +41,7 @@
           <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_166bbva</bpmn:incoming>
@@ -71,8 +70,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="transfer_to_prod_datamart_build_dag_flg">${transfer_to_prod_datamart_build_dag_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -97,8 +95,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="integration_decree_date">${integration_decree_date}</camunda:outputParameter>
           <camunda:outputParameter name="release">${release}</camunda:outputParameter>
           <camunda:outputParameter name="model_epic_09">${model_epic_09}</camunda:outputParameter>
@@ -119,8 +116,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="tranfer_model_prod_flg">${tranfer_model_prod_flg}</camunda:outputParameter>
           <camunda:outputParameter name="customer_model_id">${customer_model_id}</camunda:outputParameter>
         </camunda:inputOutput>
@@ -141,8 +137,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="preprod_test_model_flg">${preprod_test_model_flg}</camunda:outputParameter>
           <camunda:outputParameter name="preprod_psi_model_link">${preprod_psi_model_link}</camunda:outputParameter>
         </camunda:inputOutput>
@@ -158,8 +153,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="transfer_to_preprod_model_artefacts_flg">${transfer_to_preprod_model_artefacts_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -175,8 +169,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="preprod_test_datamart_flg">${preprod_test_datamart_flg}</camunda:outputParameter>
           <camunda:outputParameter name="preprod_psi_datamart_link">${preprod_psi_datamart_link}</camunda:outputParameter>
         </camunda:inputOutput>
@@ -192,8 +185,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Тестирование на препрод и перенос на прод контур</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="transfer_to_preprod_datamart_build_dag_flg">${transfer_to_preprod_datamart_build_dag_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>

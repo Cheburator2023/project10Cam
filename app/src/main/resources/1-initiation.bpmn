@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_0g1zly7">
     <bpmn:participant id="Participant_13o4mx5" name="1. Инициализация" processRef="initialization" />
   </bpmn:collaboration>
-  <bpmn:process id="initialization" isExecutable="true" camunda:versionTag="version11_2025_07_17">
+  <bpmn:process id="initialization" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:extensionElements>
       <camunda:properties>
         <camunda:property name="ep_model_stage" value="Инициализация" />
@@ -62,7 +62,7 @@
           <camunda:inputParameter name="model">${ model }</camunda:inputParameter>
           <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разаработка модели</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">В процессе разработки</camunda:inputParameter>
           <camunda:inputParameter name="model_stage">Инициализация</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>

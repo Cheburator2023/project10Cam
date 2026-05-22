@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_1uzznx0">
     <bpmn:participant id="Participant_0v3tlev" name="8. Разработка промышленной витрины" processRef="integration_datamart" />
   </bpmn:collaboration>
-  <bpmn:process id="integration_datamart" isExecutable="true" camunda:versionTag="version11_2025_07_17">
+  <bpmn:process id="integration_datamart" isExecutable="true" camunda:versionTag="version_2026_05_22_v1">
     <bpmn:laneSet id="LaneSet_0g5yu7b">
       <bpmn:lane id="Lane_1igk9mq" name="DE">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -35,8 +35,7 @@
           <camunda:inputParameter name="instance">${ execution.getProcessInstanceId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
           <camunda:inputParameter name="model_stage">Разработка промышленной витрины</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1wm0pq4</bpmn:incoming>
@@ -56,8 +55,7 @@
           <camunda:inputParameter name="instance">${ execution.getId() }</camunda:inputParameter>
           <camunda:inputParameter name="key">${ execution.getProcessEngineServices().getRepositoryService().getProcessDefinition(execution.getProcessDefinitionId()).getKey() }</camunda:inputParameter>
           <camunda:inputParameter name="model_stage">Разработка промышленной витрины</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0ngtbdk</bpmn:incoming>
@@ -88,8 +86,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка промышленной витрины</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="prom_datamart_name">${prom_datamart_name}</camunda:outputParameter>
           <camunda:outputParameter name="prom_datamart_source_desc">${prom_datamart_source_desc}</camunda:outputParameter>
           <camunda:outputParameter name="prom_datamart_link">${prom_datamart_link}</camunda:outputParameter>
@@ -108,8 +105,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка промышленной витрины</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="prom_datamart_pilot_de_flg">${prom_datamart_pilot_de_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -125,8 +121,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка промышленной витрины</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="model_epic_07">${model_epic_07}</camunda:outputParameter>
           <camunda:outputParameter name="model_epic_07_date">${model_epic_07_date}</camunda:outputParameter>
           <camunda:outputParameter name="prom_datamart_report">${prom_datamart_report}</camunda:outputParameter>
@@ -143,8 +138,7 @@
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="model_stage">Разработка промышленной витрины</camunda:inputParameter>
-          <camunda:inputParameter name="model_status">Разработана, в процессе 
-внедрения</camunda:inputParameter>
+          <camunda:inputParameter name="model_status">Разработана, в процессе внедрения</camunda:inputParameter>
           <camunda:outputParameter name="prom_datamart_ready_to_preprod_flg">${prom_datamart_ready_to_preprod_flg}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
